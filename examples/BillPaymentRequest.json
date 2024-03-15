@@ -1,0 +1,44 @@
+{
+    "walletProviderId": "bssrabbit",
+    "billerIdentifier": 921,
+    "externalBillerIdentifier": "bank-payment",
+    "productId": "90",
+    "value": {
+        "currency": "NZD",
+        "amount": 200000.0
+    },
+    "merchantId": "3641",
+    "fromMsisdn": "64225332568",
+    "fromPin": "112233",
+    "productTypeInfo": {
+        "Bank Account": "70-4846-4646550-40",
+        "Account Name": "Test",
+        "Code": "code001",
+        "Reference": "ref033",
+        "Particulars": "particular006",
+        "subscriptionCode": "",
+        "subProductName": "",
+        "subProductId": "",
+        "billerType": 61,
+        "customerPhoneNumber": "64225332568",
+        "productTypeCode": null
+    },
+    "inputValues": {
+        "Bank Account": "70-4846-4646550-40",
+        "Account Name": "Test",
+        "Code": "code001",
+        "Reference": "ref033",
+        "Particulars": "particular006"
+    },
+    "geoLocation": {
+        "latitude": -36.90544236136767,
+        "longitude": 174.7164117816925
+    },
+    "coupon": {
+        "couponCode": null,
+        "merchantPartnerId": null
+    },
+    "originalAmount": 1.0,
+    "notes": "someNotes",
+    "voluntaryDelay": 0
+}

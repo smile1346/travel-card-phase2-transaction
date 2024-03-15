@@ -1,0 +1,1 @@
+dotnet watch --no-hot-reload --property WarningLevel=0
