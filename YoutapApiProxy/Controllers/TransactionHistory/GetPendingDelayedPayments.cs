@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Swashbuckle.AspNetCore.Annotations;
-using Models;
 using Swashbuckle.AspNetCore.Filters;
 using Examples;
 using System.Net.Mime;

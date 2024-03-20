@@ -19,10 +19,6 @@ struct Documentation
   {
     builder.Services.AddEndpointsApiExplorer();
 
-    builder.Services.AddSwaggerExamplesFromAssemblyOf<Handlers.AccountValidationRequestExamples>();
-    builder.Services.AddSwaggerExamplesFromAssemblyOf<Handlers.AnyGatewayResponseExamples>();
-    builder.Services.AddSwaggerExamplesFromAssemblyOf<Handlers.Camt054Examples>();
-
     builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>
     {
