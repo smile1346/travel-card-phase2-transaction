@@ -91,9 +91,9 @@ public class CustomerIdentifierDTO
 
 public class Root
 {
-    [JsonPropertyName("walletProviderId")]
-    [Required]
-    public string WalletProviderId { get; set; }
+    // [JsonPropertyName("walletProviderId")]
+    // [Required]
+    // public string WalletProviderId { get; set; }
 
     [JsonPropertyName("customerAddresses")]
     [SwaggerSchema("A list of additional addresses that may be used by the customer such as billing or delivery.")]

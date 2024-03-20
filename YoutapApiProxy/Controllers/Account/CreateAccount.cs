@@ -5,6 +5,8 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using Examples;
 using System.Net.Mime;
+using HttpRequests;
+using System.ComponentModel;
 
 namespace Controllers;
 
@@ -13,10 +15,13 @@ readonly partial struct Account
     // OK
     [ProducesResponseType(typeof(CreateAccountResponseSuccessModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(CreateAccountResponseSuccessExample))]
-
-    [ProducesResponseType(typeof(ErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
+    // Not Found
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
     [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(CreateAccountResponseNotFoundExample))]
-
+    // Internal Server Error
+    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    // Request Body
+    [Consumes(typeof(CreateAccountRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(CreateAccountRequestModel.Root), typeof(CreateAccountRequestExample))]
 
     [SwaggerOperation(Summary = "Create Account", Description = @"
@@ -26,10 +31,12 @@ Wallet types are primarily used to define minimum and maximum balances for each 
 Wallet Types.
 
 The colour is simply an aesthetic choice for how to display that account in the app.")]
-    public static IResult CreateAccount([SwaggerParameter("The ID of the customer.")] string custId, CreateAccountRequestModel.Root payload /*[FromHeader(Name = "x-jws-signature")] [SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature*/)
+    public static async Task<string> CreateAccount(HttpContext context,
+    PasswordBasedAccessTokenClient tokenClient,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
+    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string custId)
     {
-        var res = File.ReadAllText(@"examples\CreateAccountRequest.json");
-        return Results.Text(res, MediaTypeNames.Application.Json);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts", context, tokenClient);
     }
 
 }

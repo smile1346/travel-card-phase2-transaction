@@ -9,11 +9,10 @@ services:
     tmpfs:
       - /app/bin:exec
       - /app/obj
-    #entrypoint: dotnet watch --no-hot-reload
-    entrypoint: bash
+    entrypoint: dotnet watch --no-hot-reload
+    # entrypoint: bash
     ports:
       - 5012:5012
-      - 8080:8080
     tty: true
     restart: unless-stopped
     environment:

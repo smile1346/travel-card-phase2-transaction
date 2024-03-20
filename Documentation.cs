@@ -7,8 +7,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public static readonly Uri GATEWAY_URI = new("https://gateway.test.youtap-azuredev.net");
-  public static readonly Uri AUTH_URI = new("https://auth.test.youtap-azuredev.net/uaa/oauth/token");
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -114,9 +112,9 @@ class OrderTagsDocumentFilter : IDocumentFilter
     new OpenApiTag { Name = "Customer Profile", Description = "Customer Wallet Profile API provides the basic requests for accessing and managing all of the essential customer information. With its multi-tenant support, wallet providers are empowered to access their respective customer profiles securely." },
     new OpenApiTag { Name = "Wallet Account", Description = "The Wallet Account serves as the central hub for administering various aspects of wallet accounts, offering a suite of endpoints tailored to handle account creation, modification, and retrieval tasks." },
     new OpenApiTag { Name = "Transaction History", Description = "Every custom wants to know at one point or another how much they have sent and received in the past. The Transaction History can also let the customer about upcoming payments or download transaction summary documents." },
-    new OpenApiTag { Name = "Payment", Description = @"The Payment API contains a comprehensive set of endpoints tailored to 
+    new OpenApiTag { Name = "Payment", Description = @"The Payment API contains a comprehensive set of endpoints tailored to
       facilitate various payment transactions, accommodating a range of business concepts.
-      Whether it's a general use case like make wallet payment to merchant or a specific scenario 
+      Whether it's a general use case like make wallet payment to merchant or a specific scenario
       to meet diverse payment needs across different contexts.
 
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },

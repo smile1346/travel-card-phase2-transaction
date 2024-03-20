@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ErrorResponseModel;
+namespace ClientErrorResponseModel;
 
 public class Root
 {

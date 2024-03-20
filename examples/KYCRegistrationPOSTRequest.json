@@ -1,5 +1,4 @@
 {
-    "walletProviderId": "bssrabbit",
     "mobileNumber": "{{phone_number}}",
     "customerContact": {
         "addressType": "Business",

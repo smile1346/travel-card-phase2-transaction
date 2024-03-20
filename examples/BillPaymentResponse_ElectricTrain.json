@@ -1,0 +1,29 @@
+{
+    "status": 0,
+    "error": null,
+    "toTransactionId": 500163,
+    "fromTransactionId": 500162,
+    "fee": {
+        "toFee": {
+            "amount": 0,
+            "currency": "NZD"
+        },
+        "fromFee": {
+            "amount": 0,
+            "currency": "NZD"
+        }
+    },
+    "couponAmount": null,
+    "additional": {
+        "Gate Number": "1",
+        "productId": "et",
+        "billerIdentifier": "etb",
+        "billerType": "",
+        "payerName": "Joe+Bloggs",
+        "billDate": "2024-03-20T14:18:06.589614940",
+        "merchantAccountId": "null",
+        "billerName": "Electric+Train",
+        "productTypeCode": "",
+        "productName": "Electric+Train"
+    }
+}

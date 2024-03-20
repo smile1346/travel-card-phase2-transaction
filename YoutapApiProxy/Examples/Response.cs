@@ -22,6 +22,7 @@ public class BillPaymentResponseSuccessExample : IMultipleExamplesProvider<strin
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Successful Instant BillPayment", File.ReadAllText("examples/BillPaymentResponse_Successful.json"));
+        yield return SwaggerExample.Create("Electric Train", File.ReadAllText("examples/BillPaymentResponse_ElectricTrain.json"));
     }
 }
 
@@ -134,5 +135,22 @@ public class KYCRegistrationPOSTResponse : IMultipleExamplesProvider<string>
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Successfully Create Customer", File.ReadAllText("examples/KYCRegistrationPOSTResponse.json"));
+    }
+}
+
+public class GeneralTransactionResponseSuccessExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Successful Deposit", File.ReadAllText("examples/GeneralTransactionDepositResponse_Successful.json"));
+    }
+}
+
+public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Transaction date is not current", File.ReadAllText("examples/GeneralTransactionDepositResponse_DateNotCurrent.json"));
+        yield return SwaggerExample.Create("Must provide OTP", File.ReadAllText("examples/GeneralTransactionWithdrawalResponse_MustProvideOTP.json"));
     }
 }

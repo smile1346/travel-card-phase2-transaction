@@ -31,9 +31,9 @@ public class UserDetails
 
 public class Root
 {
-    [JsonPropertyName("walletProviderId")]
-    [Required]
-    public string WalletProviderId { get; set; }
+    // [JsonPropertyName("walletProviderId")]
+    // [Required]
+    // public string WalletProviderId { get; set; }
 
     [JsonPropertyName("mode")]
     [Required]

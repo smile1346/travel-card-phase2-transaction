@@ -1,9 +1,8 @@
 {
-    "walletProviderId": "bssrabbit",
     "mode": "TRANSACTION",
     "transactionDate": 1708495434000,
     "merchantDetails": {
-        "accountId": "401"
+        "accountId": "140"
     },
     "customerDetails": {
         "mobileNumber": "640000001"

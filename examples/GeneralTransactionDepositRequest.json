@@ -1,15 +1,14 @@
 {
-    "walletProviderId": "bssrabbit",
     "mode": "TRANSACTION",
-    "transactionDate": 1708495434000,
+    "transactionDate": 1710896198000,
     "merchantDetails": {
-        "accountId": "401"
+        "accountId": "140"
     },
     "customerDetails": {
-        "mobileNumber": "640000001"
+        "mobileNumber": "278668662"
     },
     "transactionDetails": {
-        "transactionAmount": "100.00",
+        "transactionAmount": "2.00",
         "currency": "NZD",
         "balanceType": "EMONEY",
         "channel": "Bank",

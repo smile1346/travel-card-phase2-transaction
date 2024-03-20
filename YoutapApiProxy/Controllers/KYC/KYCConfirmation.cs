@@ -5,19 +5,24 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using Examples;
 using System.Net.Mime;
+using HttpRequests;
 
 namespace Controllers;
 
 readonly partial struct KYC
 {
-    // OK
-    [ProducesResponseType(typeof(KYCConfirmationModel.Root), (int)HttpStatusCode.OK)]
-    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(KYCConfirmationResponseExample))]
+    // Request Body
+    [Consumes(typeof(KYCConfirmationModel.Root), MediaTypeNames.Application.Json)]
+    [SwaggerRequestExample(typeof(KYCConfirmationModel.Root), typeof(KYCConfirmationResponseExample))]
+    // Internal Server Error
+    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+
     [SwaggerOperation(Summary = "KYC Confirmation", Description = @"Sends an OTP to the phone number, if valid. The validity period of the OTP is provided in the response.")]
-    public static IResult KYCConfirmation()
+    public static async Task<string> KYCConfirmation(HttpContext context,
+    ClientCredentialsBasedAccessTokenClient tokenClient,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
-        var res = File.ReadAllText(@"examples\KYCConfirmationResponse.json");
-        return Results.Text(res, MediaTypeNames.Application.Json);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/kyc/onetimepin", context, tokenClient);
     }
 
 }
