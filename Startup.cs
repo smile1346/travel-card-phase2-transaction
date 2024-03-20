@@ -101,5 +101,5 @@ Configuration.AddConfiguration(app);
 }); */
 
 Router.AddRoutes(app);
-Console.WriteLine("Application is now listening...");
+// Console.WriteLine("Application is now listening...");
 app.Run();

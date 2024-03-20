@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Runtime.Serialization;
+using Examples;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -19,6 +20,9 @@ struct Documentation
   {
     builder.Services.AddEndpointsApiExplorer();
 
+    
+    builder.Services.AddSwaggerExamplesFromAssemblyOf<KYCRegistrationPOSTRequestExample>();
+
     builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>
     {
@@ -30,7 +34,7 @@ struct Documentation
       options.SwaggerDoc("v1", new OpenApiInfo
       {
         Title = "BBL x Youtap API Management",
-        Version = Monitoring.SERVICE_VERSION,
+        Version = "v1.0",
         Description = @"This collection is secured using OAuth 2.0 tokens with a client_credentials grant type.
 
 The app must acquire a token by posting a request to https://[domain]/oauth2/token with token_endpoint_auth_method of private_key_jwt and the client key signed as a jwt in client_assertion, as well as the key id. The client key is the provided customer key. The grant type, key ID, and client key can be supplied upon integration with a specific environment.
