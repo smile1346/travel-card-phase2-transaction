@@ -30,7 +30,7 @@ As with P2P payments a PIN is required to help prevent fraud, and a delay can be
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
     public static IResult PayForPass(BillPaymentRequestModel.Root payload /*[FromHeader(Name = "x-jws-signature")] [SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature*/)
     {
-        var res = File.ReadAllText(@"examples\BillPaymentResponse_Successful.json");
+        var res = File.ReadAllText(Path.Combine("examples", "BillPaymentResponse_Successful.json"));
         return Results.Text(res, MediaTypeNames.Application.Json);
     }
 

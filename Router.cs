@@ -18,7 +18,7 @@ struct Router
         v1.MapPut("customers/{custId}/accounts/{accountId}", Account.UpdateAccount).WithTags(["Wallet Account"]); // /wallet/v2/customers/{custId}/accounts/{accountId}
 
         v1.MapPost("payments/transit-payment", Payment.PayForTransit).WithTags(["Payment"]); // /emoney/v3/billpayment
-        v1.MapPost("payments/wallet-payment", Payment.PayForPass).WithTags(["Payment"]);
+        v1.MapPost("payments/wallet-payment", Payment.PayForTransit).WithTags(["Payment"]); // /emoney/v3/billpayment
 
         v1.MapGet("customers/{custId}/accounts/{accountId}/history", TransactionHistory.GetTransactionHistory).WithTags(["Transaction History"]); // /history/wallet/v4/{custId}/{accountId}/summary
 
