@@ -5,8 +5,10 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-struct Documentation
+readonly struct Documentation
 {
+  public static readonly Uri GATEWAY_URI = new("https://gateway.test.youtap-azuredev.net");
+  public static readonly Uri AUTH_URI = new("https://auth.test.youtap-azuredev.net/uaa/oauth/token");
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -20,13 +22,13 @@ struct Documentation
   {
     builder.Services.AddEndpointsApiExplorer();
 
-    
+
     builder.Services.AddSwaggerExamplesFromAssemblyOf<KYCRegistrationPOSTRequestExample>();
 
     builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>
     {
-      options.DocumentFilter<BasePathDocumentFilter>();
+      // options.DocumentFilter<BasePathDocumentFilter>();
       options.DocumentFilter<OrderTagsDocumentFilter>();
       // options.SchemaFilter<IsRequiredSchemaFilter>();
       options.ExampleFilters();
@@ -75,7 +77,7 @@ Additionally, the token is how the front-end knows what the customer ID is so th
       {
         Description = @"Authorization header using the Bearer scheme.
                       Enter your access token in the text input below.
-                      Example: 'I0K0qd50kQ1lMt2KGPI7lx2XM2Tm'",
+                      Example: 'eyJraWQiOiJlZWQ1ZWMyN...190rMJGj4NQuZqY57pluw'",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,

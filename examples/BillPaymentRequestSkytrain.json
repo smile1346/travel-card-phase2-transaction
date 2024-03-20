@@ -1,0 +1,22 @@
+{
+    
+    "billerIdentifier": 981,
+    "productId": "et",
+    "value": {
+        "currency": "NZD",
+        "amount": 1.00
+    },
+    "fromMsisdn": "278668662",
+    "fromPin": "112233",
+    "geoLocation": {
+        "latitude": -36.90544236136767,
+        "longitude": 174.7164117816925
+    },
+    "notes": "ค่าโดยสารรถไฟฟ้า",
+    "productTypeInfo": {
+        "Gate Number": "1"
+    },
+    "inputValues": {
+        "Gate Number": "1"
+    }
+}
