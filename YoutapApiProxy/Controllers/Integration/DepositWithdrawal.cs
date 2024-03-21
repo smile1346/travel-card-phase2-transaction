@@ -30,7 +30,7 @@ C2MD: Customer to Merchant Deposit. The transaction goes from the merchant to th
 
 C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
     public static async Task<string> DepositWithdrawal(HttpContext context,
-    ClientCredentialsBasedAccessTokenClient tokenClient,
+    BBLClientBasedAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/external-partners/v1/general-transaction", context, tokenClient);

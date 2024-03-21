@@ -1,7 +1,8 @@
 using HttpRequests;
 
 var builder = WebApplication.CreateBuilder();
-builder.Services.AddSingleton(new ClientCredentialsBasedAccessTokenClient());
+builder.Services.AddSingleton(new DefaultAccessTokenClient());
+builder.Services.AddSingleton(new BBLClientBasedAccessTokenClient());
 builder.Services.AddSingleton(new PasswordBasedAccessTokenClient());
 builder.WebHost.ConfigureKestrel(o => o.AddServerHeader = false);
 

@@ -25,7 +25,7 @@ Registers a new customer, including contact details and msisdn. Most fields are 
 
 Mandatory: Call KYC Confirmation to send OTP to users phone. Then request from user and supply in OTP field to validate registration.")]
     public static async Task<string> KYCRegistration(HttpContext context,
-    ClientCredentialsBasedAccessTokenClient tokenClient,
+    DefaultAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v2/kyc/registration", context, tokenClient);
