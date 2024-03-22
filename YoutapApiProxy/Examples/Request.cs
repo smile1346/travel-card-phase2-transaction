@@ -17,14 +17,22 @@ public class KYCRegistrationPATCHRequestExample : IMultipleExamplesProvider<stri
     }
 }
 
-public class BillPaymentRequestExample : IMultipleExamplesProvider<string>
+public class BillPaymentElectricTrainRequestExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Electric Train", File.ReadAllText("examples/BillPaymentRequest_ElectricTrain.json"));
+    }
+}
+
+public class BillPaymentRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
         yield return SwaggerExample.Create("BillPayment", File.ReadAllText("examples/BillPaymentRequest.json"));
     }
 }
+
 
 public class CreateAccountRequestExample : IMultipleExamplesProvider<string>
 {
@@ -48,5 +56,13 @@ public class GeneralTransactionRequestExample : IMultipleExamplesProvider<string
     {
         yield return SwaggerExample.Create("Deposit", File.ReadAllText("examples/GeneralTransactionDepositRequest.json"));
         yield return SwaggerExample.Create("Withdrawal", File.ReadAllText("examples/GeneralTransactionWithdrawalRequest.json"));
+    }
+}
+
+public class UpdateMsisdnRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Update MSISDN", File.ReadAllText("examples/UpdateMsisdnRequest.json"));
     }
 }

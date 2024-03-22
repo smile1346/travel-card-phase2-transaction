@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BillPaymentRequestModel;
@@ -77,15 +78,18 @@ public class ProductTypeInfo
 public class Root
 {
     [JsonPropertyName("billerIdentifier")]
+    [Required]
     public int BillerIdentifier { get; set; }
 
     [JsonPropertyName("externalBillerIdentifier")]
     public string ExternalBillerIdentifier { get; set; }
 
     [JsonPropertyName("productId")]
+    [Required]
     public string ProductId { get; set; }
 
     [JsonPropertyName("value")]
+    [Required]
     public Value Value { get; set; }
 
     [JsonPropertyName("merchantId")]
@@ -122,9 +126,11 @@ public class Root
 public class Value
 {
     [JsonPropertyName("currency")]
+    [Required]
     public string Currency { get; set; }
 
     [JsonPropertyName("amount")]
-    public double Amount { get; set; }
+    [Required]
+    public decimal Amount { get; set; }
 }
 

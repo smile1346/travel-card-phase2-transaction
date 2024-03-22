@@ -27,7 +27,7 @@ This endpoint is used to get user KYC details, including;
         - KYC tier requirements")]
     public static async Task<string> GetUserInfo(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string custId)
+    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/v3/kyc/{custId}", context, tokenClient);
     }

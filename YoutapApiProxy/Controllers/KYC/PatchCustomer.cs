@@ -24,7 +24,7 @@ readonly partial struct KYC
     public static async Task<string> PatchCustomer(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
-    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string customerId)
+    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string customerId)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v3/kyc/registration", context, tokenClient);
     }

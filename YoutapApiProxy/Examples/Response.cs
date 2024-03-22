@@ -154,3 +154,11 @@ public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<
         yield return SwaggerExample.Create("Must provide OTP", File.ReadAllText("examples/GeneralTransactionWithdrawalResponse_MustProvideOTP.json"));
     }
 }
+
+public class WebhookExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Low Balance", File.ReadAllText("examples/Webhook_LowBalance.json"));
+    }
+}

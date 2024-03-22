@@ -24,8 +24,8 @@ This endpoint retreives an account by id linked to the customer using the custId
 This API is useful for the Payment because it contains all of the IDs that they need to transfer money from one account to another, whether it's one of their own or somebody else's.")]
     public static async Task<string> GetSpecificAccount(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string custId,
-    [DefaultValue("1021")][SwaggerParameter("The ID of the account.")] string accountId)
+    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
+    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts/{accountId}", context, tokenClient);
     }

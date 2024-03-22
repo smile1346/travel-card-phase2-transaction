@@ -24,7 +24,7 @@ This endpoint retreives all the accounts linked to the customer using the custId
 This API is useful for the Payment because it contains all of the IDs that they need to transfer money from one account to another, whether it's one of their own or somebody else's.")]
     public static async Task<string> GetQuickAccounts(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string custId)
+    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/accounts/customer/{custId}/quick-accounts", context, tokenClient);
     }

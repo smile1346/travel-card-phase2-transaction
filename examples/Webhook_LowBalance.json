@@ -1,0 +1,12 @@
+{
+    "event": "LOW_BALANCE",
+    "detail": {
+        "event": "LOW_BALANCE",
+        "eventType": "CONSUMER",
+        "dateTime": "2024-02-02 12:12:12",
+        "time": "12:12pm",
+        "newBalance": "4.00",
+        "balanceThreshold": "10.00",
+        "currency": "NZD"
+    }
+}
