@@ -76,7 +76,7 @@ public class Root
     public List<CustomerIdentifierDTO> CustomerIdentifierDTO { get; set; }
 
     [JsonPropertyName("pin")]
-    [Required]
+    // [Required]
     [SwaggerSchema("The customer's PIN")]
     public string PIN { get; set; }
 

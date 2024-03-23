@@ -22,6 +22,7 @@ public class BillPaymentElectricTrainRequestExample : IMultipleExamplesProvider<
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Electric Train", File.ReadAllText("examples/BillPaymentRequest_ElectricTrain.json"));
+        yield return SwaggerExample.Create("BillPayment", File.ReadAllText("examples/BillPaymentRequest.json"));
     }
 }
 

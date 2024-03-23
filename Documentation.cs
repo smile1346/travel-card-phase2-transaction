@@ -119,7 +119,7 @@ class OrderTagsDocumentFilter : IDocumentFilter
 
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },
     new OpenApiTag { Name = "Integration", Description = "Integration between the wallet system and banking system or partner."},
-    new OpenApiTag { Name = "Notifications", Description = "Notify events."}
+    // new OpenApiTag { Name = "Notifications", Description = "Notify events."}
   ];
 
   public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)

@@ -21,9 +21,7 @@ readonly partial struct KYC
     [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
     [SwaggerOperation(Summary = "Register", Description = @"
-Registers a new customer, including contact details and msisdn. Most fields are nullable in case the customer hasn't supplied that information, but the phone number is required.
-
-Mandatory: Call KYC Confirmation to send OTP to users phone. Then request from user and supply in OTP field to validate registration.")]
+Registers a new customer, including contact details and msisdn. Most fields are nullable in case the customer hasn't supplied that information, but the phone number is required.")]
     public static async Task<string> KYCRegistration(HttpContext context,
     DefaultAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)

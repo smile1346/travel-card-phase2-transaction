@@ -25,16 +25,17 @@ readonly partial struct TransactionHistory
     PasswordBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
     /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId,
-    [SwaggerParameter("The type of the account.")] string? accountType,
-    [SwaggerParameter("The type of the client.")] string? clientType,
+    [SwaggerParameter("This is the category in which the account belongs to for example SAVINGS, LOAN , Biller Account , Agent Account")] string? accountType,
+    [SwaggerParameter("The type of the client (FINERACT, YTS).")] string? clientType,
     [SwaggerParameter("The IDs of the accounts.")] string? accountIds,
-    [SwaggerParameter("The end date of the transaction history range.")] string? to,
-    [SwaggerParameter("The start date of the transaction history range.")] string? from,
-    [SwaggerParameter("The size of each page.")] string? pageSize,
+    [SwaggerParameter("The end date of the transaction history range (yyyy-MM-dd).")] string? to,
+    [SwaggerParameter("The start date of the transaction history range (yyyy-MM-dd).")] string? from,
+    [SwaggerParameter("The number of transactions to retreive per page.")] string? pageSize,
     [SwaggerParameter("The page number.")] string? page,
     [SwaggerParameter("The property to order by.")] string? orderProperty,
-    [SwaggerParameter("The direction of sorting (ascending or descending).")] string? sortDirection,
-    [SwaggerParameter("Indicates whether to include interest and tax transactions.")] string? includeInterestAndTaxTransactions)
+    [SwaggerParameter("The direction of sorting (ASC, DESC).")] string? sortDirection,
+    [SwaggerParameter("Indicates whether to include interest and tax transactions.")] bool? includeInterestAndTaxTransactions,
+    [FromHeader(Name = "Accept-Language")] string? acceptLanguage = "TH")
     {
         // var uriBuilder = new UriBuilder(AuthorizedHttpClient.GATEWAY_URI)
         // {
@@ -66,6 +67,6 @@ readonly partial struct TransactionHistory
 
         // uriBuilder.Query = query.ToString();
 
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient, acceptLanguage);
     }
 }

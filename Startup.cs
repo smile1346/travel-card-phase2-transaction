@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using HttpRequests;
 
 var builder = WebApplication.CreateBuilder();
@@ -15,5 +16,24 @@ Documentation.AddSwagger(builder);
 var app = builder.Build();
 Configuration.AddConfiguration(app);
 
+app.MapPost("/oauth2/token", () =>
+{
+    return new TokenResponse
+    {
+        AccessToken = "",
+        ExpiresIn = "300",
+        IssuedAt = DateTime.Now.ToString()
+    };
+});
 Router.AddRoutes(app);
 app.Run();
+
+struct TokenResponse
+{
+    [JsonPropertyName("access_token")]
+    public string AccessToken;
+    [JsonPropertyName("expires_in")]
+    public string ExpiresIn;
+    [JsonPropertyName("issued_at")]
+    public string IssuedAt;
+}

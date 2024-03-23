@@ -112,12 +112,12 @@ public class Root
     public string MobileNumber { get; set; }
 
     [JsonPropertyName("otp")]
-    [Required]
+    // [Required]
     [SwaggerSchema("**Example: 13678.** An OTP to validate an unrecognised device.")]
     public string Otp { get; set; }
 
     [JsonPropertyName("pin")]
-    [Required]
+    // [Required]
     [SwaggerSchema("**Example: 13345.** The customer's PIN")]
     public string Pin { get; set; }
 }

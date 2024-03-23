@@ -216,14 +216,20 @@ class AuthorizedHttpClient
 
     public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
     {
-        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient);
+        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, "EN");
         return await ReturnHttpResponseAsStringAsync(context, response);
     }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient) where T : IAccessTokenClient
+    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
+    {
+        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, acceptLanguage);
+        return await ReturnHttpResponseAsStringAsync(context, response);
+    }
+
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
     {
         var uri = new Uri(GATEWAY_URI, relativeGatewayPath);
-        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient);
+        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient, acceptLanguage);
     }
 
     // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
@@ -232,11 +238,13 @@ class AuthorizedHttpClient
     //     return await ReturnHttpResponseAsStringAsync(context, response);
     // }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient) where T : IAccessTokenClient
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
     {
-        HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken());
-
         var request = new HttpRequestMessage(method, uri);
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken());
+        if (acceptLanguage != null)
+            request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(acceptLanguage));
 
         if (method == HttpMethod.Get || method == HttpMethod.Delete)
             return await HttpClient.SendAsync(request);
