@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PublishAot>true</PublishAot>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0,net8.0/linux-musl-x64</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
