@@ -43,7 +43,15 @@ class AccessTokenClient
 
         var response = await HttpClient.PostAsync(AuthorizedHttpClient.AUTH_URI, content);
 
-        return await response.Content.ReadFromJsonAsync<TokenResponse>();
+        try
+        {
+            return await response.Content.ReadFromJsonAsync<TokenResponse>();
+        }
+        catch (Exception e)
+        {
+            var str = await response.Content.ReadAsStringAsync();
+            throw new Exception($"{e.Message} - {str}");
+        }
     }
 
     public static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret, string username, string password)
