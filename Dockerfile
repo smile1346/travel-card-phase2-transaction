@@ -14,9 +14,9 @@ RUN dotnet publish -c Release -o /publish --no-restore
 # --------------
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
-RUN wget https://github.com/dapr/cli/releases/latest/download/dapr_linux_amd64.tar.gz
-RUN tar -xf ./dapr_linux_amd64.tar.gz -C .
-RUN ./dapr init --slim
+#RUN wget https://github.com/dapr/cli/releases/latest/download/dapr_linux_amd64.tar.gz
+#RUN tar -xf ./dapr_linux_amd64.tar.gz -C .
+#RUN ./dapr init --slim
 #COPY components components
 
 # Install the agent
@@ -45,5 +45,5 @@ HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
 COPY --from=publisher /publish /
 
 EXPOSE 8080
-#ENTRYPOINT ["dotnet", "app.dll"]
-ENTRYPOINT ./dapr run --app-id payment-manager --app-port 8080 --resources-path components --config components/collector-config.yaml --placement-host-address placement:50006 --dapr-grpc-port 50001 -- dotnet app.dll
+ENTRYPOINT ["dotnet", "app.dll"]
+#ENTRYPOINT ./dapr run --app-id payment-manager --app-port 8080 --resources-path components --config components/collector-config.yaml --placement-host-address placement:50006 --dapr-grpc-port 50001 -- dotnet app.dll
