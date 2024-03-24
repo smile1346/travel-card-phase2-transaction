@@ -244,7 +244,14 @@ class AuthorizedHttpClient
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken());
         if (acceptLanguage != null)
-            request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(acceptLanguage));
+        {
+            try
+            {
+                request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(acceptLanguage));
+            }
+            catch (Exception) { }
+
+        }
 
         if (method == HttpMethod.Get || method == HttpMethod.Delete)
             return await HttpClient.SendAsync(request);
