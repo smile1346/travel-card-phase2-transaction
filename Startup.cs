@@ -21,7 +21,11 @@ Configuration.AddConfiguration(app);
 
 app.MapPost("/oauth2/token", () =>
 {
-    return "";
+    return new TokenResponse
+    {
+        AccessToken = "",
+        ExpiresIn = 300,
+    };
 });
 
 Router.AddRoutes(app);
