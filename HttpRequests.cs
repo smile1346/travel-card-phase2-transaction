@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
@@ -31,27 +32,24 @@ class AccessTokenClient
 {
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
-        //ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+        // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 
     private static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret, Dictionary<string, string> formData)
     {
-        var content = new FormUrlEncodedContent(formData);
+        var request = new HttpRequestMessage(HttpMethod.Post, AuthorizedHttpClient.AUTH_URI)
+        {
+            Content = new FormUrlEncodedContent(formData)
+        };
 
         var b64 = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
-        HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", b64);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", b64);
 
-        var response = await HttpClient.PostAsync(AuthorizedHttpClient.AUTH_URI, content);
+        var response = await HttpClient.SendAsync(request);
+        if (!response.IsSuccessStatusCode)
+            throw new Exception($"Getting Access Token: {response.StatusCode} {response.ReasonPhrase}");
 
-        try
-        {
-            return await response.Content.ReadFromJsonAsync<TokenResponse>();
-        }
-        catch (Exception e)
-        {
-            var str = await response.Content.ReadAsStringAsync();
-            throw new Exception($"{e.Message} - {str}");
-        }
+        return await response.Content.ReadFromJsonAsync<TokenResponse>();
     }
 
     public static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret, string username, string password)
@@ -187,7 +185,7 @@ class AuthorizedHttpClient
 
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
-        //ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+        // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 
     public static async Task<string> ReturnHttpResponseAsStringAsync(HttpContext context, HttpResponseMessage response)

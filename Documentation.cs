@@ -26,7 +26,7 @@ readonly struct Documentation
     builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>
     {
-      options.DocumentFilter<BasePathDocumentFilter>();
+      // options.DocumentFilter<BasePathDocumentFilter>();
       options.DocumentFilter<OrderTagsDocumentFilter>();
       // options.SchemaFilter<IsRequiredSchemaFilter>();
       options.ExampleFilters();

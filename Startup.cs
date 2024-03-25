@@ -21,22 +21,8 @@ Configuration.AddConfiguration(app);
 
 app.MapPost("/oauth2/token", () =>
 {
-    return new TokenResponse
-    {
-        AccessToken = "",
-        ExpiresIn = "300",
-        IssuedAt = DateTime.Now.ToString()
-    };
+    return "";
 });
+
 Router.AddRoutes(app);
 app.Run();
-
-struct TokenResponse
-{
-    [JsonPropertyName("access_token")]
-    public string AccessToken;
-    [JsonPropertyName("expires_in")]
-    public string ExpiresIn;
-    [JsonPropertyName("issued_at")]
-    public string IssuedAt;
-}

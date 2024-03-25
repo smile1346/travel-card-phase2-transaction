@@ -23,8 +23,8 @@ readonly partial struct TransactionHistory
     [SwaggerOperation(Summary = "Get Transaction History", Description = @"This endpoint retrieves the transaction history summary of an account filtering using the period [from - to] , sort direction and ordering property")]
     public static async Task<string> GetTransactionHistory(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
-    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId,
+    [DefaultValue("1040")][SwaggerParameter("The ID of the customer.")] string custId,
+    [DefaultValue("1021")][SwaggerParameter("The ID of the account.")] string accountId,
     [SwaggerParameter("This is the category in which the account belongs to for example SAVINGS, LOAN , Biller Account , Agent Account")] string? accountType,
     [SwaggerParameter("The type of the client (FINERACT, YTS).")] string? clientType,
     [SwaggerParameter("The IDs of the accounts.")] string? accountIds,
