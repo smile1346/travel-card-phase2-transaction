@@ -18,8 +18,8 @@ struct Monitoring
 
     static readonly Action<ResourceBuilder> configureResource = r => r.AddService(
                 serviceName: SERVICE_NAME,
-                serviceVersion: SERVICE_VERSION
-                // serviceInstanceId: Environment.MachineName
+                serviceVersion: SERVICE_VERSION,
+                serviceInstanceId: Environment.MachineName
     );
 
     public static void AddOpenTelemetry(WebApplicationBuilder appBuilder)
