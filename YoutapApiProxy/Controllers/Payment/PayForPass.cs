@@ -5,6 +5,10 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using Examples;
 using System.Net.Mime;
+using System.ComponentModel;
+using HttpRequests;
+using System.Text.Json;
+using System.Text;
 
 namespace Controllers;
 
@@ -21,15 +25,32 @@ readonly partial struct Payment
     // Internal Server Error
     [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
+    // Request Body
+    [Consumes(typeof(BillPaymentRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(BillPaymentRequestModel.Root), typeof(BillPaymentRequestExample))]
     [SwaggerOperation(Summary = "Make wallet payment", Description = @"
 A consumer's balance can be used to pay bills for companies that are integrated into the wallet payment system. This could be internet, gas, phone, or many other types of bills. Generally all the user needs to do is select the provider they wish to pay and a list of the services they provide will be displayed. They can select the product they wish to pay for and the amount they need to pay will be loaded into the payment interface automatically.
 
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
-    public static IResult PayForPass(BillPaymentRequestModel.Root payload, [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
+    public static async Task<string> PayForPass(HttpContext context,
+    PasswordBasedAccessTokenClient tokenClient,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature,
+    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage)
     {
-        var res = File.ReadAllText(Path.Combine("examples", "BillPaymentResponse_Successful.json"));
-        return Results.Text(res, MediaTypeNames.Application.Json);
+        using var reader = new StreamReader(context.Request.Body);
+        var str = await reader.ReadToEndAsync();
+
+        var body = JsonSerializer.Deserialize<BillPaymentRequestModel.Root>(str);
+
+        if (body?.ProductId == "et")
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            context.Response.ContentType = MediaTypeNames.Application.Json;
+            return JsonSerializer.Serialize(new { detail = "productId can't be `et` for wallet payment", errorDescription = "invalid product id" });
+        }
+
+        context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(str));
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient, acceptLanguage);
     }
 
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace KYCRegistrationModel;
+namespace KYCRegistrationRequestModel;
 
 public class CustomerAddress
 {

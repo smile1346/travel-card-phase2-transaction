@@ -12,11 +12,11 @@ namespace Controllers;
 readonly partial struct KYC
 {
     // Request Body
-    [Consumes(typeof(KYCRegistrationModel.Root), MediaTypeNames.Application.Json)]
-    [SwaggerRequestExample(typeof(KYCRegistrationModel.Root), typeof(KYCRegistrationPOSTRequestExample))]
+    [Consumes(typeof(KYCRegistrationRequestModel.Root), MediaTypeNames.Application.Json)]
+    [SwaggerRequestExample(typeof(KYCRegistrationRequestModel.Root), typeof(KYCRegistrationPOSTRequestExample))]
     // OK
     [ProducesResponseType(typeof(KYCRegistrationResponseModel.Root), (int)HttpStatusCode.OK)]
-    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(KYCRegistrationPOSTResponse))]
+    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(KYCRegistrationPOSTResponseExample))]
     // Internal Server Error
     [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 

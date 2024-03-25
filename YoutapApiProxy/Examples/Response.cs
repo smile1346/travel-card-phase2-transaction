@@ -130,11 +130,11 @@ public class GetLinkedExternalAccountsResponseExample : IMultipleExamplesProvide
     }
 }
 
-public class KYCRegistrationPOSTResponse : IMultipleExamplesProvider<string>
+public class KYCRegistrationPOSTResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Successfully Create Customer", File.ReadAllText("examples/KYCRegistrationPOSTResponse.json"));
+        yield return SwaggerExample.Create("Successfully Create Customer", File.ReadAllText("examples/KYCRegistrationPOSTResponse_New.json"));
     }
 }
 

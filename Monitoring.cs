@@ -61,9 +61,9 @@ struct Monitoring
                         });
                         break;
 
-                    // default:
-                    //     builder.AddConsoleExporter();
-                    //     break;
+                        // default:
+                        //     builder.AddConsoleExporter();
+                        //     break;
                 }
             }).WithMetrics(builder =>
             {
@@ -107,16 +107,18 @@ struct Monitoring
                             otlpOptions.Endpoint = new Uri(Environment.GetEnvironmentVariable("OTLP_GRPC_ENDPOINT") ?? "http://localhost:4317");
                         });
                         break;
-                    // default:
-                    //     builder.AddConsoleExporter();
-                    //     break;
+                        // default:
+                        //     builder.AddConsoleExporter();
+                        //     break;
                 }
             });
     }
 
-    public static void AddLogging(WebApplicationBuilder appBuilder)
+    public static void AddLogging(WebApplicationBuilder appBuilder, bool clearProviders)
     {
-        appBuilder.Logging.ClearProviders();
+        if (clearProviders)
+            appBuilder.Logging.ClearProviders();
+
         // Configure OpenTelemetry Logging.
         appBuilder.Logging.AddOpenTelemetry(options =>
         {

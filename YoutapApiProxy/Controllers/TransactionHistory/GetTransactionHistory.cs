@@ -35,7 +35,7 @@ readonly partial struct TransactionHistory
     [SwaggerParameter("The property to order by.")] string? orderProperty,
     [SwaggerParameter("The direction of sorting (ASC, DESC).")] string? sortDirection,
     [SwaggerParameter("Indicates whether to include interest and tax transactions.")] bool? includeInterestAndTaxTransactions,
-    [FromHeader(Name = "Accept-Language")] string? acceptLanguage = "TH")
+    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage)
     {
         // var uriBuilder = new UriBuilder(AuthorizedHttpClient.GATEWAY_URI)
         // {

@@ -7,6 +7,8 @@ using Examples;
 using System.Net.Mime;
 using HttpRequests;
 using System.Text;
+using System.ComponentModel;
+using System.Text.Json;
 
 namespace Controllers;
 
@@ -33,8 +35,22 @@ A consumer's balance can be used to pay bills for companies that are integrated 
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
     public static async Task<string> PayForTransit(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
+    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient);
+        using var reader = new StreamReader(context.Request.Body);
+        var str = await reader.ReadToEndAsync();
+
+        var body = JsonSerializer.Deserialize<BillPaymentRequestModel.Root>(str);
+
+        if (body?.ProductId != "et")
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            context.Response.ContentType = MediaTypeNames.Application.Json;
+            return JsonSerializer.Serialize(new { detail = "productId has to be `et` for transit payment", errorDescription = "invalid product id" });
+        }
+
+        context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(str));
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient, acceptLanguage);
     }
 }
