@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using HttpRequests;
 
 var builder = WebApplication.CreateBuilder();
@@ -21,7 +20,7 @@ Configuration.AddConfiguration(app);
 
 app.MapPost("/oauth2/token", () =>
 {
-    return new TokenResponse();
+    return "{}";
 });
 
 Router.AddRoutes(app);
