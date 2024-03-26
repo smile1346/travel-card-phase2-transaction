@@ -25,8 +25,9 @@ This API is useful for the Payment because it contains all of the IDs that they 
     public static async Task<string> GetSpecificAccount(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
-    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId)
+    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string? signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts/{accountId}", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts/{accountId}", context, tokenClient, null);
     }
 }

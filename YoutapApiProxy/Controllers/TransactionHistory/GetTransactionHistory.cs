@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Headers;
 using System.ComponentModel;
 using HttpRequests;
+using System.ComponentModel.DataAnnotations;
 
 namespace Controllers;
 
@@ -35,7 +36,9 @@ readonly partial struct TransactionHistory
     [SwaggerParameter("The property to order by.")] string? orderProperty,
     [SwaggerParameter("The direction of sorting (ASC, DESC).")] string? sortDirection,
     [SwaggerParameter("Indicates whether to include interest and tax transactions.")] bool? includeInterestAndTaxTransactions,
-    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage)
+    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string? signature,
+    [FromHeader(Name = "x-msisdn")] string msisdn = "278668662")
     {
         // var uriBuilder = new UriBuilder(AuthorizedHttpClient.GATEWAY_URI)
         // {
@@ -67,6 +70,6 @@ readonly partial struct TransactionHistory
 
         // uriBuilder.Query = query.ToString();
 
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient, acceptLanguage);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient, msisdn, acceptLanguage);
     }
 }

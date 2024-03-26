@@ -27,11 +27,11 @@ readonly partial struct Account
     [SwaggerOperation(Summary = "Update Account", Description = @"As always a customer may have made a mistake when entering some information for their new account. In this case the account type can't be changed, but their custom display name and colour are mutable.")]
     public static async Task<string> UpdateAccount(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
-    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId)
+    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts/{accountId}", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts/{accountId}", context, tokenClient, null);
     }
 
 }

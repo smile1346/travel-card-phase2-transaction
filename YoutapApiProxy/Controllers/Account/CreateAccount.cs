@@ -33,10 +33,10 @@ Wallet Types.
 The colour is simply an aesthetic choice for how to display that account in the app.")]
     public static async Task<string> CreateAccount(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
-    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId)
+    /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts", context, tokenClient, null);
     }
 
 }

@@ -20,9 +20,9 @@ readonly partial struct KYC
     [SwaggerOperation(Summary = "KYC Confirmation", Description = @"Sends an OTP to the phone number, if valid. The validity period of the OTP is provided in the response.")]
     public static async Task<string> KYCConfirmation(HttpContext context,
     DefaultAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v2/kyc/confirmation", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v2/kyc/confirmation", context, tokenClient,null);
     }
 
 }

@@ -21,10 +21,10 @@ readonly partial struct Account
     [SwaggerOperation(Summary = "Update mobile number", Description = @"Update MSISDN")]
     public static async Task<string> UpdateMsisdn(HttpContext context,
     PasswordBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
-    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId)
+    /*[DefaultValue("1021")]*/[SwaggerParameter("The ID of the account.")] string accountId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/consumer-device/account/{accountId}", context, tokenClient);
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/consumer-device/account/{accountId}", context, tokenClient, null);
     }
 
 }

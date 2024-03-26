@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HttpRequests;
 
@@ -25,7 +26,7 @@ struct TokenResponse
 
 interface IAccessTokenClient
 {
-    Task<string> GetAccessToken();
+    Task<string> GetAccessToken(string? username);
 }
 
 class AccessTokenClient
@@ -47,7 +48,14 @@ class AccessTokenClient
 
         var response = await HttpClient.SendAsync(request);
         if (!response.IsSuccessStatusCode)
-            throw new Exception($"Getting Access Token: {response.StatusCode} {response.ReasonPhrase}");
+        {
+            var str = await response.Content.ReadAsStringAsync();
+            if (str.IsNullOrEmpty())
+                throw new Exception($"Getting Access Token - {response.StatusCode} {response.ReasonPhrase}");
+
+            Console.WriteLine(str);
+            throw new Exception($"Getting Access Token - {response.StatusCode} {response.ReasonPhrase}: {str}");
+        }
 
         return await response.Content.ReadFromJsonAsync<TokenResponse>();
     }
@@ -76,9 +84,9 @@ class AccessTokenClient
 
 }
 
-class DefaultAccessTokenClient : IAccessTokenClient
+class DefaultAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
-    public async Task<string> GetAccessToken()
+    public async Task<string> GetAccessToken(string? _)
     {
         // Assuming you have a way to get the current time, for example:
         DateTime currentTime = DateTime.UtcNow;
@@ -94,7 +102,7 @@ class DefaultAccessTokenClient : IAccessTokenClient
         {
             Console.WriteLine("Getting a new access token...");
 
-            var tokenResponse = await AccessTokenClient.RequestAccessToken("a8331856-1f47-472a-9124-1af945ede46a", "b7158cb2-0b34-451b-9d47-0302d3eec273");
+            var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret);
 
             // Update the expiration time and current access token
             AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
@@ -110,9 +118,9 @@ class DefaultAccessTokenClient : IAccessTokenClient
     private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
 }
 
-class BBLClientBasedAccessTokenClient : IAccessTokenClient
+class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
-    public async Task<string> GetAccessToken()
+    public async Task<string> GetAccessToken(string? _)
     {
         // Assuming you have a way to get the current time, for example:
         DateTime currentTime = DateTime.UtcNow;
@@ -128,7 +136,7 @@ class BBLClientBasedAccessTokenClient : IAccessTokenClient
         {
             Console.WriteLine("Getting a new access token...");
 
-            var tokenResponse = await AccessTokenClient.RequestAccessToken("rabbit-client-1", "626fb86d-52d9-42e3-bcb6-b6f4e5d4918b");
+            var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret);
 
             // Update the expiration time and current access token
             AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
@@ -144,9 +152,9 @@ class BBLClientBasedAccessTokenClient : IAccessTokenClient
     private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
 }
 
-class PasswordBasedAccessTokenClient : IAccessTokenClient
+class PasswordBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
-    public async Task<string> GetAccessToken()
+    public async Task<string> GetAccessToken(string? username)
     {
         // Assuming you have a way to get the current time, for example:
         DateTime currentTime = DateTime.UtcNow;
@@ -162,7 +170,7 @@ class PasswordBasedAccessTokenClient : IAccessTokenClient
         {
             Console.WriteLine("Getting a new access token...");
 
-            var tokenResponse = await AccessTokenClient.RequestAccessToken("rabbit-consumer-1", "cf55af0a-3931-4e38-9830-b117778b2a7b", "278668662", "112233");
+            var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret, username!, "112233");
 
             // Update the expiration time and current access token
             AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
@@ -220,22 +228,22 @@ class AuthorizedHttpClient
     //     return await HttpClient.GetAsync(uri);
     // }
 
-    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
+    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? username) where T : IAccessTokenClient
     {
-        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, "EN");
+        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, username, "EN");
         return await ReturnHttpResponseAsStringAsync(context, response);
     }
 
-    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
+    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
     {
-        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, acceptLanguage);
+        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, username, acceptLanguage);
         return await ReturnHttpResponseAsStringAsync(context, response);
     }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
     {
         var uri = new Uri(GATEWAY_URI, relativeGatewayPath);
-        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient, acceptLanguage);
+        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient, username, acceptLanguage);
     }
 
     // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
@@ -244,11 +252,11 @@ class AuthorizedHttpClient
     //     return await ReturnHttpResponseAsStringAsync(context, response);
     // }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient, string? acceptLanguage) where T : IAccessTokenClient
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
     {
         var request = new HttpRequestMessage(method, uri);
 
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken());
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken(username));
         if (acceptLanguage != null)
         {
             try
