@@ -19,10 +19,10 @@ Documentation.AddSwagger(builder);
 var app = builder.Build();
 Configuration.AddConfiguration(app);
 
-// app.MapPost("/oauth2/token", () =>
-// {
-//     return JsonSerializer.Serialize(new { expiresIn = "3600" }); ;
-// });
+app.MapPost("/oauth2/token", () =>
+{
+    return JsonSerializer.Serialize(new { expiresIn = "3600" }); ;
+});
 
 Router.AddRoutes(app);
 app.Run();

@@ -154,36 +154,33 @@ class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IA
 
 class PasswordBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
+    // Dictionary to store access tokens and expiration times for each user
+    private readonly Dictionary<string, (string AccessToken, DateTime ExpirationTime)> userTokens = [];
+
     public async Task<string> GetAccessToken(string? username)
     {
-        // Assuming you have a way to get the current time, for example:
+        if (username == null)
+            throw new ArgumentNullException(nameof(username), "Username cannot be null");
+
         DateTime currentTime = DateTime.UtcNow;
 
-        // Check if the current time is before the expiration time
-        if (currentTime < AccessTokenExpirationTime)
+        // Check if the user exists in the dictionary and if the token is still valid
+        if (userTokens.TryGetValue(username, out var userToken) && currentTime < userToken.ExpirationTime)
         {
-            Console.WriteLine("Access token is still valid");
-            // Access token is still valid, return it
-            return CurrentAccessToken!;
+            Console.WriteLine($"Access token for user '{username}' is still valid");
+            return userToken.AccessToken;
         }
-        else
-        {
-            Console.WriteLine("Getting a new access token...");
 
-            var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret, username!, "112233");
+        Console.WriteLine($"Getting a new access token for user '{username}'...");
 
-            // Update the expiration time and current access token
-            AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
-            CurrentAccessToken = tokenResponse.AccessToken;
+        var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret, username, "112233");
 
-            // Return the new access token
-            return CurrentAccessToken;
-        }
+        // Update or add the access token for the user
+        userTokens[username] = (tokenResponse.AccessToken, currentTime.AddSeconds(tokenResponse.ExpiresIn));
+
+        return tokenResponse.AccessToken;
+
     }
-
-    // These fields are assumed to be accessible from within the class.
-    private string? CurrentAccessToken = null; // Stores the current access token
-    private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
 }
 
 class AuthorizedHttpClient
