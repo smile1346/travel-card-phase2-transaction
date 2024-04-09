@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace GetQuickAccountsResponseModel;
 
+[SwaggerSchema("Customer last name will be used in the administration portal")]
 public class Balance
 {
     [JsonPropertyName("balanceId")]
@@ -26,9 +28,11 @@ public class Metric
     public string UnitLongName { get; set; }
 
     [JsonPropertyName("unitShortName")]
+    [SwaggerSchema("Currency unit short name\n\nFormat: ISO 4217 standard three-letter codes for currencies, uppercase\n\nSample Value: THB")]
     public string UnitShortName { get; set; }
 
     [JsonPropertyName("displayString")]
+    [SwaggerSchema("Currency symbol\n\nSample Value: ฿")]
     public string DisplayString { get; set; }
 
     [JsonPropertyName("displayDivisor")]
@@ -53,7 +57,12 @@ public class Root
     public int CustomerId { get; set; }
 
     [JsonPropertyName("accountId")]
+    [SwaggerSchema("Unique identifier for the account")]
     public int AccountId { get; set; }
+
+    [JsonPropertyName("alternateAccountId")]
+    [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
+    public string AlternateAccountId { get; set; }
 
     [JsonPropertyName("accountName")]
     public string AccountName { get; set; }

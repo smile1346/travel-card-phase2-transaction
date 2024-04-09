@@ -5,6 +5,7 @@ public class KYCRegistrationPOSTRequestExample : IMultipleExamplesProvider<strin
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
+        yield return SwaggerExample.Create("Minimal", File.ReadAllText("examples/KYCRegistrationPOSTRequest_Minimal.json"));
         yield return SwaggerExample.Create("Register", File.ReadAllText("examples/KYCRegistrationPOSTRequest.json"));
     }
 }

@@ -6,6 +6,7 @@
         {
             "merchantId": null,
             "customerId": null,
+            "alternateAccountId": "160010987654321",
             "nfcTagId": null,
             "date": "2023-05-01 03:01:27.514",
             "receiptAdditionalDetails": null,

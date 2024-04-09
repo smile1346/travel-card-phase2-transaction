@@ -40,18 +40,22 @@ public class CustomerContact
     public string Country { get; set; }
 
     [JsonPropertyName("dob")]
-    public object Dob { get; set; }
+    [SwaggerSchema("Date of birth in `yyyy-MM-dd` format")]
+    public string Dob { get; set; }
 
     [JsonPropertyName("email1")]
     public string Email1 { get; set; }
 
     [JsonPropertyName("firstName")]
+    [Required]
     public string FirstName { get; set; }
 
     [JsonPropertyName("gender")]
-    public object Gender { get; set; }
+    [SwaggerSchema("M = Male, F = Female, NA = Not Specified")]
+    public string Gender { get; set; }
 
     [JsonPropertyName("lastName")]
+    [Required]
     public string LastName { get; set; }
 
     [JsonPropertyName("latitude")]
@@ -61,7 +65,7 @@ public class CustomerContact
     public double Longitude { get; set; }
 
     [JsonPropertyName("nationality")]
-    public object Nationality { get; set; }
+    public string Nationality { get; set; }
 
     [JsonPropertyName("postalCode")]
     public string PostalCode { get; set; }
@@ -100,6 +104,7 @@ public class Root
     public List<CustomerAddress> CustomerAddresses { get; set; }
 
     [JsonPropertyName("customerContact")]
+    [Required]
     public CustomerContact CustomerContact { get; set; }
 
     [JsonPropertyName("customerIdentifierDTO")]
@@ -116,9 +121,14 @@ public class Root
     [SwaggerSchema("**Example: 13678.** An OTP to validate an unrecognised device.")]
     public string Otp { get; set; }
 
-    [JsonPropertyName("pin")]
+    [JsonPropertyName("mobMonPin")]
     // [Required]
     [SwaggerSchema("**Example: 13345.** The customer's PIN")]
-    public string Pin { get; set; }
+    public string MobMonPin { get; set; }
+
+    [JsonPropertyName("type")]
+    [Required]
+    [SwaggerSchema("`MWLT` for Mobile Wallet")]
+    public string Type { get; set; }
 }
 

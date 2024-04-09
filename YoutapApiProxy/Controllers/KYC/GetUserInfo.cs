@@ -16,7 +16,7 @@ readonly partial struct KYC
     [ProducesResponseType(typeof(UserInfoModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetUserInfoResponseExample))]
     // Internal Server Error
-    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     [SwaggerOperation(Summary = "Get User Info", Description = @"
 This endpoint is used to get user KYC details, including;
 
@@ -26,9 +26,9 @@ This endpoint is used to get user KYC details, including;
         - Previously submitted identification documents
         - KYC tier requirements")]
     public static async Task<string> GetUserInfo(HttpContext context,
-    PasswordBasedAccessTokenClient tokenClient,
+    BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string? signature,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature,
     [FromHeader(Name = "x-msisdn")] string msisdn = "278668662")
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/v3/kyc/{custId}", context, tokenClient, msisdn);

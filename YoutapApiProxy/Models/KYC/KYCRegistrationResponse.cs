@@ -1,22 +1,35 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace KYCRegistrationResponseModel;
 
 public class Account
 {
     [JsonPropertyName("owner")]
-    public object Owner { get; set; }
+    public string Owner { get; set; }
 
     [JsonPropertyName("accountId")]
+    //[Required]
+    [SwaggerSchema("AccountID is used for several API's. Rabbit should save this value.")]
     public int AccountId { get; set; }
 
+    [JsonPropertyName("alternateAccountId")]
+    //[Required]
+    [SwaggerSchema("Example: 160010811001000\n\n160 = Provider (Rabbit)\n\n01 = Wallet type (Consumer Wallet)\n\n0811001000 = account id 10 digits")]
+    public string AlternateAccountId { get; set; }
+
     [JsonPropertyName("accountType")]
+    //[Required]
+    [SwaggerSchema("The type of the account")]
     public string AccountType { get; set; }
 
     [JsonPropertyName("accountTypeDescription")]
     public object AccountTypeDescription { get; set; }
 
     [JsonPropertyName("status")]
+    //[Required]
     public string Status { get; set; }
 
     [JsonPropertyName("suspend")]
@@ -119,9 +132,11 @@ public class Account
 public class Address
 {
     [JsonPropertyName("addressId")]
+    [SwaggerSchema("The unique identifier for the address.")]
     public int AddressId { get; set; }
 
     [JsonPropertyName("addressType")]
+    [SwaggerSchema("Type of address")]
     public string AddressType { get; set; }
 
     [JsonPropertyName("addLine1")]
@@ -149,6 +164,7 @@ public class Address
     public string State { get; set; }
 
     [JsonPropertyName("country")]
+    [SwaggerSchema("Country name. Return from request")]
     public string Country { get; set; }
 
     [JsonPropertyName("postalCode")]
@@ -197,43 +213,50 @@ public class Address
 public class Contact
 {
     [JsonPropertyName("contactId")]
+    //[Required]
     public int ContactId { get; set; }
 
     [JsonPropertyName("contactType")]
+    //[Required]
+    [SwaggerSchema("Type of contact.")]
     public string ContactType { get; set; }
 
     [JsonPropertyName("firstName")]
+    //[Required]
+    [SwaggerSchema("First name of the user")]
     public string FirstName { get; set; }
 
     [JsonPropertyName("middleName")]
-    public object MiddleName { get; set; }
+    public string MiddleName { get; set; }
 
     [JsonPropertyName("lastName")]
+    [SwaggerSchema("Last name of the user")]
     public string LastName { get; set; }
 
     [JsonPropertyName("title")]
-    public object Title { get; set; }
+    public string Title { get; set; }
 
     [JsonPropertyName("organisationName")]
-    public object OrganisationName { get; set; }
+    public string OrganisationName { get; set; }
 
     [JsonPropertyName("gender")]
-    public object Gender { get; set; }
+    public string Gender { get; set; }
 
     [JsonPropertyName("nationality")]
-    public object Nationality { get; set; }
+    public string Nationality { get; set; }
 
     [JsonPropertyName("dob")]
-    public object Dob { get; set; }
+    public string Dob { get; set; }
 
     [JsonPropertyName("primary")]
+    //[Required]
     public bool Primary { get; set; }
 
     [JsonPropertyName("email1")]
     public string Email1 { get; set; }
 
     [JsonPropertyName("email2")]
-    public object Email2 { get; set; }
+    public string Email2 { get; set; }
 
     [JsonPropertyName("idntid")]
     public object Idntid { get; set; }
@@ -260,21 +283,32 @@ public class Contact
 public class Root
 {
     [JsonPropertyName("id")]
+    //[Required]
     public int Id { get; set; }
 
     [JsonPropertyName("customerNumber")]
+    //[Required]
+    [SwaggerSchema("Unique identifier for the customer. The wallet provider stores this ID to facilitate inquiries into account lists, transaction history, and other services related to the customer")]
     public string CustomerNumber { get; set; }
 
     [JsonPropertyName("status")]
+    //[Required]
+    [SwaggerSchema("Status values in API documentation.")]
     public string Status { get; set; }
 
     [JsonPropertyName("entityName")]
+    //[Required]
+    [SwaggerSchema("Customer/entity name. Return from the request")]
     public string EntityName { get; set; }
 
     [JsonPropertyName("contactMethod")]
+    //[Required]
+    [SwaggerSchema("Defaults to phone/msisdn.")]
     public string ContactMethod { get; set; }
 
     [JsonPropertyName("type")]
+    //[Required]
+    [SwaggerSchema("Type of customer. Uses default.")]
     public string Type { get; set; }
 
     [JsonPropertyName("vendor")]
@@ -290,12 +324,16 @@ public class Root
     public object ProfileId { get; set; }
 
     [JsonPropertyName("contacts")]
+    //[Required]
+    [SwaggerSchema("Only 1 record from register. Can set more later. The DTO is reusable.")]
     public List<Contact> Contacts { get; set; }
 
     [JsonPropertyName("accounts")]
+    //[Required]
     public List<Account> Accounts { get; set; }
 
     [JsonPropertyName("addresses")]
+    [SwaggerSchema("A list of additional addresses that may be used by the customer such as billing or delivery.")]
     public List<Address> Addresses { get; set; }
 
     [JsonPropertyName("identifiers")]
@@ -335,6 +373,8 @@ public class Root
     public object TaxTypeValues { get; set; }
 
     [JsonPropertyName("creationDate")]
+    //[Required]
+    [SwaggerSchema("Epoch timestamp in milliseconds")]
     public long CreationDate { get; set; }
 
     [JsonPropertyName("pin")]

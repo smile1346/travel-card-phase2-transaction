@@ -6,8 +6,7 @@
         "currency": "NZD",
         "amount": 1.00
     },
-    "fromMsisdn": "278668662",
-    "fromPin": "112233",
+    "accountId": "1021",
     "geoLocation": {
         "latitude": -36.90544236136767,
         "longitude": 174.7164117816925

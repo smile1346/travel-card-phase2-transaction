@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BillPaymentResponseSuccessModel;
 // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
@@ -89,12 +90,14 @@ public class Fee
 public class Root
 {
     [JsonPropertyName("status")]
+    [SwaggerSchema("Transaction status\n\n0 = Success, otherwise return HTTP status code")]
     public int Status { get; set; }
 
     [JsonPropertyName("error")]
     public object Error { get; set; }
 
     [JsonPropertyName("toTransactionId")]
+    [SwaggerSchema("Transaction No. Same as the transactionId return in the transaction history API")]
     public int ToTransactionId { get; set; }
 
     [JsonPropertyName("fromTransactionId")]

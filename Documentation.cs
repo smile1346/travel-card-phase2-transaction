@@ -1,6 +1,10 @@
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using System.Xml.Linq;
+using Controllers;
 using Examples;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -20,13 +24,16 @@ readonly struct Documentation
   {
     builder.Services.AddEndpointsApiExplorer();
 
+    builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
     builder.Services.AddSwaggerExamplesFromAssemblyOf<KYCRegistrationPOSTRequestExample>();
 
-    builder.Services.AddSwaggerGenNewtonsoftSupport();
+    // builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>
     {
-      // options.DocumentFilter<BasePathDocumentFilter>();
+      options.SchemaFilter<EnumSchemaFilter>();
+
+      options.DocumentFilter<BasePathDocumentFilter>();
       options.DocumentFilter<OrderTagsDocumentFilter>();
       // options.SchemaFilter<IsRequiredSchemaFilter>();
       options.ExampleFilters();
@@ -119,7 +126,7 @@ class OrderTagsDocumentFilter : IDocumentFilter
 
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },
     new OpenApiTag { Name = "Integration", Description = "Integration between the wallet system and banking system or partner."},
-    // new OpenApiTag { Name = "Notifications", Description = "Notify events."}
+    new OpenApiTag { Name = "Notifications", Description = "Notify events."}
   ];
 
   public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
@@ -178,3 +185,17 @@ class BasePathDocumentFilter : IDocumentFilter
 //     }
 //   }
 // }
+
+public class EnumSchemaFilter : ISchemaFilter
+{
+  public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+  {
+    if (context.Type == typeof(SortDirection))
+    {
+      schema.Enum.Clear();
+      Enum.GetNames(context.Type)
+          .ToList()
+          .ForEach(name => schema.Enum.Add(new OpenApiString(name)));
+    }
+  }
+}

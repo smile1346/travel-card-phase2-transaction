@@ -18,7 +18,7 @@ readonly partial struct Integration
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(GeneralTransactionResponseErrorExample))]
     // Internal Server Error
-    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body
     [Consumes(typeof(GeneralTransactionRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(GeneralTransactionRequestModel.Root), typeof(GeneralTransactionRequestExample))]
@@ -31,7 +31,7 @@ C2MD: Customer to Merchant Deposit. The transaction goes from the merchant to th
 C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
     public static async Task<string> DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/external-partners/v1/general-transaction", context, tokenClient, null);
     }

@@ -83,7 +83,7 @@ public class Root
 {
     [JsonPropertyName("billerIdentifier")]
     [Required]
-    [SwaggerSchema("Id for biller from Biller Providers")]
+    [SwaggerSchema("ID for biller from Biller Providers")]
     public int BillerIdentifier { get; set; }
 
     // [JsonPropertyName("externalBillerIdentifier")]
@@ -101,8 +101,13 @@ public class Root
     // [JsonPropertyName("merchantId")]
     // public string MerchantId { get; set; }
 
-    [JsonPropertyName("fromMsisdn")]
+    [JsonPropertyName("accountId")]
     [Required]
+    [SwaggerSchema("Unique identifier for the account")]
+    public string AccountId { get; set; }
+
+    [JsonPropertyName("fromMsisdn")]
+    // [Required]
     [SwaggerSchema("Phone number as identifier of the customer")]
     public string FromMsisdn { get; set; }
 
@@ -140,10 +145,12 @@ public class Value
 {
     [JsonPropertyName("currency")]
     [Required]
+    [SwaggerSchema("amount currency\n\nFormat: ISO 4217 standard three-letter codes for currencies, uppercase\n\nSample value: THB")]
     public string Currency { get; set; }
 
     [JsonPropertyName("amount")]
     [Required]
+    [SwaggerSchema("transaction amount")]
     public decimal Amount { get; set; }
 }
 

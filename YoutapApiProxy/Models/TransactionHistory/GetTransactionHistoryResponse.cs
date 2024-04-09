@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace GetTransactionHistoryResponse;
 
@@ -14,6 +15,7 @@ public class Content
     public object NfcTagId { get; set; }
 
     [JsonPropertyName("date")]
+    [SwaggerSchema("Transaction date (Epoch)")]
     public string Date { get; set; }
 
     [JsonPropertyName("receiptAdditionalDetails")]
@@ -38,10 +40,15 @@ public class Content
     public object PylId { get; set; }
 
     [JsonPropertyName("paymentModeId")]
-    public object PaymentModeId { get; set; }
+    [SwaggerSchema("Payment method ID")]
+    public int PaymentModeId { get; set; }
 
     [JsonPropertyName("sourceAcctId")]
     public int SourceAcctId { get; set; }
+
+    [JsonPropertyName("alternateAccountId")]
+    [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
+    public string AlternateAccountId { get; set; }
 
     [JsonPropertyName("relatedAcctId")]
     public int RelatedAcctId { get; set; }
@@ -59,12 +66,14 @@ public class Content
     public object ContactMsisdn { get; set; }
 
     [JsonPropertyName("paymentType")]
+    [SwaggerSchema("Type of payment. Possible Values:  `Top-up / เติมเงิน`\n\n`Payment / ชําระค่าสินค้าหรือบริการ`\n\n`Transportation Fare / ค่าโดยสารรถไฟฟ้า`")]
     public string PaymentType { get; set; }
 
     [JsonPropertyName("status")]
     public object Status { get; set; }
 
     [JsonPropertyName("message")]
+    [SwaggerSchema("Free-form notes related to the transaction")]
     public string Message { get; set; }
 
     [JsonPropertyName("duration")]
@@ -86,6 +95,7 @@ public class Content
     public string ExtSession { get; set; }
 
     [JsonPropertyName("sourceRef")]
+    [SwaggerSchema("Reference ID of the source, sending from source in bill payment, top up or other transaction\n\nFormat: String (max length support 50 digits)")]
     public string SourceRef { get; set; }
 
     [JsonPropertyName("patternA")]
@@ -101,6 +111,7 @@ public class Content
     public double WorkingAmount { get; set; }
 
     [JsonPropertyName("workingAmountDisplay")]
+    [SwaggerSchema("Transaction amount")]
     public string WorkingAmountDisplay { get; set; }
 
     [JsonPropertyName("sendingAmountExclFee")]
@@ -128,9 +139,11 @@ public class Content
     public string BalanceAfterDisplay { get; set; }
 
     [JsonPropertyName("workingCurrencyUnit")]
+    [SwaggerSchema("Currency unit short name\n\nFormat: ISO 4217 standard three-letter codes for currencies, uppercase\n\nSample Value: THB")]
     public string WorkingCurrencyUnit { get; set; }
 
     [JsonPropertyName("workingCurrencySymbol")]
+    [SwaggerSchema("Currency symbol\n\nSample Value: ฿")]
     public string WorkingCurrencySymbol { get; set; }
 
     [JsonPropertyName("destinationCurrencyUnit")]
@@ -143,6 +156,7 @@ public class Content
     public string TxType { get; set; }
 
     [JsonPropertyName("transactionTypeCode")]
+    [SwaggerSchema("Code for the transaction type (DR/CR)")]
     public string TransactionTypeCode { get; set; }
 
     [JsonPropertyName("billableEvent")]
@@ -155,6 +169,7 @@ public class Content
     public int ReversalOriginalTransactionId { get; set; }
 
     [JsonPropertyName("transactionId")]
+    [SwaggerSchema("Transaction ID\n\nFormat: String (10 digits)")]
     public string TransactionId { get; set; }
 
     [JsonPropertyName("utransactionId")]
@@ -173,6 +188,7 @@ public class Content
     public string DebitName { get; set; }
 
     [JsonPropertyName("creditName")]
+    [SwaggerSchema("Merchant name where the customer has made a payment")]
     public string CreditName { get; set; }
 
     [JsonPropertyName("externalAccount")]

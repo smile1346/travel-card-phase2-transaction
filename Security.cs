@@ -1,4 +1,6 @@
+using System.Net;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
@@ -79,5 +81,54 @@ struct Security
                     .SetPreflightMaxAge(TimeSpan.FromSeconds(7200));
                 });
         });
+    }
+}
+
+readonly struct AdminSafeListMiddleware(
+    RequestDelegate next)
+{
+    public async Task Invoke(HttpContext context)
+    {
+        if (context.Request.Method != HttpMethod.Get.Method)
+        {
+            var safelist = Environment.GetEnvironmentVariable("WALLET_IP_WHITELIST", EnvironmentVariableTarget.Machine);
+            if (!safelist.IsNullOrEmpty())
+            {
+                var ips = safelist!.Split(';');
+                var _safelist = new byte[ips.Length][];
+                for (var i = 0; i < ips.Length; i++)
+                {
+                    _safelist[i] = IPAddress.Parse(ips[i]).GetAddressBytes();
+                }
+
+                var remoteIp = context.Connection.RemoteIpAddress;
+                // logger.LogDebug("Request from Remote IP address: {RemoteIp}", remoteIp);
+
+                var bytes = remoteIp!.GetAddressBytes();
+                var badIp = true;
+
+                foreach (var address in _safelist)
+                {
+                    if (address.SequenceEqual(bytes))
+                    {
+                        badIp = false;
+                        break;
+                    }
+                }
+
+                if (badIp)
+                {
+                    // logger.LogWarning(
+                    //     "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
+
+                    context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes($"Forbidden Request from Remote IP address: {remoteIp}"));
+
+                    return;
+                }
+            }
+        }
+
+        await next.Invoke(context);
     }
 }

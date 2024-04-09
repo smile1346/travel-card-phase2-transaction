@@ -7,8 +7,7 @@
         "amount": 200000.0
     },
     "merchantId": "3641",
-    "fromMsisdn": "64225332568",
-    "fromPin": "112233",
+    "accountId": "1021",
     "productTypeInfo": {
         "Bank Account": "70-4846-4646550-40",
         "Account Name": "Test",

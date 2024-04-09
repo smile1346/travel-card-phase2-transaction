@@ -23,7 +23,7 @@ readonly partial struct Payment
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(BillPaymentResponseInsufficientFundsExample))]
     // Internal Server Error
-    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
     // Request Body
     [Consumes(typeof(BillPaymentRequestModel.Root), MediaTypeNames.Application.Json)]
@@ -33,9 +33,9 @@ A consumer's balance can be used to pay bills for companies that are integrated 
 
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
     public static async Task<string> PayForPass(HttpContext context,
-    PasswordBasedAccessTokenClient tokenClient,
-    [DefaultValue("TH")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string? signature)
+    BBLClientBasedAccessTokenClient tokenClient,
+    [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
     {
         using var reader = new StreamReader(context.Request.Body);
         var str = await reader.ReadToEndAsync();

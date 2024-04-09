@@ -15,7 +15,7 @@ readonly partial struct KYC
     // OK
     // [ProducesResponseType(typeof(KYCRegistrationModel.Root), (int)HttpStatusCode.OK)]
     // Internal Server Error
-    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body
     [Consumes(typeof(PatchCustomerModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(PatchCustomerModel.Root), typeof(KYCRegistrationPATCHRequestExample))]
@@ -24,7 +24,7 @@ readonly partial struct KYC
     public static async Task<string> PatchCustomer(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string customerId,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v3/kyc/registration", context, tokenClient, null);
     }

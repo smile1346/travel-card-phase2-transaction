@@ -19,7 +19,7 @@ readonly partial struct Account
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
     [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(CreateAccountResponseNotFoundExample))]
     // Internal Server Error
-    [ProducesResponseType(typeof(ServerErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body
     [Consumes(typeof(CreateAccountRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(CreateAccountRequestModel.Root), typeof(CreateAccountRequestExample))]
@@ -32,9 +32,9 @@ Wallet Types.
 
 The colour is simply an aesthetic choice for how to display that account in the app.")]
     public static async Task<string> CreateAccount(HttpContext context,
-    PasswordBasedAccessTokenClient tokenClient,
+    BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string? signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
         return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/customers/{custId}/accounts", context, tokenClient, null);
     }
