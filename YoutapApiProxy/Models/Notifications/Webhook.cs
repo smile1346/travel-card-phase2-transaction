@@ -1,4 +1,5 @@
 
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
@@ -83,10 +84,13 @@ public class Detail
 public class Root
 {
     [JsonPropertyName("event")]
-    [SwaggerSchema("**Example: LOW_BALANCE** the event name")]
+    [Required]
+    [SwaggerSchema("the event name; **Example: LOW_BALANCE** ")]
     public string Event { get; set; }
 
     [JsonPropertyName("detail")]
-    public Detail Detail { get; set; }
+    [Required]
+    [SwaggerSchema("The details of the event, this is a dynamic object based on the particular event.")]
+    public object Detail { get; set; }
 }
 

@@ -159,6 +159,7 @@ public class WebhookExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Low Balance", File.ReadAllText("examples/Webhook_LowBalance.json"));
+        yield return SwaggerExample.Create("LOW_BALANCE", File.ReadAllText("examples/Webhook_LowBalance.json"));
+        yield return SwaggerExample.Create("CASHIN", File.ReadAllText("examples/Webhook_CashIn.json"));
     }
 }
