@@ -195,11 +195,11 @@ public class Content
     public string ExternalAccount { get; set; }
 
     [JsonPropertyName("externalReference")]
-    [SwaggerSchema("Stored externalReference that is sent from the request")]
+    [SwaggerSchema("externalReference that has been provided in the request")]
     public string ExternalReference { get; set; }
 
     [JsonPropertyName("additionalDetails")]
-    [SwaggerSchema("Stored productTypeInfo that is sent from the request")]
+    [SwaggerSchema("productTypeInfo that has been provided the request")]
     public object AdditionalDetails { get; set; }
 }
 
