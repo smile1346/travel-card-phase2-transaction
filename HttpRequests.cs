@@ -60,17 +60,17 @@ class AccessTokenClient
         return await response.Content.ReadFromJsonAsync<TokenResponse>();
     }
 
-    public static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret, string username, string password)
-    {
-        var formData = new Dictionary<string, string>
-            {
-                { "grant_type", "password" },
-                { "username", username },
-                { "password", password}
-            };
+    // public static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret, string username, string password)
+    // {
+    //     var formData = new Dictionary<string, string>
+    //         {
+    //             { "grant_type", "password" },
+    //             { "username", username },
+    //             { "password", password}
+    //         };
 
-        return await RequestAccessToken(clientId, clientSecret, formData);
-    }
+    //     return await RequestAccessToken(clientId, clientSecret, formData);
+    // }
 
     public static async Task<TokenResponse> RequestAccessToken(string clientId, string clientSecret)
     {
@@ -152,36 +152,36 @@ class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IA
     private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
 }
 
-class PasswordBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
-{
-    // Dictionary to store access tokens and expiration times for each user
-    private readonly Dictionary<string, (string AccessToken, DateTime ExpirationTime)> userTokens = [];
+// class PasswordBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
+// {
+//     // Dictionary to store access tokens and expiration times for each user
+//     private readonly Dictionary<string, (string AccessToken, DateTime ExpirationTime)> userTokens = [];
 
-    public async Task<string> GetAccessToken(string? username)
-    {
-        if (username == null)
-            throw new ArgumentNullException(nameof(username), "Username cannot be null");
+//     public async Task<string> GetAccessToken(string? username)
+//     {
+//         if (username == null)
+//             throw new ArgumentNullException(nameof(username), "Username cannot be null");
 
-        DateTime currentTime = DateTime.UtcNow;
+//         DateTime currentTime = DateTime.UtcNow;
 
-        // Check if the user exists in the dictionary and if the token is still valid
-        if (userTokens.TryGetValue(username, out var userToken) && currentTime < userToken.ExpirationTime)
-        {
-            Console.WriteLine($"Access token for user '{username}' is still valid");
-            return userToken.AccessToken;
-        }
+//         // Check if the user exists in the dictionary and if the token is still valid
+//         if (userTokens.TryGetValue(username, out var userToken) && currentTime < userToken.ExpirationTime)
+//         {
+//             Console.WriteLine($"Access token for user '{username}' is still valid");
+//             return userToken.AccessToken;
+//         }
 
-        Console.WriteLine($"Getting a new access token for user '{username}'...");
+//         Console.WriteLine($"Getting a new access token for user '{username}'...");
 
-        var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret, username, "112233");
+//         var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret, username, "112233");
 
-        // Update or add the access token for the user
-        userTokens[username] = (tokenResponse.AccessToken, currentTime.AddSeconds(tokenResponse.ExpiresIn));
+//         // Update or add the access token for the user
+//         userTokens[username] = (tokenResponse.AccessToken, currentTime.AddSeconds(tokenResponse.ExpiresIn));
 
-        return tokenResponse.AccessToken;
+//         return tokenResponse.AccessToken;
 
-    }
-}
+//     }
+// }
 
 class AuthorizedHttpClient
 {
