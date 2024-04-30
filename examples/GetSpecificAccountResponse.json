@@ -21,9 +21,9 @@
             "balanceType": "EMONEY",
             "balanceTypeId": 3000,
             "metric": {
-                "unitLongName": "NZ Dollars",
+                "unitLongName": "Thai Baht",
                 "unitShortName": "THB",
-                "displayString": "N$",
+                "displayString": "฿",
                 "displayDivisor": 100,
                 "displayUnitDelimiter": ",",
                 "displayUnitMinorDelimiter": ".",
