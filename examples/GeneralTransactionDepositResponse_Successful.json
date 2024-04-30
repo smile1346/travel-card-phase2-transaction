@@ -5,8 +5,8 @@
         "entityName": "Default Top Up",
         "balance": {
             "balanceType": "EMONEY",
-            "balanceTypeDescription": "Emoney NZD",
-            "balanceUnit": "NZD",
+            "balanceTypeDescription": "Emoney THB",
+            "balanceUnit": "THB",
             "balanceAmount": -1061,
             "balanceDisplayAmount": "-1,061.00"
         }
@@ -23,7 +23,7 @@
         "transactionDate": 1710950047000,
         "paymentType": "C2MD",
         "amount": 2,
-        "unit": "NZD",
+        "unit": "THB",
         "fromFee": 0,
         "toFee": 0,
         "transactionId": "500201"

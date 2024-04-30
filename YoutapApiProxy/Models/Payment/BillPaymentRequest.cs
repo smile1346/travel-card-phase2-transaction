@@ -101,10 +101,10 @@ public class Root
     // [JsonPropertyName("merchantId")]
     // public string MerchantId { get; set; }
 
-    [JsonPropertyName("accountId")]
+    [JsonPropertyName("fromAccountId")]
     [Required]
     [SwaggerSchema("Unique identifier for the account")]
-    public string AccountId { get; set; }
+    public string FromAccountId { get; set; }
 
     [JsonPropertyName("fromMsisdn")]
     // [Required]

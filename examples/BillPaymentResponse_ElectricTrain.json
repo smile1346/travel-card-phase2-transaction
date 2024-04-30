@@ -6,11 +6,11 @@
     "fee": {
         "toFee": {
             "amount": 0,
-            "currency": "NZD"
+            "currency": "THB"
         },
         "fromFee": {
             "amount": 0,
-            "currency": "NZD"
+            "currency": "THB"
         }
     },
     "couponAmount": null,

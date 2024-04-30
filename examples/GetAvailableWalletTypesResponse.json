@@ -16,7 +16,7 @@
                 "withdrawalDelay": 3,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -49,7 +49,7 @@
                 "withdrawalDelay": 2,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -97,7 +97,7 @@
                 "withdrawalDelay": 2,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -130,7 +130,7 @@
                 "withdrawalDelay": 0,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -163,7 +163,7 @@
                 "withdrawalDelay": 0,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -228,7 +228,7 @@
                 "withdrawalDelay": 0,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -278,7 +278,7 @@
                 "withdrawalDelay": 0,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -345,7 +345,7 @@
                 "withdrawalDelay": 10,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -378,7 +378,7 @@
                 "withdrawalDelay": 3,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -411,7 +411,7 @@
                 "withdrawalDelay": 1,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -446,7 +446,7 @@
                 "withdrawalDelay": 4,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",

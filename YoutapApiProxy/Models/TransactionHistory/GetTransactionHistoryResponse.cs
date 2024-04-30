@@ -193,6 +193,14 @@ public class Content
 
     [JsonPropertyName("externalAccount")]
     public string ExternalAccount { get; set; }
+
+    [JsonPropertyName("externalReference")]
+    [SwaggerSchema("Stored externalReference that is sent from the request")]
+    public string ExternalReference { get; set; }
+
+    [JsonPropertyName("additionalDetails")]
+    [SwaggerSchema("Stored productTypeInfo that is sent from the request")]
+    public object AdditionalDetails { get; set; }
 }
 
 public class Root

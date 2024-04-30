@@ -3,11 +3,11 @@
     "externalBillerIdentifier": "bank-payment",
     "productId": "90",
     "value": {
-        "currency": "NZD",
+        "currency": "THB",
         "amount": 200000.0
     },
     "merchantId": "3641",
-    "accountId": "1021",
+    "fromAccountId": "1021",
     "productTypeInfo": {
         "Bank Account": "70-4846-4646550-40",
         "Account Name": "Test",

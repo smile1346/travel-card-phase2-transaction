@@ -22,7 +22,7 @@
             "balanceTypeId": 3000,
             "metric": {
                 "unitLongName": "NZ Dollars",
-                "unitShortName": "NZD",
+                "unitShortName": "THB",
                 "displayString": "N$",
                 "displayDivisor": 100,
                 "displayUnitDelimiter": ",",

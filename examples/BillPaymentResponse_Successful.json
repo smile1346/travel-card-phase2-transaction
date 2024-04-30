@@ -21,17 +21,17 @@
   },
   "couponAmount": {
     "amount": 0,
-    "currency": "NZD"
+    "currency": "THB"
   },
   "error": null,
   "fee": {
     "fromFee": {
       "amount": 0,
-      "currency": "NZD"
+      "currency": "THB"
     },
     "toFee": {
       "amount": 0,
-      "currency": "NZD"
+      "currency": "THB"
     }
   },
   "fromTransactionId": 767000,

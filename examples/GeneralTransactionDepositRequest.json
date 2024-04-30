@@ -9,7 +9,7 @@
     },
     "transactionDetails": {
         "transactionAmount": "2.00",
-        "currency": "NZD",
+        "currency": "THB",
         "balanceType": "EMONEY",
         "channel": "Bank",
         "paymentType": "C2MD",

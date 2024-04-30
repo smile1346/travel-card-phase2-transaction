@@ -24,7 +24,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -103,7 +103,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -227,7 +227,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -261,7 +261,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -340,7 +340,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -449,7 +449,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -498,7 +498,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -577,7 +577,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "NZ Dollars",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "N$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -656,7 +656,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "New Zealand Dollar",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "NZ$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -690,7 +690,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "New Zealand Dollar",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "NZ$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -724,7 +724,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "New Zealand Dollar",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "NZ$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -758,7 +758,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "New Zealand Dollar",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "NZ$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",
@@ -792,7 +792,7 @@
                 "balanceTypeId": 3000,
                 "metric": {
                     "unitLongName": "New Zealand Dollar",
-                    "unitShortName": "NZD",
+                    "unitShortName": "THB",
                     "displayString": "NZ$",
                     "displayDivisor": 100,
                     "displayUnitDelimiter": ",",

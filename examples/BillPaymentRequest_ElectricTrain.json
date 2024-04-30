@@ -3,10 +3,10 @@
     "billerIdentifier": 981,
     "productId": "et",
     "value": {
-        "currency": "NZD",
+        "currency": "THB",
         "amount": 1.00
     },
-    "accountId": "1021",
+    "fromAccountId": "1021",
     "geoLocation": {
         "latitude": -36.90544236136767,
         "longitude": 174.7164117816925

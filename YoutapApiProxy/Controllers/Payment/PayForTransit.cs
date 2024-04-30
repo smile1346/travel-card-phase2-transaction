@@ -38,10 +38,10 @@ To send a bill payment, an app will usually get the list of providers first (see
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
-        using var reader = new StreamReader(context.Request.Body);
-        var str = await reader.ReadToEndAsync();
+        // using var reader = new StreamReader(context.Request.Body);
+        // var str = await reader.ReadToEndAsync();
 
-        var body = JsonSerializer.Deserialize<BillPaymentRequestModel.Root>(str);
+        // var body = JsonSerializer.Deserialize<BillPaymentRequestModel.Root>(str);
 
         // if (body?.ProductId != "et")
         // {
@@ -50,7 +50,7 @@ To send a bill payment, an app will usually get the list of providers first (see
         //     return JsonSerializer.Serialize(new { detail = "productId has to be `et` for transit payment", errorDescription = "invalid product id" });
         // }
 
-        context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(str));
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient, body?.FromMsisdn, acceptLanguage);
+        // context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(str));
+        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient, null, acceptLanguage);
     }
 }
