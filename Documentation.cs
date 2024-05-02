@@ -11,6 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
+  const string currentVersion = "0.2.26";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -41,8 +42,8 @@ readonly struct Documentation
       options.SwaggerDoc("v1", new OpenApiInfo
       {
         Title = "BBL x Youtap API Management",
-        Version = "v1.0",
-        Description = @"This collection is secured using OAuth 2.0 tokens with a client_credentials grant type.
+        Version = "v" + currentVersion,
+        Description = @$"This collection is secured using OAuth 2.0 tokens with a client_credentials grant type.
 
 The app must acquire a token by posting a request to https://[domain]/oauth2/token with token_endpoint_auth_method of private_key_jwt and the client key signed as a jwt in client_assertion, as well as the key id. The client key is the provided customer key. The grant type, key ID, and client key can be supplied upon integration with a specific environment.
 
@@ -50,7 +51,16 @@ The token can be refreshed upon expiry, or a new one acquired if the user is ina
 
 Subsequent requests to restricted endpoints must contain the supplied token (a JWT), and whether the user is allowed to access the endpoint is determined based on claims inserted into the token upon its creation. For example, a user's token will claim to belong to them using their account ID. Every request to resources that belong to specific accounts will be checked against the account ID claim in the auth token, and if it doesn't match the request is rejected. Although not all JWTs require a signature and can be tampered with, our ones are verified using a non-default algorithm that only accepts it if it is signed with our own signing key.
 
-Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private."
+Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
+
+**What's new in v{currentVersion}**
+- **Transaction History** - Updated time format in datetime filter (added timezone +07:00 in `from` and `to` query parameters).
+- **Transaction History** - Added `requestReference` used for searching transactions with provided `externalReference` in Pay for Transit & Pass / Deposit.
+- **Transaction History** - Added `externalReference` and `additionalDetails` in response example and schema.
+- **Pay for Transit & Pass** - Corrected `accountId` to `fromAccountId` in request example and schema.
+- **Pay for Transit & Pass** - Added `Idempotency-Key` in request header for avoiding accidental creation of duplicate transactions and its consequent response.
+- **Deposit** - Added `Idempotency-Key` in request header for avoiding accidental creation of duplicate transactions and its consequent response.
+- **Webhook** - Added `CASHIN` event example payload."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -126,7 +136,7 @@ class OrderTagsDocumentFilter : IDocumentFilter
 
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },
     new OpenApiTag { Name = "Integration", Description = "Integration between the wallet system and banking system or partner."},
-    new OpenApiTag { Name = "Notifications", Description = "Notify events."}
+    new OpenApiTag { Name = "Notifications", Description = "Webhook examples"}
   ];
 
   public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)

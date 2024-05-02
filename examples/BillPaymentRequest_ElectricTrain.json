@@ -1,5 +1,4 @@
 {
-    
     "billerIdentifier": 981,
     "productId": "et",
     "value": {
@@ -15,7 +14,5 @@
     "productTypeInfo": {
         "Gate Number": "1"
     },
-    "inputValues": {
-        "Gate Number": "1"
-    }
+    "externalReference": "100001"
 }

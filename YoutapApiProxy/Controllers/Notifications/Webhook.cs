@@ -15,7 +15,12 @@ readonly partial struct Notifications
     [ProducesResponseType(typeof(WebhookModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(WebhookExample))]
 
-    [SwaggerOperation(Summary = "Webhook Examples", Description = @"Examples of webhook requests that will be sent to partner's callback url upon specific events.")]
+    [SwaggerOperation(Summary = "(not an API endpont - see documentation description)", Description = @"
+Examples of webhook requests that will be sent to partner's callback url upon specific events.
+
+These examples are to show what events look like when they are sent to webhook endpoints.
+
+This request is not supposed to describe functionality of a specific endpoint within our API.")]
     public static IResult Webhook(/* string accountId */)
     {
         var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
