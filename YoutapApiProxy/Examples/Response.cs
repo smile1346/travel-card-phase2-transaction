@@ -42,6 +42,14 @@ public class BillPaymentResponseInsufficientFundsExample : IMultipleExamplesProv
     }
 }
 
+public class BillPaymentResponseTooManyRequestsExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Duplicated request", File.ReadAllText("examples/BillPaymentResponse_TooManyRequests.json"));
+    }
+}
+
 public class GetPendingDelayedPaymentsResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
@@ -151,7 +159,15 @@ public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Transaction date is not current", File.ReadAllText("examples/GeneralTransactionDepositResponse_DateNotCurrent.json"));
-        yield return SwaggerExample.Create("Must provide OTP", File.ReadAllText("examples/GeneralTransactionWithdrawalResponse_MustProvideOTP.json"));
+        // yield return SwaggerExample.Create("Must provide OTP", File.ReadAllText("examples/GeneralTransactionWithdrawalResponse_MustProvideOTP.json"));
+    }
+}
+
+public class GeneralTransactionResponseTooManyRequestsExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Duplicated request", File.ReadAllText("examples/GeneralTransactionDepositResponse_TooManyRequests.json"));
     }
 }
 

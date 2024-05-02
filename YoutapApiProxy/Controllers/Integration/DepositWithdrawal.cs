@@ -6,6 +6,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Examples;
 using System.Net.Mime;
 using HttpRequests;
+using System.ComponentModel.DataAnnotations;
 
 namespace Controllers;
 
@@ -17,6 +18,9 @@ readonly partial struct Integration
     // Bad Request
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(GeneralTransactionResponseErrorExample))]
+    // Too Many Requests
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.TooManyRequests)]
+    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(GeneralTransactionResponseTooManyRequestsExample))]
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body
@@ -32,7 +36,7 @@ C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to
     public static async Task DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
-    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string idempotencyKey)
+    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique key that the server uses to recognize subsequent retries of the same request to avoid the accidental creation of duplicate transactions.")] string idempotencyKey)
     {
         await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/external-partners/v1/general-transaction", context, tokenClient);
     }
