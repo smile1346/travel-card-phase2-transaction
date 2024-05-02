@@ -32,7 +32,7 @@ C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to
     public static async Task DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
-    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string idempotencyKey)
+    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string? idempotencyKey)
     {
         await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/external-partners/v1/general-transaction", context, tokenClient);
     }
