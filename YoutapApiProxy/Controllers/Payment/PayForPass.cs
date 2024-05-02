@@ -36,7 +36,7 @@ To send a bill payment, an app will usually get the list of providers first (see
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature,
-    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string? idempotencyKey)
+    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string idempotencyKey)
     {
         // using var reader = new StreamReader(context.Request.Body);
         // var str = await reader.ReadToEndAsync();

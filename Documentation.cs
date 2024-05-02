@@ -33,7 +33,7 @@ readonly struct Documentation
     {
       options.SchemaFilter<EnumSchemaFilter>();
 
-      // options.DocumentFilter<BasePathDocumentFilter>();
+      options.DocumentFilter<BasePathDocumentFilter>();
       options.DocumentFilter<OrderTagsDocumentFilter>();
       // options.SchemaFilter<IsRequiredSchemaFilter>();
       options.ExampleFilters();
