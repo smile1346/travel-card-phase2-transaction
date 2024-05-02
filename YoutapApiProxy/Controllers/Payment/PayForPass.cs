@@ -32,10 +32,11 @@ readonly partial struct Payment
 A consumer's balance can be used to pay bills for companies that are integrated into the wallet payment system. This could be internet, gas, phone, or many other types of bills. Generally all the user needs to do is select the provider they wish to pay and a list of the services they provide will be displayed. They can select the product they wish to pay for and the amount they need to pay will be loaded into the payment interface automatically.
 
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
-    public static async Task<string> PayForPass(HttpContext context,
+    public static async Task PayForPass(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature,
+    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string idempotencyKey)
     {
         // using var reader = new StreamReader(context.Request.Body);
         // var str = await reader.ReadToEndAsync();
@@ -50,7 +51,7 @@ To send a bill payment, an app will usually get the list of providers first (see
         // }
 
         // context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(str));
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/emoney/v3/billpayment", context, tokenClient, null, acceptLanguage);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/emoney/v3/billpayment", context, tokenClient);
     }
 
 }

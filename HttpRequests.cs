@@ -26,7 +26,7 @@ struct TokenResponse
 
 interface IAccessTokenClient
 {
-    Task<string> GetAccessToken(string? username);
+    Task<string> GetAccessToken();
 }
 
 class AccessTokenClient
@@ -86,7 +86,7 @@ class AccessTokenClient
 
 class DefaultAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
-    public async Task<string> GetAccessToken(string? _)
+    public async Task<string> GetAccessToken()
     {
         // Assuming you have a way to get the current time, for example:
         DateTime currentTime = DateTime.UtcNow;
@@ -120,7 +120,7 @@ class DefaultAccessTokenClient(string clientId, string clientSecret) : IAccessTo
 
 class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {
-    public async Task<string> GetAccessToken(string? _)
+    public async Task<string> GetAccessToken()
     {
         // Assuming you have a way to get the current time, for example:
         DateTime currentTime = DateTime.UtcNow;
@@ -193,15 +193,15 @@ class AuthorizedHttpClient
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 
-    public static async Task<string> ReturnHttpResponseAsStringAsync(HttpContext context, HttpResponseMessage response)
-    {
-        context.Response.StatusCode = (int)response.StatusCode;
-        context.Response.ContentType = response.Content.Headers.ContentType?.MediaType;
+    // public static async Task<string> ReturnHttpResponseAsStringAsync(HttpContext context, HttpResponseMessage response)
+    // {
+    //     context.Response.StatusCode = (int)response.StatusCode;
+    //     context.Response.ContentType = response.Content.Headers.ContentType?.MediaType;
 
-        return await response.Content.ReadAsStringAsync();
-    }
+    //     return await response.Content.ReadAsStringAsync();
+    // }
 
-    // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
+    // public static async Task<string> RerouteWithAccessTokenWriteBodyAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
     // {
     //     var response = await GetWithAccessTokenAsync(relativeGatewayPath, tokenClient);
     //     return await ReturnHttpResponseAsStringAsync(context, response);
@@ -213,7 +213,7 @@ class AuthorizedHttpClient
     //     return await GetWithAccessTokenAsync<T>(uri, tokenClient);
     // }
 
-    // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
+    // public static async Task<string> RerouteWithAccessTokenWriteBodyAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
     // {
     //     var response = await GetWithAccessTokenAsync(uri, tokenClient);
     //     return await ReturnHttpResponseAsStringAsync(context, response);
@@ -225,50 +225,74 @@ class AuthorizedHttpClient
     //     return await HttpClient.GetAsync(uri);
     // }
 
-    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? username) where T : IAccessTokenClient
+    // public static async Task<string> RerouteWithAccessTokenWriteBodyAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? username) where T : IAccessTokenClient
+    // {
+    //     var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, username, "EN");
+    //     return await ReturnHttpResponseAsStringAsync(context, response);
+    // }
+
+    public static async Task RerouteWithAccessTokenWriteBodyAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
     {
-        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, username, "EN");
-        return await ReturnHttpResponseAsStringAsync(context, response);
+        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, context.Request.Headers);
+
+        context.Response.StatusCode = (int)response.StatusCode;
+
+        foreach (var header in response.Headers)
+            context.Response.Headers[header.Key] = header.Value.ToArray();
+
+        foreach (var header in response.Content.Headers)
+            context.Response.Headers[header.Key] = header.Value.ToArray();
+
+        context.Response.Headers.Remove("transfer-encoding");
+
+        await response.Content.CopyToAsync(context.Response.Body);
     }
 
-    public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
-    {
-        var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, username, acceptLanguage);
-        return await ReturnHttpResponseAsStringAsync(context, response);
-    }
+    // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(string relativeGatewayPath, HttpContext context, T tokenClient) where T : IAccessTokenClient
+    // {
+    //     var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), relativeGatewayPath + context.Request.QueryString, context.Request.Body, tokenClient, context.Request.Headers);
+    //     return await ReturnHttpResponseAsStringAsync(context, response);
+    // }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, string relativeGatewayPath, Stream stream, T tokenClient, IHeaderDictionary originalHeaders) where T : IAccessTokenClient
     {
         var uri = new Uri(GATEWAY_URI, relativeGatewayPath);
-        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient, username, acceptLanguage);
+        return await RequestWithAccessTokenAsync(method, uri, stream, tokenClient, originalHeaders);
     }
 
-    // public static async Task<string> RerouteWithAccessTokenReturnStringAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
+    // public static async Task<string> RerouteWithAccessTokenWriteBodyAsync<T>(Uri uri, HttpContext context, T tokenClient) where T : IAccessTokenClient
     // {
     //     var response = await RequestWithAccessTokenAsync(new HttpMethod(context.Request.Method), uri, context.Request.Body, tokenClient);
     //     return await ReturnHttpResponseAsStringAsync(context, response);
     // }
 
-    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient, string? username, string? acceptLanguage) where T : IAccessTokenClient
+    public static async Task<HttpResponseMessage> RequestWithAccessTokenAsync<T>(HttpMethod method, Uri uri, Stream stream, T tokenClient, IHeaderDictionary originalHeaders) where T : IAccessTokenClient
     {
         var request = new HttpRequestMessage(method, uri);
 
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken(username));
-        if (acceptLanguage != null)
-        {
-            try
-            {
-                request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(acceptLanguage));
-            }
-            catch (Exception) { }
+        foreach (var header in originalHeaders)
+            foreach (var value in header.Value)
+                try
+                {
+                    request.Headers.Add(header.Key, value);
+                }
+                catch { }
 
-        }
+        request.Headers.Host = uri.Authority;
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await tokenClient.GetAccessToken());
 
-        if (method == HttpMethod.Get || method == HttpMethod.Delete)
+        if (method == HttpMethod.Get || method == HttpMethod.Delete || method == HttpMethod.Trace || method == HttpMethod.Head)
             return await HttpClient.SendAsync(request);
 
         using var content = new StreamContent(stream);
-        content.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
+        foreach (var header in originalHeaders)
+            foreach (var value in header.Value)
+                try
+                {
+                    content.Headers.Add(header.Key, value);
+                }
+                catch { }
+
         request.Content = content;
 
         return await HttpClient.SendAsync(request);

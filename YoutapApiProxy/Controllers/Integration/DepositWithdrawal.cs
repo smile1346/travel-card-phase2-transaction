@@ -29,11 +29,12 @@ This is the same operation (i.e. the requests are almost the same) as the withdr
 C2MD: Customer to Merchant Deposit. The transaction goes from the merchant to the customer.
 
 C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
-    public static async Task<string> DepositWithdrawal(HttpContext context,
+    public static async Task DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
-    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
+    [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique identifier for the transaction, and must not be duplicated in the system.")] string idempotencyKey)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/external-partners/v1/general-transaction", context, tokenClient, null);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/external-partners/v1/general-transaction", context, tokenClient);
     }
 
 }

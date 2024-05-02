@@ -11,7 +11,7 @@
         "ACCTID": 2142,
         "merchantId": "140",
         "customerId": "66438765987",
-        "currency": "NZD",
+        "currency": "THB",
         "nfcId": null,
         "amount": "100.00",
         "billableEvent": "CUSTOMER_TO_MERCHANT_DEPOSIT",

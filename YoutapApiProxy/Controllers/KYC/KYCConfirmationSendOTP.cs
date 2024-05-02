@@ -18,11 +18,11 @@ readonly partial struct KYC
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
     [SwaggerOperation(Summary = "KYC Confirmation", Description = @"Sends an OTP to the phone number, if valid. The validity period of the OTP is provided in the response.")]
-    public static async Task<string> KYCConfirmation(HttpContext context,
+    public static async Task KYCConfirmation(HttpContext context,
     DefaultAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v2/kyc/confirmation", context, tokenClient,null);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/v2/kyc/confirmation", context, tokenClient);
     }
 
 }

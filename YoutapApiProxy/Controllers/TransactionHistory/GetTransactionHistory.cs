@@ -27,7 +27,7 @@ readonly partial struct TransactionHistory
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
     [SwaggerOperation(Summary = "Get Transaction History", Description = @"This endpoint retrieves the transaction history summary of an account filtering using the period [from - to] , sort direction and ordering property")]
-    public static async Task<string> GetTransactionHistory(HttpContext context,
+    public static async Task GetTransactionHistory(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     /* [DefaultValue("1040")] */[SwaggerParameter("The ID of the customer.")] string custId,
     /* [DefaultValue("1021")] */[SwaggerParameter("The ID of the account.")] string accountId,
@@ -45,6 +45,6 @@ readonly partial struct TransactionHistory
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient, null, acceptLanguage);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient);
     }
 }

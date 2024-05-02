@@ -25,13 +25,13 @@ This endpoint is used to get user KYC details, including;
         - Account details (including IDs for other requests)
         - Previously submitted identification documents
         - KYC tier requirements")]
-    public static async Task<string> GetUserInfo(HttpContext context,
+    public static async Task GetUserInfo(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string custId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature,
     [FromHeader(Name = "x-msisdn")] string msisdn = "278668662")
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/v3/kyc/{custId}", context, tokenClient, msisdn);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/v3/kyc/{custId}", context, tokenClient);
     }
 
 }

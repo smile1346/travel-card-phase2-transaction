@@ -22,11 +22,11 @@ readonly partial struct KYC
 
     [SwaggerOperation(Summary = "Register", Description = @"
 Registers a new customer, including contact details and msisdn. Most fields are nullable in case the customer hasn't supplied that information, but the phone number is required.")]
-    public static async Task<string> KYCRegistration(HttpContext context,
+    public static async Task KYCRegistration(HttpContext context,
     DefaultAccessTokenClient tokenClient,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v2/kyc/registration", context, tokenClient,null);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/v2/kyc/registration", context, tokenClient);
     }
 
 }

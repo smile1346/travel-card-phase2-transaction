@@ -22,11 +22,11 @@ readonly partial struct Account
 This endpoint retreives all the accounts linked to the customer using the custId. Customers often need to see an overview of their accounts and balances, so this endpoint allows them to see statuses, IDs, balances, types, and other pieces of data concerning the health of their wallet.
 
 This API is useful for the Payment because it contains all of the IDs that they need to transfer money from one account to another, whether it's one of their own or somebody else's.")]
-    public static async Task<string> GetQuickAccounts(HttpContext context,
+    public static async Task GetQuickAccounts(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("CustomerId - Unique identifier for the customer, returned from registration API")] string custId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync($"/wallet/v2/accounts/customer/{custId}/quick-accounts", context, tokenClient, null);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/wallet/v2/accounts/customer/{custId}/quick-accounts", context, tokenClient);
     }
 }

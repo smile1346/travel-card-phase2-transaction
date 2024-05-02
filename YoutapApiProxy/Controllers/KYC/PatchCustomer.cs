@@ -21,12 +21,12 @@ readonly partial struct KYC
     [SwaggerRequestExample(typeof(PatchCustomerModel.Root), typeof(KYCRegistrationPATCHRequestExample))]
 
     [SwaggerOperation(Summary = "Patch Customer", Description = @"Updates an existing customer registration.")]
-    public static async Task<string> PatchCustomer(HttpContext context,
+    public static async Task PatchCustomer(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     /*[DefaultValue("1040")]*/[SwaggerParameter("The ID of the customer.")] string customerId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature)
     {
-        return await AuthorizedHttpClient.RerouteWithAccessTokenReturnStringAsync("/v3/kyc/registration", context, tokenClient, null);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync("/v3/kyc/registration", context, tokenClient);
     }
 
 }
