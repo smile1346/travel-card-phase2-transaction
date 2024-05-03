@@ -86,7 +86,7 @@ public class GetQuickAccountsResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Get Quick Accounts", File.ReadAllText("examples/GetQuickAccountsResponse.json"));
+        yield return SwaggerExample.Create("Get Quick Accounts", File.ReadAllText("examples/GetQuickAccountsResponse_Current.json"));
     }
 }
 
