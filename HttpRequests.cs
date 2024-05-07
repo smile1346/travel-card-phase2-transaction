@@ -190,6 +190,7 @@ class AuthorizedHttpClient
 
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
+        Proxy = new WebProxy("10.136.134.2", 8080)
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 

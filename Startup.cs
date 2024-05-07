@@ -20,6 +20,7 @@ var app = builder.Build();
 Configuration.AddConfiguration(app);
 
 app.UseMiddleware<AdminSafeListMiddleware>();
+app.UseMiddleware<IgnoreMissingHeaderMiddleware>();
 
 // app.MapPost("/oauth2/token", () =>
 // {
