@@ -15,10 +15,10 @@ public class Account
     [SwaggerSchema("AccountID is used for several API's. Rabbit should save this value.")]
     public int AccountId { get; set; }
 
-    [JsonPropertyName("alternateAccountId")]
+    [JsonPropertyName("externalId")]
     //[Required]
-    [SwaggerSchema("Example: 160010811001000\n\n160 = Provider (Rabbit)\n\n01 = Wallet type (Consumer Wallet)\n\n0811001000 = account id 10 digits")]
-    public string AlternateAccountId { get; set; }
+    [SwaggerSchema("Example: 16001 0811001000\n\n160 = Provider (Rabbit)\n\n01 = Wallet type (Consumer Wallet)\n\n0811001000 = account id 10 digits")]
+    public string ExternalId { get; set; }
 
     [JsonPropertyName("accountType")]
     //[Required]

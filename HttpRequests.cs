@@ -33,6 +33,7 @@ class AccessTokenClient
 {
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
+        Proxy = new WebProxy(AuthorizedHttpClient.PROXY_URL, AuthorizedHttpClient.PROXY_PORT)
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 
@@ -187,10 +188,12 @@ class AuthorizedHttpClient
 {
     public static readonly Uri GATEWAY_URI = new("https://gateway.test.youtap-azuredev.net");
     public static readonly Uri AUTH_URI = new("https://auth.test.youtap-azuredev.net/uaa/oauth/token");
+    public static readonly string PROXY_URL = "10.136.134.2";
+    public static readonly int PROXY_PORT = 8080;
 
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
-        Proxy = new WebProxy("10.136.134.2", 8080)
+        Proxy = new WebProxy(PROXY_URL, PROXY_PORT)
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 

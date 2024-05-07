@@ -60,9 +60,9 @@ public class Root
     [SwaggerSchema("Unique identifier for the account")]
     public int AccountId { get; set; }
 
-    [JsonPropertyName("alternateAccountId")]
+    [JsonPropertyName("externalId")]
     [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
-    public string AlternateAccountId { get; set; }
+    public string ExternalId { get; set; }
 
     [JsonPropertyName("accountName")]
     public string AccountName { get; set; }

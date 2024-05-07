@@ -46,9 +46,9 @@ public class Content
     [JsonPropertyName("sourceAcctId")]
     public int SourceAcctId { get; set; }
 
-    [JsonPropertyName("alternateAccountId")]
-    [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
-    public string AlternateAccountId { get; set; }
+    // [JsonPropertyName("alternateAccountId")]
+    // [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
+    // public string AlternateAccountId { get; set; }
 
     [JsonPropertyName("relatedAcctId")]
     public int RelatedAcctId { get; set; }
