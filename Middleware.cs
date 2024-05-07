@@ -2,7 +2,6 @@ using Microsoft.IdentityModel.Tokens;
 
 readonly struct IgnoreMissingHeaderMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate _next = next;
     readonly List<string> ignoredHeaders = ["x-jws-signature", "Idempotency-Key"];
 
     public async readonly Task Invoke(HttpContext context)
@@ -13,7 +12,7 @@ readonly struct IgnoreMissingHeaderMiddleware(RequestDelegate next)
                 context.Request.Headers[header] = string.Empty;
         });
 
-        await _next(context);
+        await next(context);
     }
 
 }
