@@ -10,7 +10,7 @@ readonly struct IgnoreMissingHeaderMiddleware(RequestDelegate next)
         ignoredHeaders.ForEach(header =>
         {
             if (context.Request.Headers[header].IsNullOrEmpty())
-                context.Request.Headers[header] = "";
+                context.Request.Headers[header] = string.Empty;
         });
 
         await _next(context);
