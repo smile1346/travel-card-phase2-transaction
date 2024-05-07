@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  const string currentVersion = "0.2.26";
+  const string currentVersion = "0.2.27";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,13 +54,10 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Transaction History** - Updated time format in datetime filter (added timezone +07:00 in `from` and `to` query parameters).
-- **Transaction History** - Added `requestReference` used for searching transactions with provided `externalReference` in Pay for Transit & Pass / Deposit.
-- **Transaction History** - Added `externalReference` and `additionalDetails` in response example and schema.
-- **Pay for Transit & Pass** - Corrected `accountId` to `fromAccountId` in request example and schema.
-- **Pay for Transit & Pass** - Added `Idempotency-Key` in request header for avoiding accidental creation of duplicate transactions and its consequent response.
-- **Deposit** - Added `Idempotency-Key` in request header for avoiding accidental creation of duplicate transactions and its consequent response.
-- **Webhook** - Added `CASHIN` event example payload."
+- **Get User Info** - Added new API to get customer info with mobile number.
+- **Register** - Corrected `alternateAccountId` to `externalId` in the response.
+- **Get Accounts** - Corrected `alternateAccountId` to `externalId` in the response.
+- **Get Transaction History** - Remove `alternateAccountId`"
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Http.Headers;
-using System.Net.Mime;
 using System.Text.Json.Serialization;
 using Microsoft.IdentityModel.Tokens;
 
@@ -85,39 +84,39 @@ class AccessTokenClient
 
 }
 
-class DefaultAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
-{
-    public async Task<string> GetAccessToken()
-    {
-        // Assuming you have a way to get the current time, for example:
-        DateTime currentTime = DateTime.UtcNow;
+// class DefaultAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
+// {
+//     public async Task<string> GetAccessToken()
+//     {
+//         // Assuming you have a way to get the current time, for example:
+//         DateTime currentTime = DateTime.UtcNow;
 
-        // Check if the current time is before the expiration time
-        if (currentTime < AccessTokenExpirationTime)
-        {
-            Console.WriteLine("Access token is still valid");
-            // Access token is still valid, return it
-            return CurrentAccessToken!;
-        }
-        else
-        {
-            Console.WriteLine("Getting a new access token...");
+//         // Check if the current time is before the expiration time
+//         if (currentTime < AccessTokenExpirationTime)
+//         {
+//             Console.WriteLine("Access token is still valid");
+//             // Access token is still valid, return it
+//             return CurrentAccessToken!;
+//         }
+//         else
+//         {
+//             Console.WriteLine("Getting a new access token...");
 
-            var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret);
+//             var tokenResponse = await AccessTokenClient.RequestAccessToken(clientId, clientSecret);
 
-            // Update the expiration time and current access token
-            AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
-            CurrentAccessToken = tokenResponse.AccessToken;
+//             // Update the expiration time and current access token
+//             AccessTokenExpirationTime = currentTime.AddSeconds(tokenResponse.ExpiresIn);
+//             CurrentAccessToken = tokenResponse.AccessToken;
 
-            // Return the new access token
-            return CurrentAccessToken;
-        }
-    }
+//             // Return the new access token
+//             return CurrentAccessToken;
+//         }
+//     }
 
-    // These fields are assumed to be accessible from within the class.
-    private string? CurrentAccessToken = null; // Stores the current access token
-    private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
-}
+//     // These fields are assumed to be accessible from within the class.
+//     private string? CurrentAccessToken = null; // Stores the current access token
+//     private DateTime AccessTokenExpirationTime = DateTime.MinValue; // Stores the expiration time of the access token
+// }
 
 class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IAccessTokenClient
 {

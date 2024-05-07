@@ -29,7 +29,7 @@ readonly partial struct TransactionHistory
     [SwaggerOperation(Summary = "Get Transaction History", Description = @"This endpoint retrieves the transaction history summary of an account filtering using the period [from - to] , sort direction and ordering property")]
     public static async Task GetTransactionHistory(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
-    /* [DefaultValue("1040")] */[SwaggerParameter("The ID of the customer.")] string custId,
+    /* [DefaultValue("1040")] */[SwaggerParameter("The ID of the customer.")] string customerId,
     /* [DefaultValue("1021")] */[SwaggerParameter("The ID of the account.")] string accountId,
     // [SwaggerParameter("This is the category in which the account belongs to for example SAVINGS, LOAN , Biller Account , Agent Account")] string? accountType,
     // [SwaggerParameter("The type of the client (FINERACT, YTS).")] string? clientType,
@@ -45,6 +45,6 @@ readonly partial struct TransactionHistory
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
     {
-        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/history/wallet/v4/{custId}/{accountId}/summary", context, tokenClient);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/history/wallet/v4/{customerId}/{accountId}/summary", context, tokenClient);
     }
 }

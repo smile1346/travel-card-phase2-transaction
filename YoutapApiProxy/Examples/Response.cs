@@ -5,7 +5,7 @@ public class GetUserInfoResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Get User Info", File.ReadAllText("examples/UserInfoResponse.json"));
+        yield return SwaggerExample.Create("Get User Info", File.ReadAllText("examples/GetUserInfoResponse.json"));
     }
 }
 

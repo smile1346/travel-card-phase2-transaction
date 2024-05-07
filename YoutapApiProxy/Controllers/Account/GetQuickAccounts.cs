@@ -24,9 +24,9 @@ This endpoint retreives all the accounts linked to the customer using the custId
 This API is useful for the Payment because it contains all of the IDs that they need to transfer money from one account to another, whether it's one of their own or somebody else's.")]
     public static async Task GetQuickAccounts(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
-    /*[DefaultValue("1040")]*/[SwaggerParameter("CustomerId - Unique identifier for the customer, returned from registration API")] string custId,
+    /*[DefaultValue("1040")]*/[SwaggerParameter("CustomerId - Unique identifier for the customer, returned from registration API")] string customerId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
     {
-        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/wallet/v2/accounts/customer/{custId}/quick-accounts", context, tokenClient);
+        await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/wallet/v2/accounts/customer/{customerId}/quick-accounts", context, tokenClient);
     }
 }
