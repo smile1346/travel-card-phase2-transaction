@@ -17,8 +17,8 @@ readonly partial struct KYC
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetUserInfoResponseExample))]
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
-    [SwaggerOperation(Summary = "Get User Info", Description = @"
-This endpoint is used to get user KYC details, including;
+    [SwaggerOperation(Summary = "Get user info with mobile number", Description = @"
+This endpoint is used to get user KYC details with mobile number, including;
 
         - Status
         - Addresses and other contact information
