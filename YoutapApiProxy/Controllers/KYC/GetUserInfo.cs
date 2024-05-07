@@ -15,6 +15,11 @@ readonly partial struct KYC
     // OK
     [ProducesResponseType(typeof(UserInfoModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetUserInfoResponseExample))]
+
+    // Not Found
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
+    [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(GetUserInfoResponseNotFoundExample))]
+
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     [SwaggerOperation(Summary = "Get user info with mobile number", Description = @"

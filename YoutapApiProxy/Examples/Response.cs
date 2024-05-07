@@ -9,6 +9,14 @@ public class GetUserInfoResponseExample : IMultipleExamplesProvider<string>
     }
 }
 
+public class GetUserInfoResponseNotFoundExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Cannot find account id for msisdn", File.ReadAllText("examples/GetUserInfoResponse_NotFound.json"));
+    }
+}
+
 public class KYCConfirmationResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
