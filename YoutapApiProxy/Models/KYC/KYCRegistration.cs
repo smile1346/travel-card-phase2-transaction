@@ -128,7 +128,14 @@ public class Root
 
     [JsonPropertyName("type")]
     [Required]
-    [SwaggerSchema("`MWLT` for Mobile Wallet")]
+    [SwaggerSchema(@"| Account Type (DB Code)| Description |
+|-----|-----|
+| MCHNT   | Merchant   |
+| MWLT   | Mobile Wallet   |
+| OPRT   | Operator   |
+| BUSI   | Business   |
+| PURSE   | Purse   |
+| SINGL   | Single-use   |")]
     public string Type { get; set; }
 }
 
