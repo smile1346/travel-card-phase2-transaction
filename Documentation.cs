@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  const string currentVersion = "0.2.27";
+  const string currentVersion = "0.2.28";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,10 +54,8 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Get User Info** - Exposed endpoint to get customer info with mobile number.
-- **Register** - Corrected `alternateAccountId` to `externalId` in the response.
-- **Get Accounts** - Corrected `alternateAccountId` to `externalId` in the response.
-- **Get Transaction History** - Remove `alternateAccountId`"
+- **Deposit** - Added `Balance limit reached` example.
+- **KYC Registration** - Added `Glossary of Identifiers` table."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

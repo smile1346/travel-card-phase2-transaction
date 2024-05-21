@@ -84,14 +84,13 @@ struct Security
     }
 }
 
-readonly struct AdminSafeListMiddleware(
-    RequestDelegate next)
+readonly struct AdminSafeListMiddleware(RequestDelegate next)
 {
+    readonly string? safelist = Environment.GetEnvironmentVariable("WALLET_IP_WHITELIST", EnvironmentVariableTarget.Machine);
     public async Task Invoke(HttpContext context)
     {
         if (context.Request.Method != HttpMethod.Get.Method)
         {
-            var safelist = Environment.GetEnvironmentVariable("WALLET_IP_WHITELIST", EnvironmentVariableTarget.Machine);
             if (!safelist.IsNullOrEmpty())
             {
                 var ips = safelist!.Split(';');

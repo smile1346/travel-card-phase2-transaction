@@ -166,8 +166,8 @@ public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
+        yield return SwaggerExample.Create("Balance limit reached", File.ReadAllText("examples/GeneralTransactionDepositResponse_BalanceLimitReached.json"));
         yield return SwaggerExample.Create("Transaction date is not current", File.ReadAllText("examples/GeneralTransactionDepositResponse_DateNotCurrent.json"));
-        // yield return SwaggerExample.Create("Must provide OTP", File.ReadAllText("examples/GeneralTransactionWithdrawalResponse_MustProvideOTP.json"));
     }
 }
 

@@ -185,10 +185,11 @@ class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IA
 
 class AuthorizedHttpClient
 {
-    public static readonly Uri GATEWAY_URI = new("https://gateway.test.youtap-azuredev.net");
-    public static readonly Uri AUTH_URI = new("https://auth.test.youtap-azuredev.net/uaa/oauth/token");
-    public static readonly string PROXY_URL = "10.136.134.2";
-    public static readonly int PROXY_PORT = 8080;
+    static readonly string DOMAIN = Environment.GetEnvironmentVariable("WALLET_YOUTAP_DOMAIN", EnvironmentVariableTarget.Machine) ?? "bbl.youtap-azuredev.net";
+    public static readonly Uri GATEWAY_URI = new($"https://gateway.{DOMAIN}");
+    public static readonly Uri AUTH_URI = new($"https://auth.{DOMAIN}/uaa/oauth/token");
+    public const string PROXY_URL = "10.136.134.2";
+    public const int PROXY_PORT = 8080;
 
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {

@@ -86,7 +86,65 @@ public class CustomerIdentifierDTO
     public int CustomerId { get; set; }
 
     [JsonPropertyName("identifierId")]
-    [SwaggerSchema("Type of customer identifier. Possible value: 31 for referral phone number.")]
+    // [SwaggerSchema("Type of customer identifier. Possible value: 31 for referral phone number.")]
+    [SwaggerSchema(@"| ID | Description | Code | Type |
+|-----|-------------|------|------|
+| 1   | Passport    | PASS | TEXT |
+| 2   | Drivers Licence | DRIV | TEXT |
+| 4   | National ID | NATI | TEXT |
+| 5   | Organization | ORG  | TEXT |
+| 6   | Selfie | IMAGEO | IMAGE |
+| 7   | Employment ID | EMID | TEXT |
+| 8   | Social ID | WELF | TEXT |
+| 9   | Social Card Image | SOCRD | IMAGE |
+| 10  | Signature | SIGNT | IMAGE |
+| 11  | Other | OTHER | IMAGE |
+| 12  | Mothers Maiden Name | MMN  | TEXT |
+| 13  | Birth Place | BTHPL | TEXT |
+| 14  | Other ID | OTHID | TEXT |
+| 16  | Passport Image | PSSPT | IMAGE |
+| 17  | Drivers License Image | DRLIC | IMAGE |
+| 18  | National ID Image | NATIM | IMAGE |
+| 19  | Voter ID | VOTID | TEXT |
+| 20  | GSIS/SSS | GSIS | TEXT |
+| 21  | Tax ID No | TIN | TEXT |
+| 22  | Business Registration ID | BREGO | TEXT |
+| 23  | Secretary Cert | SCERT | TEXT |
+| 24  | Voter ID Image | VOTIM | IMAGE |
+| 25  | GSIS/SSS Image | GSISS | IMAGE |
+| 26  | Tax ID Image | TAXIM | IMAGE |
+| 27  | Province | PROV | TEXT |
+| 28  | Barangay | BARA | TEXT |
+| 29  | Postcode | POST | TEXT |
+| 30  | First School | SCHO | TEXT |
+| 31  | Referral Phone Number | REFN | TEXT |
+| 32  | On Behalf of | OBHO | TEXT |
+| 33  | Bank Name | BANK | TEXT |
+| 35  | Bank Short Code | BCODE | TEXT |
+| 41  | Security IMAGE | SECPH | IMAGE |
+| 42  | Proof of Address | PROFA | IMAGE |
+| 43  | Proof of Income | PROFI | IMAGE |
+| 44  | Source of Funds | SRCFU | TEXT |
+| 48  | Business Picture | BSPIC | IMAGE |
+| 52  | Social Card Image Back | SOCBK | IMAGE |
+| 53  | Other Id Image Back | OTHBK | IMAGE |
+| 55  | Drivers Image Back | DRLBK | IMAGE |
+| 56  | National Id Image Back | NATBK | IMAGE |
+| 57  | Voter Id Image Back | VOTBK | IMAGE |
+| 58  | GSIS/SSS Image Back | GSIBK | IMAGE |
+| 59  | Tax ID Image Back | TAXBK | IMAGE |
+| 60  | Visa Image | VISA | IMAGE |
+| 61  | Visa ID | VSAID | TEXT |
+| 62  | Business Registration Image | BREIM | IMAGE |
+| 64  | Drivers Licence Version | DRIVV | TEXT |
+| 65  | Trading Name | TRDNM | TEXT |
+| 66  | Bank Verification No | BVNO | TEXT |
+| 67  | Business Registration Image 2 | BREI2 | IMAGE |
+| 68  | Employer Name | EMPRN | TEXT |
+| 80  | Marital Status | MARST | TEXT |
+| 81  | Number of Children | NCHLD | TEXT |
+| 83  | Account Manager | ACCMG | TEXT |
+| 85  | Profile Pic | PRFLP | IMAGE |")]
     public int IdentifierId { get; set; }
 
     [JsonPropertyName("value")]
