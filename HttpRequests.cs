@@ -32,7 +32,7 @@ class AccessTokenClient
 {
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
-        Proxy = new WebProxy(AuthorizedHttpClient.PROXY_URL, AuthorizedHttpClient.PROXY_PORT)
+        // Proxy = new WebProxy(AuthorizedHttpClient.PROXY_URL, AuthorizedHttpClient.PROXY_PORT)
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 
@@ -185,7 +185,7 @@ class BBLClientBasedAccessTokenClient(string clientId, string clientSecret) : IA
 
 class AuthorizedHttpClient
 {
-    static readonly string DOMAIN = Environment.GetEnvironmentVariable("WALLET_YOUTAP_DOMAIN", EnvironmentVariableTarget.Machine) ?? "bbl.youtap-azuredev.net";
+    static readonly string DOMAIN = Environment.GetEnvironmentVariable("WALLET_YOUTAP_DOMAIN", EnvironmentVariableTarget.Machine) ?? "test.youtap-azuredev.net";
     public static readonly Uri GATEWAY_URI = new($"https://gateway.{DOMAIN}");
     public static readonly Uri AUTH_URI = new($"https://auth.{DOMAIN}/uaa/oauth/token");
     public const string PROXY_URL = "10.136.134.2";

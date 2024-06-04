@@ -1,22 +1,21 @@
 {
     "event": "LOW_BALANCE",
     "detail": {
-        "date": "3rd Apr",
-        "dateTime": "2024-04-03 16:36:59",
-        "remainingBalanceAvailable": 75.0,
-        "lowBalanceThreshold": 500.0,
-        "merchantEmail": "newjb2@gmail.com",
-        "acctid": 1821,
+        "date": "31st May",
+        "dateTime": "2024-05-31 13:14:47",
+        "remainingBalanceAvailable": -972428.29,
+        "lowBalanceThreshold": 15.0,
+        "acctid": null,
         "language": "en",
-        "transactionId": 502423,
+        "transactionId": 500680,
         "EVENT": "LOW_BALANCE",
-        "merchantName": "New",
-        "ACCTID": 1821,
+        "ACCTID": 140,
         "currency": "THB",
-        "remainingBalance": 75.0,
+        "remainingBalance": -972428.29,
         "PACKAGE_NAME": "-",
-        "time": "04:36PM",
+        "time": "01:14PM",
         "terminalIds": [],
-        "currencyCode": "THB"
+        "currencyCode": "THB",
+        "consumerName": "Top Up"
     }
 }

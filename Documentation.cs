@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  const string currentVersion = "0.2.28";
+  public const string currentVersion = "0.2.28";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();

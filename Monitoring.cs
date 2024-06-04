@@ -8,7 +8,7 @@ using OpenTelemetry.Trace;
 struct Monitoring
 {
     public const string SERVICE_NAME = "wallet-proxy";
-    public const string SERVICE_VERSION = "v1";
+    // public const string SERVICE_VERSION = "v1";
 
     static readonly string tracingExporter = "otlp";
     static readonly string metricsExporter = "otlp";
@@ -18,7 +18,7 @@ struct Monitoring
 
     static readonly Action<ResourceBuilder> configureResource = r => r.AddService(
                 serviceName: SERVICE_NAME,
-                serviceVersion: SERVICE_VERSION,
+                serviceVersion: Documentation.currentVersion,
                 serviceInstanceId: Environment.MachineName
     );
 
@@ -36,8 +36,6 @@ struct Monitoring
                     .AddHttpClientInstrumentation()
                     .AddAspNetCoreInstrumentation();
 
-                // Use IConfiguration binding for AspNetCore instrumentation options.
-                // appBuilder.Services.Configure<AspNetCoreInstrumentationOptions>(appBuilder.Configuration.GetSection("AspNetCoreInstrumentation"));
                 // Use IConfiguration binding for AspNetCore instrumentation options.
                 appBuilder.Services.Configure<AspNetCoreTraceInstrumentationOptions>(appBuilder.Configuration.GetSection("AspNetCoreInstrumentation"));
 

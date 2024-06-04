@@ -13,7 +13,7 @@ Security.AddCors(builder);
 
 Documentation.AddSwagger(builder);
 
-// Monitoring.AddOpenTelemetry(builder);
+Monitoring.AddOpenTelemetry(builder);
 // Monitoring.AddLogging(builder, false);
 
 var app = builder.Build();
