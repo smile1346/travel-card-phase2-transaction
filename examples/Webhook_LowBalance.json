@@ -1,21 +1,22 @@
 {
     "event": "LOW_BALANCE",
     "detail": {
-        "date": "31st May",
-        "dateTime": "2024-05-31 13:14:47",
-        "remainingBalanceAvailable": -972428.29,
+        "date": "4th Jun",
+        "dateTime": "2024-06-04 18:19:54",
+        "remainingBalanceAvailable": -87.0,
         "lowBalanceThreshold": 15.0,
-        "acctid": null,
+        "acctid": 1043,
         "language": "en",
-        "transactionId": 500680,
+        "transactionId": 500862,
         "EVENT": "LOW_BALANCE",
-        "ACCTID": 140,
+        "ACCTID": 1043,
         "currency": "THB",
-        "remainingBalance": -972428.29,
+        "remainingBalance": -87.0,
         "PACKAGE_NAME": "-",
-        "time": "01:14PM",
+        "time": "06:19PM",
         "terminalIds": [],
         "currencyCode": "THB",
-        "consumerName": "Top Up"
+        "consumerEmail": "joebloggs@gmail.com",
+        "consumerName": "Joe"
     }
 }
