@@ -11,9 +11,17 @@
         "transactionAmount": "2.00",
         "currency": "THB",
         "balanceType": "EMONEY",
-        "channel": "Bank",
+        "channel": "BBL",
         "paymentType": "C2MD",
         "terminalId": "API",
         "externalReference": "100001"
+    },
+    "additionalDetails": {
+        "debtorName": "Joe Bloggs",
+        "debtorAgent": "Bangkok Bank PCL",
+        "debtorAgentLocalized": "ธนาคารกรุงเทพ",
+        "debtorId": "8650011023",
+        "shortName": "BBL",
+        "paymentPurpose": "General purpose"
     }
 }

@@ -57,6 +57,10 @@ public class Root
     [JsonPropertyName("transactionDetails")]
     [Required]
     public TransactionDetails TransactionDetails { get; set; }
+
+    [JsonPropertyName("additionalDetails")]
+    [SwaggerSchema("dynamic object for passing additional details, useful for ISO fields such as debtor info, etc.")]
+    public object AdditionalDetails { get; set; }
 }
 
 [SwaggerSchema("The amount, balance type, bill reference, etc. that all define how the transaction should be processed.")]
@@ -78,7 +82,7 @@ public class TransactionDetails
 
     [JsonPropertyName("channel")]
     [Required]
-    [SwaggerSchema("Use `Bank` to represent the top up from BBL channel")]
+    [SwaggerSchema("Free text field for specifying source of transaction (max 50 characters), will be shown in `sourceRef` field in Get Transaction History.")]
     public string Channel { get; set; }
 
     [JsonPropertyName("paymentType")]

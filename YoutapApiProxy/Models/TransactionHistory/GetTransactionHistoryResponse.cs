@@ -199,7 +199,7 @@ public class Content
     public string ExternalReference { get; set; }
 
     [JsonPropertyName("additionalDetails")]
-    [SwaggerSchema("productTypeInfo that has been provided the request")]
+    [SwaggerSchema("productTypeInfo/additionalDetails that has been provided the request")]
     public object AdditionalDetails { get; set; }
 }
 
