@@ -18,10 +18,10 @@
     },
     "additionalDetails": {
         "debtorName": "Joe Bloggs",
+        "debtorId": "8650011023",
         "debtorAgent": "Bangkok Bank PCL",
         "debtorAgentLocalized": "ธนาคารกรุงเทพ",
-        "debtorId": "8650011023",
-        "shortName": "BBL",
+        "debtorAgentShortName": "BBL",
         "paymentPurpose": "General purpose"
     }
 }
