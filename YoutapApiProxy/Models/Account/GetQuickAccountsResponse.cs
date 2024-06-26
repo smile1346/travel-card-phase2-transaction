@@ -77,6 +77,16 @@ public class Root
     public string AccountStatus { get; set; }
 
     [JsonPropertyName("accountStatusId")]
+    [SwaggerSchema(@"| ID  | Code  | Status         | Description                                                                   |
+|-----|-------|----------------|-------------------------------------------------------------------------------|
+| -2  | DEL   | Deleted        | Deleted, this account/device/etc. has been removed from use indefinitely       |
+| 3    | CLD   | Bulk Operation | Bulk operation finished (closed)                                               |
+| 5    | ACT   | Active        | Active, ready, usable. This is the most commonly used status because it applies to customers, devices, etc. |
+| 8    | CLDE  | Bulk Operation | As CLD, but with an error                                                      |
+| 16   | LOCK  | Locked        | Locked. Similar to deleted, but can be unlocked more easily                     |
+| 88   | DEAC  | Deactivated   | Deactivated, the contact/address/identifier is not in use anymore               |
+| 89   | FRAUD | Security Issue | Locked due to marked as lost, stolen, or used for fraud                        |")]
+
     public int AccountStatusId { get; set; }
 
     [JsonPropertyName("default")]

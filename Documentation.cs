@@ -56,7 +56,8 @@ Additionally, the token is how the front-end knows what the customer ID is so th
 **What's new in v{currentVersion}**
 - **Deposit** - Added `additionalDetails` schema and example for storing dynamic object such as topup source in ISO20022.
 - **Deposit** - Added `Balance limit reached` example.
-- **KYC Registration** - Added `Glossary of Identifiers` table."
+- **KYC Registration** - Added `Glossary of Identifiers` table in `identifierId` property..
+- **Get Accounts** - Added `Glossary of Statuses` table in `accountStatusId` property."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
