@@ -142,7 +142,7 @@ public class GetLinkedExternalAccountsResponseExample : IMultipleExamplesProvide
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Invalid Account Id", File.ReadAllText("examples/GetLinkedExternalAccountsResponse.json"));
+        yield return SwaggerExample.Create("Linked external accounts", File.ReadAllText("examples/GetLinkedExternalAccountsResponse.json"));
     }
 }
 
@@ -185,5 +185,13 @@ public class WebhookExample : IMultipleExamplesProvider<string>
     {
         yield return SwaggerExample.Create("LOW_BALANCE", File.ReadAllText("examples/Webhook_LowBalance.json"));
         yield return SwaggerExample.Create("CASHIN", File.ReadAllText("examples/Webhook_CashIn.json"));
+    }
+}
+
+public class ReversePaymentResponseExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Transaction Not Found", File.ReadAllText("examples/ReversePaymentResponseNotFound.json"));
     }
 }

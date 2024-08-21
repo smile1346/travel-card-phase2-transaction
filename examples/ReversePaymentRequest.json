@@ -1,0 +1,9 @@
+{
+    "reference": "505073",
+    "reverseFees": true,
+    "notes": "Custom notes",
+    "geoLocation": {
+        "latitude": -36.90544236136767,
+        "longitude": 174.7164117816925
+    }
+}

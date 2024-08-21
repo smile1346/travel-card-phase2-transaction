@@ -68,3 +68,11 @@ public class UpdateMsisdnRequestExample : IMultipleExamplesProvider<string>
         yield return SwaggerExample.Create("Update MSISDN", File.ReadAllText("examples/UpdateMsisdnRequest.json"));
     }
 }
+
+public class ReversePaymentRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Reverse Payment", File.ReadAllText("examples/ReversePaymentRequest.json"));
+    }
+}

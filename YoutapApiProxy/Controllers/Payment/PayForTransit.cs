@@ -33,7 +33,7 @@ readonly partial struct Payment
     [SwaggerRequestExample(typeof(BillPaymentRequestModel.Root), typeof(BillPaymentElectricTrainRequestExample))]
 
     [SwaggerOperation(Summary = "Make transit payment", Description = @"
-A consumer's balance can be used to pay bills for companies that are integrated into the wallet payment system. This could be internet, gas, phone, or many other types of bills. Generally all the user needs to do is select the provider they wish to pay and a list of the services they provide will be displayed. They can select the product they wish to pay for and the amount they need to pay will be loaded into the payment interface automatically.
+A consumer's balance can be used to pay bills for companies that are integrated into the wallet payment system. This could be transit type of bills. Generally all the user needs to do is select the provider they wish to pay and a list of the services they provide will be displayed. They can select the product they wish to pay for and the amount they need to pay will be loaded into the payment interface automatically.
 
 To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
     public static async Task PayForTransit(HttpContext context,
