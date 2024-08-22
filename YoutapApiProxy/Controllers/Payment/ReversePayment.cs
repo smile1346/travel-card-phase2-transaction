@@ -10,8 +10,7 @@ using HttpRequests;
 
 namespace Controllers
 {
-
-    readonly partial struct Merchant
+    readonly partial struct Payment
     {
         // No Content
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
@@ -28,10 +27,10 @@ namespace Controllers
 Reverses an existing payment. Reversed payments are not included in settlement and will have a reference to the transaction that was created to perform the reversal.")]
         public static async Task ReversePayment(HttpContext context,
         BBLClientBasedAccessTokenClient tokenClient,
-        [SwaggerParameter("The ID of the customer or merchant. (e.g. 140, 1041)")] string customerId,
+        [SwaggerParameter("The customer ID of the merchant. (e.g. 140, 400)")] string merchantId,
         [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
         {
-            await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/emoney/v3/merchants/{customerId}/reversal", context, tokenClient);
+            await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/emoney/v3/merchants/{merchantId}/reversal", context, tokenClient);
         }
 
     }

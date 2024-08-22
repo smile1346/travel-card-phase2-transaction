@@ -27,7 +27,7 @@ readonly struct Documentation
 
     builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-    builder.Services.AddSwaggerExamples();
+    builder.Services.AddSwaggerExamplesFromAssemblies(Assembly.GetExecutingAssembly());
 
     // builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddSwaggerGen(options =>

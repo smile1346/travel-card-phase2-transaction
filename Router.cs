@@ -23,7 +23,7 @@ struct Router
 
         v1.MapPost("payments/transit-payment", Payment.PayForTransit).WithTags(["Payment"]); // /emoney/v3/billpayment
         v1.MapPost("payments/wallet-payment", Payment.PayForGoods).WithTags(["Payment"]); // /emoney/v3/billpayment
-        v1.MapPost("payments/{customerId}/payment-reversal", Merchant.ReversePayment).WithTags(["Payment"]); // /emoney/v3/merchants/{merchantId}/reversal
+        v1.MapPost("payments/merchants/{merchantId}/payment-reversal", Payment.ReversePayment).WithTags(["Payment"]); // /emoney/v3/merchants/{merchantId}/reversal
 
         v1.MapGet("customers/{customerId}/accounts/{accountId}/history", TransactionHistory.GetTransactionHistory).WithTags(["Transaction History"]); // /history/wallet/v4/{custId}/{accountId}/summary
 
