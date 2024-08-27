@@ -32,7 +32,7 @@ class AccessTokenClient
 {
     private static readonly HttpClient HttpClient = new(new HttpClientHandler()
     {
-        // Proxy = new WebProxy(AuthorizedHttpClient.PROXY_URL, AuthorizedHttpClient.PROXY_PORT)
+        Proxy = new WebProxy(AuthorizedHttpClient.PROXY_URL, AuthorizedHttpClient.PROXY_PORT)
         // ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
     });
 

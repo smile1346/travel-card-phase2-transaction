@@ -19,9 +19,11 @@ namespace Controllers
         // Request Body
         [Consumes(typeof(PayByMerchantTokenRequestModel.Root), MediaTypeNames.Application.Json)]
 
-        [SwaggerOperation(Summary = "Purchase by Scanning Merchant Dynamic QR Code", Description = @"
+        [SwaggerOperation(Summary = "Purchase by Scanning Merchant Dynamic QR Code (C-Scan-B)", Description = @"
 Make a payment by scanning a QR code presented by a merchant. That QR code will contain the information required to fill in the request body.")]
-        public static IResult PayByMerchantToken(string accountId)
+        public static IResult PayByMerchantToken(
+    [SwaggerParameter("The `Account Number` of the customer, as shown in CMS portal.")] string accountId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
         {
             var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
             return Results.Text(result, MediaTypeNames.Application.Json);

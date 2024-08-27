@@ -16,10 +16,13 @@ readonly partial struct Merchant
 
     // Request Body
     [Consumes(typeof(CreateOpenBillRequestModel.Root), MediaTypeNames.Application.Json)]
+    [SwaggerRequestExample(typeof(CreateOpenBillRequestModel.Root), typeof(CreateOpenBillRequestExample))]
 
-    [SwaggerOperation(Summary = "Create Open Bill (with Dynamic QR Code)", Description = @"
+    [SwaggerOperation(Summary = "Create Merchant Dynamic QR Code (Open Bill)", Description = @"
 This request gets a string representation of a QR code that contains payment information that another user can scan to initiate a payment.")]
-    public static IResult CreateOpenBill(string accountId)
+    public static IResult CreateOpenBill(
+    [SwaggerParameter("The `Account Number` of the merchant, as shown in CMS portal.")] string accountId,
+    [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
     {
         var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
         return Results.Text(result, MediaTypeNames.Application.Json);

@@ -31,10 +31,11 @@ struct Router
 
         app.MapPost("partners-callback-endpoint", Notifications.Webhook).WithTags(["Notifications"]);
 
-        // v1.MapPost("merchants/accounts/{accountId}/open-bill", Merchant.CreateOpenBill).WithTags(["QR Code"]); // /open-bill-api/v1/accounts/{accountId}/open-bills
-        // v1.MapPost("merchants/{merchantId}/pay-by-customer-token", Merchant.PayByConsumerToken).WithTags(["QR Code"]); // /merchants/{merchantId}/pay-by-consumer-token
+        v1.MapPost("qr-payments/merchants/accounts/{accountId}/dynamic-qr-code", Merchant.CreateOpenBill).WithTags(["QR Payment"]); // /open-bill-api/v1/accounts/{accountId}/open-bills
+        v1.MapPost("qr-payments/customers/accounts/{accountId}/csb-qr-payment", Consumer.PayByMerchantToken).WithTags(["QR Payment"]); // /emoney/v3/consumers/{accountId}/payment
 
+        // v1.MapPost("merchants/{merchantId}/pay-by-customer-token", Merchant.PayByConsumerToken).WithTags(["QR Payment"]); // /merchants/{merchantId}/pay-by-consumer-token
         // v1.MapPost("customers/{customerId}/token", Consumer.GetQRString).WithTags(["QR Code"]); // /v2/wallets/{custId}/token
-        // v1.MapPost("customers/accounts/{accountId}/pay-by-merchant-open-bill", Consumer.PayByMerchantToken).WithTags(["QR Code"]); // /emoney/v3/consumers/{accountId}/payment
+        
     }
 }

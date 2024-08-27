@@ -76,3 +76,11 @@ public class ReversePaymentRequestExample : IMultipleExamplesProvider<string>
         yield return SwaggerExample.Create("Reverse Payment", File.ReadAllText("examples/ReversePaymentRequest.json"));
     }
 }
+
+public class CreateOpenBillRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Create Open Bill", File.ReadAllText("examples/CreateOpenBillRequest.json"));
+    }
+}

@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.2.30";
+  public const string currentVersion = "0.4.0";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,13 +54,8 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Payment** - Added `Payment Reversal` API.
-
-**What's new in v0.2.29**
-- **Deposit** - Added `additionalDetails` schema and example for storing dynamic object such as topup source in ISO20022.
-- **Deposit** - Added `Balance limit reached` example.
-- **KYC Registration** - Added `Glossary of Identifiers` table in `identifierId` property..
-- **Get Accounts** - Added `Glossary of Statuses` table in `accountStatusId` property."
+- **QR Payment** - Added `Create Merchant Dynamic QR Code (Open Bill)` API.
+- **QR Payment** - Added `Purchase by Scanning Merchant Dynamic QR Code` API."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -137,12 +132,12 @@ class OrderTagsDocumentFilter : IDocumentFilter
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },
     new OpenApiTag { Name = "Integration", Description = "Integration between the wallet system and banking system or partner."},
     new OpenApiTag { Name = "Notifications", Description = "Webhook examples"},
-//     new OpenApiTag { Name = "QR Code", Description = @"The QR API response strings are used to create one-off codes that allow consumers to quickly share details for performing payments without having to manually give each other account IDs or msisdns.
+    new OpenApiTag { Name = "QR Payment", Description = @"The QR API response strings are used to create one-off codes that allow consumers to quickly share details for performing payments without having to manually give each other account IDs or msisdns.
 
-// **Format**: QR codes that we generate follow EMV format specifications.
+**Format**: QR codes that we generate follow EMV format specifications.
 
-// **QR Code Support**: The merchant payment with QR code request explicitly supports scanning QR codes, as well as the deposit and withdrawal requests in the Integration API. Additionally, because the merchant's mobile number is present in the QR code, any request that uses that number to identify the merchant/receviever can be initiated by scanning a QR code if the app extracts the required information and injects that into the request.
-// "}
+**QR Code Support**: The merchant payment with QR code request explicitly supports scanning QR codes, as well as the deposit and withdrawal requests in the Integration API. Additionally, because the merchant's mobile number is present in the QR code, any request that uses that number to identify the merchant/receviever can be initiated by scanning a QR code if the app extracts the required information and injects that into the request.
+"}
   ];
 
   public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
