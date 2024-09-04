@@ -12,7 +12,7 @@ readonly partial struct Merchant
 {
     // OK
     [ProducesResponseType(typeof(CreateOpenBillResponseModel.Root), (int)HttpStatusCode.OK)]
-    // [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(WebhookExample))]
+    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(CreateOpenBillResponseExample))]
 
     // Request Body
     [Consumes(typeof(CreateOpenBillRequestModel.Root), MediaTypeNames.Application.Json)]

@@ -195,3 +195,11 @@ public class ReversePaymentResponseExample : IMultipleExamplesProvider<string>
         yield return SwaggerExample.Create("Transaction Not Found", File.ReadAllText("examples/ReversePaymentResponseNotFound.json"));
     }
 }
+
+public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
+    }
+}
