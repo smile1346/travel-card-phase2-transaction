@@ -203,7 +203,7 @@ public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Merchant-Presented Mode QR", File.ReadAllText("examples/CreateOpenBillResponse.json"));
+        yield return SwaggerExample.Create("Merchant-Presented Mode QR/Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
     }
 }
 
