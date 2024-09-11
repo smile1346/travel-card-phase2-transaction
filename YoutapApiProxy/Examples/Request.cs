@@ -27,11 +27,12 @@ public class BillPaymentElectricTrainRequestExample : IMultipleExamplesProvider<
     }
 }
 
-public class BillPaymentRequestExample : IMultipleExamplesProvider<string>
+public class WalletPaymentRequestExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("BillPayment", File.ReadAllText("examples/BillPaymentRequest.json"));
+        yield return SwaggerExample.Create("C2MP - Query Mode", File.ReadAllText("examples/GeneralTransactionPaymentRequestQuery.json"));
+        yield return SwaggerExample.Create("C2MP - Transaction Mode", File.ReadAllText("examples/GeneralTransactionPaymentRequestTransaction.json"));
     }
 }
 

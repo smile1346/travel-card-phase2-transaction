@@ -54,6 +54,7 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
+- **Payment** - Changed `Make Wallet Payment For Goods` Request Example to C2MP.
 - **QR Payment** - Added `Create Merchant Dynamic QR Code (Open Bill)` API.
 - **QR Payment** - Added `Purchase by Scanning Merchant Dynamic QR Code` API."
       });

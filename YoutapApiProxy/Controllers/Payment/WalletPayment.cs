@@ -14,28 +14,24 @@ namespace Controllers;
 
 readonly partial struct Payment
 {
-    [ProducesResponseType(typeof(BillPaymentResponseSuccessModel.Root), (int)HttpStatusCode.OK)]
-    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(BillPaymentResponseSuccessExample))]
+    [ProducesResponseType(typeof(GeneralTransactionResponseSuccessModel.Root), (int)HttpStatusCode.OK)]
+    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(WalletPaymentResponseSuccessExample))]
 
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.Accepted)]
-    [SwaggerResponseExample((int)HttpStatusCode.Accepted, typeof(BillPaymentResponseDelayedExample))]
-
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
-    [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(BillPaymentResponseInsufficientFundsExample))]
-    // Too Many Requests
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.TooManyRequests)]
-    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(BillPaymentResponseTooManyRequestsExample))]
+    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(GeneralTransactionResponseTooManyRequestsExample))]
 
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
 
     // Request Body
-    [Consumes(typeof(BillPaymentRequestModel.Root), MediaTypeNames.Application.Json)]
-    [SwaggerRequestExample(typeof(BillPaymentRequestModel.Root), typeof(BillPaymentRequestExample))]
+    [Consumes(typeof(GeneralTransactionRequestModel.Root), MediaTypeNames.Application.Json)]
+    [SwaggerRequestExample(typeof(GeneralTransactionRequestModel.Root), typeof(WalletPaymentRequestExample))]
     [SwaggerOperation(Summary = "Make wallet payment for goods", Description = @"
-A consumer's balance can be used to pay bills for companies that are integrated into the wallet payment system. This could be internet, gas, phone, or many other types of bills. Generally all the user needs to do is select the provider they wish to pay and a list of the services they provide will be displayed. They can select the product they wish to pay for and the amount they need to pay will be loaded into the payment interface automatically.
+Performs a transaction that transfers money from the merchant's balance into the customer's account. Used when the customer gives physical cash to the merchant in order to top up their digital wallet.
 
-To send a bill payment, an app will usually get the list of providers first (see Get Biller Providers), which provides the values for the biller, external biller, and product identifiers according to what the customer selects. Additional fields may be required according to the type of product selected.")]
+This is the same operation (i.e. the requests are almost the same) as the withdrawal. The paymentType in the transactionDetails defines which direction the money goes.
+
+C2MP: Customer to Merchant Payment. The transaction goes from the merchant to the customer.")]
     public static async Task PayForGoods(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,

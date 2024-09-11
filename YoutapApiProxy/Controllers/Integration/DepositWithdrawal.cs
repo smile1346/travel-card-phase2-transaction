@@ -7,6 +7,7 @@ using Examples;
 using System.Net.Mime;
 using HttpRequests;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Controllers;
 
@@ -35,6 +36,7 @@ C2MD: Customer to Merchant Deposit. The transaction goes from the merchant to th
 C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
     public static async Task DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
+    [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,
     [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique key that the server uses to recognize subsequent retries of the same request to avoid the accidental creation of duplicate transactions.")] string idempotencyKey)
     {

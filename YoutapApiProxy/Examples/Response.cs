@@ -29,10 +29,11 @@ public class BillPaymentResponseSuccessExample : IMultipleExamplesProvider<strin
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Successful Instant BillPayment", File.ReadAllText("examples/BillPaymentResponse_Successful.json"));
         yield return SwaggerExample.Create("Electric Train", File.ReadAllText("examples/BillPaymentResponse_ElectricTrain.json"));
+        yield return SwaggerExample.Create("Successful Instant BillPayment", File.ReadAllText("examples/BillPaymentResponse_Successful.json"));
     }
 }
+
 
 public class BillPaymentResponseDelayedExample : IMultipleExamplesProvider<string>
 {
@@ -201,5 +202,14 @@ public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
+    }
+}
+
+public class WalletPaymentResponseSuccessExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("C2MP - Query Mode", File.ReadAllText("examples/GeneralTransactionPaymentResponseQuery.json"));
+        yield return SwaggerExample.Create("C2MP - Transaction Mode", File.ReadAllText("examples/GeneralTransactionPaymentResponseTransaction.json"));
     }
 }
