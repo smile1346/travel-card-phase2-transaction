@@ -27,9 +27,9 @@ readonly partial struct Payment
     [Consumes(typeof(GeneralTransactionRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(GeneralTransactionRequestModel.Root), typeof(WalletPaymentRequestExample))]
     [SwaggerOperation(Summary = "Make wallet payment for goods", Description = @"
-Performs a transaction that transfers money from the merchant's balance into the customer's account. Used when the customer gives physical cash to the merchant in order to top up their digital wallet.
+Performs a payment transaction that transfers funds from the customer's account to the merchant's account.
 
-This is the same operation (i.e. the requests are almost the same) as the withdrawal. The paymentType in the transactionDetails defines which direction the money goes.
+This is used when the customer provides a physical card to the merchant for in-person payments or when making payments through online services.
 
 `C2MP`: Customer to Merchant Payment. The transaction goes from the merchant to the customer.")]
     public static async Task PayForGoods(HttpContext context,
