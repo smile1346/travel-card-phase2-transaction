@@ -151,7 +151,7 @@ public class KYCRegistrationPOSTResponseExample : IMultipleExamplesProvider<stri
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Successfully Create Customer", File.ReadAllText("examples/KYCRegistrationPOSTResponse_New.json"));
+        yield return SwaggerExample.Create("Successfully Create User", File.ReadAllText("examples/KYCRegistrationPOSTResponse_New.json"));
     }
 }
 
@@ -167,6 +167,8 @@ public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
+        yield return SwaggerExample.Create("Consumer token is expired", File.ReadAllText("examples/GeneralTransactionDepositResponse_ExpiredQR.json"));
+        yield return SwaggerExample.Create("Could not parse cpmQrCode", File.ReadAllText("examples/GeneralTransactionDepositResponse_BadQR.json"));
         yield return SwaggerExample.Create("Balance limit reached", File.ReadAllText("examples/GeneralTransactionDepositResponse_BalanceLimitReached.json"));
         yield return SwaggerExample.Create("Transaction date is not current", File.ReadAllText("examples/GeneralTransactionDepositResponse_DateNotCurrent.json"));
     }
@@ -201,7 +203,7 @@ public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
+        yield return SwaggerExample.Create("Merchant-Presented Mode QR", File.ReadAllText("examples/CreateOpenBillResponse.json"));
     }
 }
 
@@ -211,5 +213,29 @@ public class WalletPaymentResponseSuccessExample : IMultipleExamplesProvider<str
     {
         yield return SwaggerExample.Create("C2MP - Query Mode", File.ReadAllText("examples/GeneralTransactionPaymentResponseQuery.json"));
         yield return SwaggerExample.Create("C2MP - Transaction Mode", File.ReadAllText("examples/GeneralTransactionPaymentResponseTransaction.json"));
+    }
+}
+
+public class PayByConsumerTokenResponseExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByConsumerTokenResponse.json"));
+    }
+}
+
+public class GetQRStringResponseExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Consumer-Presented Mode QR Code", File.ReadAllText("examples/GetQRStringResponse.json"));
+    }
+}
+
+public class PayByMerchantQRResponseExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Purchase by Scanning Merchant Dynamic QR", File.ReadAllText("examples/PayByMerchantQRResponse.json"));
     }
 }

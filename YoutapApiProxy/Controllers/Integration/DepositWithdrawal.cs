@@ -31,9 +31,9 @@ readonly partial struct Integration
 
 This is the same operation (i.e. the requests are almost the same) as the withdrawal. The paymentType in the transactionDetails defines which direction the money goes.
 
-C2MD: Customer to Merchant Deposit. The transaction goes from the merchant to the customer.
+`C2MD`: Customer to Merchant Deposit. The transaction goes from the merchant to the customer.
 
-C2MW: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
+`C2MW`: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
     public static async Task DepositWithdrawal(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,

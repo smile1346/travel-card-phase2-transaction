@@ -5,8 +5,16 @@ public class KYCRegistrationPOSTRequestExample : IMultipleExamplesProvider<strin
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Minimal", File.ReadAllText("examples/KYCRegistrationPOSTRequest_Minimal.json"));
+        yield return SwaggerExample.Create("Consumer Wallet", File.ReadAllText("examples/KYCRegistrationPOSTRequest_Minimal.json"));
         yield return SwaggerExample.Create("Register", File.ReadAllText("examples/KYCRegistrationPOSTRequest.json"));
+    }
+}
+
+public class KYCRegistrationPOSTRequestMerchantExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Merchant", File.ReadAllText("examples/KYCRegistrationPOSTRequest_MCHNT.json"));
     }
 }
 
@@ -57,6 +65,7 @@ public class GeneralTransactionRequestExample : IMultipleExamplesProvider<string
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
+        yield return SwaggerExample.Create("Deposit with QR Code", File.ReadAllText("examples/GeneralTransactionDepositRequest_QR.json"));
         yield return SwaggerExample.Create("Deposit", File.ReadAllText("examples/GeneralTransactionDepositRequest.json"));
         yield return SwaggerExample.Create("Withdrawal", File.ReadAllText("examples/GeneralTransactionWithdrawalRequest.json"));
     }
@@ -82,6 +91,23 @@ public class CreateOpenBillRequestExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
+        yield return SwaggerExample.Create("Minimal", File.ReadAllText("examples/CreateOpenBillRequest_Minimal.json"));
         yield return SwaggerExample.Create("Create Open Bill", File.ReadAllText("examples/CreateOpenBillRequest.json"));
+    }
+}
+
+public class PayByConsumerTokenRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByConsumerTokenRequest.json"));
+    }
+}
+
+public class PayByMerchantQRRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByMerchantQRRequest.json"));
     }
 }

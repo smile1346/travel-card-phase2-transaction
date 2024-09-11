@@ -1,0 +1,17 @@
+{
+    "id": "100060",
+    "merchantId": "348106952",
+    "invoiceId": "0000025891",
+    "poiRequestRef": "",
+    "payerToken": "281012028445035462846474",
+    "payerTokenType": "BAR_CODE",
+    "payerFsp": "DANA",
+    "status": "SUCCESS",
+    "createdAt": "2019-09-25T23:28:31.033Z",
+    "paymentAmount": {
+        "currency": "THB",
+        "amount": 1
+    },
+    "transactionRef": "501595",
+    "payerFspTransactionRef": "20190926111212800100166048900246720"
+}

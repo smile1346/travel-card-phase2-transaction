@@ -1,0 +1,9 @@
+{
+    "transactionAmount": {
+        "amount": "1.00",
+        "currency": "THB"
+    },
+    "balanceType": "EMONEY",
+    "merchantId": "5440",
+    "billReference": "98534672"
+}

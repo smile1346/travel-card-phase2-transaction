@@ -1,22 +1,29 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CreateOpenBillRequestModel;
 public class Root
 {
+    [Required]
     [JsonPropertyName("merchantId")]
     public string MerchantId { get; set; }
 
+    [Required]
     [JsonPropertyName("terminalId")]
     public string TerminalId { get; set; }
 
+    [Required]
     [JsonPropertyName("transactionAmount")]
     public decimal TransactionAmount { get; set; }
 
+    [Required]
     [JsonPropertyName("currency")]
     public string Currency { get; set; }
 
+    [Required]
     [JsonPropertyName("billReference")]
     public string BillReference { get; set; }
 
@@ -29,6 +36,7 @@ public class Root
     [JsonPropertyName("customerMsisdn")]
     public string CustomerMsisdn { get; set; }
 
+    [SwaggerSchema("QR code validity period in seconds, defaults to 15s")]
     [JsonPropertyName("validityPeriod")]
     public long ValidityPeriod { get; set; }
 

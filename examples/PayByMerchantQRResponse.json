@@ -1,0 +1,46 @@
+{
+    "transactionAmount": {
+        "amount": 1.00,
+        "currency": "THB"
+    },
+    "transactionAmountDisplay": "1.00",
+    "fee": {
+        "amount": 0.00,
+        "currency": "THB"
+    },
+    "merchantFee": {
+        "amount": 0.00,
+        "currency": "THB"
+    },
+    "merchantFeeDisplay": "0.00",
+    "toFee": {
+        "amount": 0.00,
+        "currency": "THB"
+    },
+    "toFeeDisplay": "0.00",
+    "fromFee": {
+        "amount": 0.00,
+        "currency": "THB"
+    },
+    "fromFeeDisplay": "0.00",
+    "merchantCommission": {
+        "amount": 0.00,
+        "currency": "THB"
+    },
+    "merchantCommissionDisplay": "0.00",
+    "paymentTrailId": "560001",
+    "barcodeTitle1": "",
+    "barcodeDetail1": "",
+    "barcodeTitle2": "",
+    "barcodeDetail2": "",
+    "metric": {
+        "unitLongName": "Thai Baht",
+        "unitShortName": "THB",
+        "displayString": "฿",
+        "displayDivisor": 100,
+        "displayUnitDelimiter": ",",
+        "displayUnitMinorDelimiter": ".",
+        "displayFormatter": "#,##0.00"
+    },
+    "transactionUTCDateTime": "2024-09-11T14:39:04.898Z"
+}

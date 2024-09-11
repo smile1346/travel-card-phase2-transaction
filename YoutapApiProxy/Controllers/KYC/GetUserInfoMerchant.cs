@@ -22,7 +22,7 @@ readonly partial struct KYC
 
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
-    [SwaggerOperation(Summary = "Get consumer info with mobile number", Description = @"
+    [SwaggerOperation(Summary = "Get merchant info with mobile number", Description = @"
 This endpoint is used to get user KYC details with mobile number, including;
 
         - Status
@@ -30,9 +30,9 @@ This endpoint is used to get user KYC details with mobile number, including;
         - Account details (including IDs for other requests)
         - Previously submitted identification documents
         - KYC tier requirements")]
-    public static async Task GetUserInfo(HttpContext context,
+    public static async Task GetUserInfoMerchant(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
-    /*[DefaultValue("1040")]*/[SwaggerParameter("Mobile number of the customer.")] string msisdn,
+    /*[DefaultValue("1040")]*/[SwaggerParameter("Mobile number of the merchant.")] string msisdn,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
     {
         await AuthorizedHttpClient.RerouteWithAccessTokenWriteBodyAsync($"/v3/kyc/{msisdn}", context, tokenClient);

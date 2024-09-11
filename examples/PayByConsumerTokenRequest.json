@@ -1,0 +1,11 @@
+{
+    "invoiceId": "",
+    "poiId": "3D6375F7DDD81D5B",
+    "poiRequestRef": "{{transactionid}}",
+    "payerToken": "hQVDUFYwMWFJTwhgiGQA/wAABFAHTU1QQVkwNFoJYIhkAEUBAAAAX1ATdGVsOis2NC0yMi01MzMtMjU2OGMT33QQNjA4ODY0MDA4NDQ4NzAwOA==",
+    "payerTokenType": "BAR_CODE",
+    "paymentAmount": {
+        "currency": "THB",
+        "amount": 1.00
+    }
+}

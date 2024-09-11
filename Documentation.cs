@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.4.1";
+  public const string currentVersion = "0.5.0";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,9 +54,14 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Payment** - Changed `Make Wallet Payment For Goods` Request Example to C2MP.
-- **QR Payment** - Added `Create Merchant Dynamic QR Code (Open Bill)` API.
-- **QR Payment** - Added `Purchase by Scanning Merchant Dynamic QR Code` API."
+- **Integration** - Added `Deposit with QR Code` Request & Bad Request Response Examples.
+- **Payment** - Changed `Make Wallet Payment For Goods` Request Schema to C2MP.
+- **Merchant Profile** - Added `Merchant Registration` API Endpoint.
+- **Merchant Profile** - Added `Get merchant info with mobile number` API Endpoint.
+- **QR Payment** - Changed `[C-scan-B] Create Merchant-Presented Mode (MPM) QR Code (Open Bill)` API Path.
+- **QR Payment** - Changed `[C-scan-B] Purchase by Scanning Merchant QR Code` API Path.
+- **QR Payment** - Added `[B-scan-C] Create Consumer-Presented Mode (CPM) QR Code` API Endpoint.
+- **QR Payment** - Added `[B-scan-C] Purchase by Scanning Consumer QR Code` API Endpoint."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -133,6 +138,7 @@ class OrderTagsDocumentFilter : IDocumentFilter
 For most payments there are limits or regulations in place. This includes, but is not limited to, account balance minimum and maximum balances and maximum transfer values. These limits reduce potential liability if a customer was to load too much value into a single wallet. They are also a layer within our anti-money laundering requirements because customers can't transfer excessively large amounts of money at once." },
     new OpenApiTag { Name = "Integration", Description = "Integration between the wallet system and banking system or partner."},
     new OpenApiTag { Name = "Notifications", Description = "Webhook examples"},
+    new OpenApiTag { Name = "Merchant Profile", Description = "Merchant Wallet Profile API provides the basic requests for accessing and managing all of the essential merchant information. With its multi-tenant support, wallet providers are empowered to access their respective merchant profiles securely." },
     new OpenApiTag { Name = "QR Payment", Description = @"The QR API response strings are used to create one-off codes that allow consumers to quickly share details for performing payments without having to manually give each other account IDs or msisdns.
 
 **Format**: QR codes that we generate follow EMV format specifications.

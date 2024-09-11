@@ -31,7 +31,7 @@ Performs a transaction that transfers money from the merchant's balance into the
 
 This is the same operation (i.e. the requests are almost the same) as the withdrawal. The paymentType in the transactionDetails defines which direction the money goes.
 
-C2MP: Customer to Merchant Payment. The transaction goes from the merchant to the customer.")]
+`C2MP`: Customer to Merchant Payment. The transaction goes from the merchant to the customer.")]
     public static async Task PayForGoods(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
