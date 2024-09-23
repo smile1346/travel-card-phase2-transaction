@@ -1,20 +1,20 @@
 {
-    "openBillId": 2807,
+    "openBillId": 1634,
     "billReference": "98534672",
     "merchantId": "66909699790",
-    "terminalId": "32356447",
+    "terminalId": "API",
     "customerName": null,
     "customerMsisdn": null,
     "currency": "THB",
     "transactionAmount": 100.00,
-    "mpmEmvQrCodeString": "00020101021251470016MM.CO.YOUTAP.WWW0111669096997900208323564475203111530376454031005802MM5919Jatutep Bunupuradah6008Auckland62120108985346726304E182",
-    "creationTimestamp": "2024-09-11T14:31:20.752002211Z",
-    "expiryTimestamp": "2024-09-11T14:34:20.752002511Z",
+    "mpmEmvQrCodeString": "00020101021251420016MM.CO.YOUTAP.WWW0111669096997900203API5203111530376454031005802MM5919Jatutep Bunupuradah6008Auckland622401089853467298080404300063044B47",
+    "creationTimestamp": "2024-09-23T05:48:33.674305081Z",
+    "expiryTimestamp": "2024-09-23T05:51:33.674305281Z",
     "payments": [],
     "status": "PENDING",
     "salesResponse": null,
     "billableEvent": 317,
     "image": null,
     "extBillReference": null,
-    "balanceTypeId": null
+    "balanceTypeId": 3000
 }

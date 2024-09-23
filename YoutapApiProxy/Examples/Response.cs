@@ -203,7 +203,7 @@ public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Merchant-Presented Mode QR/Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
+        yield return SwaggerExample.Create("Merchant-Presented Mode QR Code/Open Bill", File.ReadAllText("examples/CreateOpenBillResponse.json"));
     }
 }
 
@@ -220,7 +220,24 @@ public class PayByConsumerTokenResponseExample : IMultipleExamplesProvider<strin
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByConsumerTokenResponse.json"));
+        yield return SwaggerExample.Create("Pay By Scanning CPM QR Code", File.ReadAllText("examples/PayByConsumerTokenResponse.json"));
+    }
+}
+
+public class PayByConsumerTokenResponseNotFoundExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("could not retrieve customer details from acctid", File.ReadAllText("examples/PayByConsumerTokenResponse_NotFound.json"));
+    }
+}
+
+public class PayByConsumerTokenResponseBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Consumer token is expired", File.ReadAllText("examples/PayByConsumerTokenResponse_ConsumerTokenIsExpired.json"));
+        yield return SwaggerExample.Create("Could not find consumer token", File.ReadAllText("examples/PayByConsumerTokenResponse_CouldNotFindConsumerToken.json"));
     }
 }
 
@@ -236,6 +253,6 @@ public class PayByMerchantQRResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Purchase by Scanning Merchant Dynamic QR", File.ReadAllText("examples/PayByMerchantQRResponse.json"));
+        yield return SwaggerExample.Create("Pay By Scanning MPM QR Code", File.ReadAllText("examples/PayByMerchantQRResponse.json"));
     }
 }

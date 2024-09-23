@@ -14,6 +14,10 @@ readonly partial struct Merchant
     [ProducesResponseType(typeof(CreateOpenBillResponseModel.Root), (int)HttpStatusCode.Created)]
     [SwaggerResponseExample((int)HttpStatusCode.Created, typeof(CreateOpenBillResponseExample))]
 
+    // Not Found
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
+    [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(PayByConsumerTokenResponseNotFoundExample))]
+
     // Request Body
     [Consumes(typeof(CreateOpenBillRequestModel.Root), MediaTypeNames.Application.Json)]
     [SwaggerRequestExample(typeof(CreateOpenBillRequestModel.Root), typeof(CreateOpenBillRequestExample))]

@@ -9,10 +9,12 @@ public class Root
 {
     [Required]
     [JsonPropertyName("merchantId")]
+    [SwaggerSchema("The `Customer Number` of the merchant, as shown in CMS portal.")]
     public string MerchantId { get; set; }
 
     [Required]
     [JsonPropertyName("terminalId")]
+    [SwaggerSchema("ID of the device that initiated the payment, use `API` if unknown.")]
     public string TerminalId { get; set; }
 
     [Required]

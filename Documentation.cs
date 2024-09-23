@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.5.1";
+  public const string currentVersion = "0.5.2";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,14 +54,7 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Integration** - Added `Deposit with QR Code` Request & Bad Request Response Examples.
-- **Payment** - Changed `Make Wallet Payment For Goods` Request Schema to C2MP.
-- **Merchant Profile** - Added `Merchant Registration` API Endpoint.
-- **Merchant Profile** - Added `Get merchant info with mobile number` API Endpoint.
-- **QR Payment** - Changed `[C-scan-B] Create Merchant-Presented Mode (MPM) QR Code (Open Bill)` API Path.
-- **QR Payment** - Changed `[C-scan-B] Purchase by Scanning Merchant QR Code` API Path.
-- **QR Payment** - Added `[B-scan-C] Create Consumer-Presented Mode (CPM) QR Code` API Endpoint.
-- **QR Payment** - Added `[B-scan-C] Purchase by Scanning Consumer QR Code` API Endpoint."
+- **QR Payment** - Updated `[B-scan-C] Purchase by Scanning Consumer QR Code` Request/Response Schema and Example."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

@@ -1,11 +1,10 @@
 {
-    "invoiceId": "",
-    "poiId": "3D6375F7DDD81D5B",
-    "poiRequestRef": "{{transactionid}}",
-    "payerToken": "hQVDUFYwMWFJTwhgiGQA/wAABFAHTU1QQVkwNFoJYIhkAEUBAAAAX1ATdGVsOis2NC0yMi01MzMtMjU2OGMT33QQNjA4ODY0MDA4NDQ4NzAwOA==",
-    "payerTokenType": "BAR_CODE",
-    "paymentAmount": {
-        "currency": "THB",
-        "amount": 1.00
+    "payeeAccount": "2212",
+    "payeeDevice": "API",
+    "cpmQrCode": "hQVDUFYwMWFJTwhgiGQA/wAABFAHTU1QQVkwNFoJYIhkAEUBAAAAX1ATdGVsOis2Ni05MC05NjktOTc5NGMT33QQNjA4ODY0MDAwNjU2NjM1Nw==",
+    "requestRef": "da0175b9-c964-4143-ba8d-d0906d7dedf6",
+    "originalAmount": {
+        "amount": "1",
+        "currency": "THB"
     }
 }

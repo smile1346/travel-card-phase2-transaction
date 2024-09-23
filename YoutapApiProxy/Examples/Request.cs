@@ -100,7 +100,7 @@ public class PayByConsumerTokenRequestExample : IMultipleExamplesProvider<string
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByConsumerTokenRequest.json"));
+        yield return SwaggerExample.Create("Pay By Scanning CPM QR Code", File.ReadAllText("examples/PayByConsumerTokenRequest.json"));
     }
 }
 
@@ -108,6 +108,6 @@ public class PayByMerchantQRRequestExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Pay By Consumer Token", File.ReadAllText("examples/PayByMerchantQRRequest.json"));
+        yield return SwaggerExample.Create("Pay By Scanning MPM QR Code", File.ReadAllText("examples/PayByMerchantQRRequest.json"));
     }
 }

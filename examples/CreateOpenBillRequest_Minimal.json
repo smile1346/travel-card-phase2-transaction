@@ -1,9 +1,10 @@
 {
-    "merchantId": "140",
-    "terminalId": "32356447",
+    "merchantId": "2212",
+    "terminalId": "API",
     "transactionAmount": "100",
     "currency": "THB",
     "billReference": "98534672",
+    "validityPeriod": "180",
     "billableEvent": "317",
-    "validityPeriod": "180"
+    "balanceTypeId": "3000"
 }
