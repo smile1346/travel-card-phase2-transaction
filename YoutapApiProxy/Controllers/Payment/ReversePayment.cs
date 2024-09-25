@@ -15,9 +15,13 @@ namespace Controllers
         // No Content
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
 
+        // Bad Request
+        [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
+        [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(ReversePaymentResponseBadRequestExample))]
+
         // Not Found
         [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.NotFound)]
-        [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(ReversePaymentResponseExample))]
+        [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(ReversePaymentResponseNotFoundExample))]
 
         // Request Body
         [Consumes(typeof(PaymentReversalRequestModel.Root), MediaTypeNames.Application.Json)]

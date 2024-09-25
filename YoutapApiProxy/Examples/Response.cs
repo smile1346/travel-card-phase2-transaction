@@ -191,11 +191,19 @@ public class WebhookExample : IMultipleExamplesProvider<string>
     }
 }
 
-public class ReversePaymentResponseExample : IMultipleExamplesProvider<string>
+public class ReversePaymentResponseNotFoundExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Transaction Not Found", File.ReadAllText("examples/ReversePaymentResponseNotFound.json"));
+        yield return SwaggerExample.Create("Transaction Not Found", File.ReadAllText("examples/ReversePaymentResponse_NotFound.json"));
+    }
+}
+
+public class ReversePaymentResponseBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Transaction already reversed", File.ReadAllText("examples/ReversePaymentResponse_AlreadyReversed.json"));
     }
 }
 
