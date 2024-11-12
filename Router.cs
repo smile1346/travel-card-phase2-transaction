@@ -13,8 +13,8 @@ struct Router
 
         v1.MapGet("merchants/{msisdn}", KYC.GetUserInfoMerchant).WithTags(["Merchant Profile"]); // /v3/kyc/{msisdn}
         v1.MapPost("merchants/registration", KYC.KYCRegistrationMerchant).WithTags(["Merchant Profile"]); // /v2/kyc/registration
-                                                                                                  // v1.MapPatch("customers/registration", KYC.PatchCustomer).WithTags(["Customer Profile"]); // /v3/kyc/registration
-                                                                                                  // v1.MapPost("customers/verify-otp", KYC.KYCConfirmation).WithTags(["Customer Profile"]); // /v2/kyc/confirmation
+                                                                                                          // v1.MapPatch("customers/registration", KYC.PatchCustomer).WithTags(["Customer Profile"]); // /v3/kyc/registration
+                                                                                                          // v1.MapPost("customers/verify-otp", KYC.KYCConfirmation).WithTags(["Customer Profile"]); // /v2/kyc/confirmation
 
         v1.MapGet("customers/{customerId}/accounts", Account.GetQuickAccounts).WithTags(["Wallet Account"]); // /wallet/v2/accounts/customer/{custId}/quick-accounts
         // v1.MapGet("customers/{customerId}/linked-external-accounts", Account.GetLinkedExternalAccounts).WithTags(["Wallet Account"]); // /customers/v2/{custId}/linked-external-accounts
@@ -39,6 +39,5 @@ struct Router
 
         v1.MapPost("qr-payments/consumers/{customerId}/wallets/{accountId}/dynamic-qr-code", Consumer.GetQRString).WithTags(["QR Payment"]); // /v3/wallets/{custId}/token
         v1.MapPost("qr-payments/merchants/{merchantId}/wallets/{accountId}/bsc-qr-payment", Merchant.PayByConsumerToken).WithTags(["QR Payment"]); // /merchants/{merchantId}/pay-by-consumer-token
-
     }
 }

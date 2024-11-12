@@ -159,7 +159,8 @@ public class GeneralTransactionResponseSuccessExample : IMultipleExamplesProvide
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Successful Deposit", File.ReadAllText("examples/GeneralTransactionDepositResponse_Successful.json"));
+        yield return SwaggerExample.Create("QUERY Mode", File.ReadAllText("examples/GeneralTransactionDepositResponse_QUERY.json"));
+        yield return SwaggerExample.Create("TRANSACTION Mode", File.ReadAllText("examples/GeneralTransactionDepositResponse_TRANSACTION.json"));
     }
 }
 
