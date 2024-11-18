@@ -14,6 +14,10 @@ readonly partial struct Consumer
     [ProducesResponseType(typeof(GetQRStringResponseModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetQRStringResponseExample))]
 
+    // Bad Request
+    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
+    [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(GetQRStringResponseBadRequestExample))]
+
     [SwaggerOperation(Summary = "[B-scan-C] Create Consumer-Presented Mode (CPM) QR Code", Description = @"
 This request gets a string representation of a QR code that contains payment information that another user can scan to initiate a payment.")]
     public static IResult GetQRString(

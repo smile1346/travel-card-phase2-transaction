@@ -1,10 +1,8 @@
 {
-    "type": "https://emoney.youtap.com/problems/transaction-already-reversed",
-    "title": "Bad Request",
-    "detail": "Transaction already reversed",
+    "type": "https://emoney.youtap.com/problems/bad-request",
+    "title": "Transaction error",
+    "detail": "already_reversed",
     "status": 400,
     "instance": "",
-    "errorKey": "transaction_failure",
-    "errorCode": "1036",
-    "errorDescription": "Transaction failed"
+    "errorKey": "transaction_failure"
 }

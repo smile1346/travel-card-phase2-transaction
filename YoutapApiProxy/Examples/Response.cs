@@ -216,6 +216,14 @@ public class CreateOpenBillResponseExample : IMultipleExamplesProvider<string>
     }
 }
 
+public class CreateOpenBillResponseBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Account not belongs to merchant", File.ReadAllText("examples/CreateOpenBillResponse_BadRequest_AccountNotBelongsToMerchant.json"));
+    }
+}
+
 public class WalletPaymentResponseSuccessExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
@@ -255,6 +263,14 @@ public class GetQRStringResponseExample : IMultipleExamplesProvider<string>
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Consumer-Presented Mode QR Code", File.ReadAllText("examples/GetQRStringResponse.json"));
+    }
+}
+
+public class GetQRStringResponseBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Invalid customer type", File.ReadAllText("examples/GetQRStringResponse_BadRequest_InvalidCustomerType.json"));
     }
 }
 

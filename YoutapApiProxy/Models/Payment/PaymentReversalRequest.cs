@@ -28,5 +28,8 @@ namespace PaymentReversalRequestModel
 
         [JsonPropertyName("geoLocation")]
         public GeoLocation GeoLocation { get; set; }
+
+        [JsonPropertyName("externalReference")]
+        public string ExternalReference { get; set; }
     }
 }
