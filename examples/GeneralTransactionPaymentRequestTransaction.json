@@ -14,7 +14,8 @@
         "channel": "BBL",
         "paymentType": "C2MP",
         "terminalId": "API",
-        "externalReference": "0b06bbc5-f0bc-4f8e-8951-4502986a9052"
+        "externalReference": "0b06bbc5-f0bc-4f8e-8951-4502986a9052",
+        "notes": "Test C2MP"
     },
     "additionalDetails":{
         "paymentPurpose": "General purpose"

@@ -278,6 +278,17 @@ public class PayByMerchantQRResponseExample : IMultipleExamplesProvider<string>
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Pay By Scanning MPM QR Code", File.ReadAllText("examples/PayByMerchantQRResponse.json"));
+        yield return SwaggerExample.Create("Pay By Scanning MPM QR Code", File.ReadAllText("examples/PayByMerchantQRResponse_Success.json"));
+    }
+}
+
+public class PayByMerchantQRResponseBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
+        yield return SwaggerExample.Create("Bill reference already paid", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyPaid.json"));
+        yield return SwaggerExample.Create("Bill reference already expired", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyExpired.json"));
+        yield return SwaggerExample.Create("Amount incorrect", File.ReadAllText("examples/PayByMerchantQRResponse_AmountIncorrect.json"));
     }
 }

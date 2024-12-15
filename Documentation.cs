@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.5.3";
+  public const string currentVersion = "0.6.0";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -54,8 +54,12 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
 **What's new in v{currentVersion}**
-- **Payment Reversal** - Add `externalReference` support.
-- **QR Payment** - Add `Idempotency-Key` header."
+- **C Scan B - Create Open Bill** - Updated request example to minimal data required.
+- **C Scan B - Scan Merchant QR - Request** - Updated request example, added `terminalId`, `channel`, `externalReference`, `notes`, `paymentPurpose` in request body.
+- **C Scan B - Scan Merchant QR - Response** - Added `Bill not found`, `Bill reference already paid`, `Bill reference already expired`, `Amount incorrect` response examples.
+- **B Scan C - Scan Consumer QR - Request** - Updated request example, added `terminalId`, `channel`, `notes`, `paymentPurpose` in request body.
+- **General Transaction (C2MD/C2MW/C2MP)** - Added `notes` in request body.
+- **Pay For Transit** - Added `channel` in request body."
       });
 
       options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

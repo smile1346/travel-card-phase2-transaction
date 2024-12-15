@@ -1,9 +1,9 @@
 {
     "transactionAmount": {
-        "amount": 1.00,
+        "amount": 20.00,
         "currency": "THB"
     },
-    "transactionAmountDisplay": "1.00",
+    "transactionAmountDisplay": "20.00",
     "fee": {
         "amount": 0.00,
         "currency": "THB"
@@ -28,7 +28,7 @@
         "currency": "THB"
     },
     "merchantCommissionDisplay": "0.00",
-    "paymentTrailId": "560001",
+    "paymentTrailId": "14113421",
     "barcodeTitle1": "",
     "barcodeDetail1": "",
     "barcodeTitle2": "",
@@ -42,5 +42,6 @@
         "displayUnitMinorDelimiter": ".",
         "displayFormatter": "#,##0.00"
     },
-    "transactionUTCDateTime": "2024-09-11T14:39:04.898Z"
+    "transactionUTCDateTime": "2024-12-15T05:18:44.542Z",
+    "transactionReference": "14113420"
 }

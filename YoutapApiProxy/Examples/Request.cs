@@ -92,7 +92,7 @@ public class CreateOpenBillRequestExample : IMultipleExamplesProvider<string>
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Minimal", File.ReadAllText("examples/CreateOpenBillRequest_Minimal.json"));
-        yield return SwaggerExample.Create("Create Open Bill", File.ReadAllText("examples/CreateOpenBillRequest.json"));
+        // yield return SwaggerExample.Create("Create Open Bill", File.ReadAllText("examples/CreateOpenBillRequest.json"));
     }
 }
 

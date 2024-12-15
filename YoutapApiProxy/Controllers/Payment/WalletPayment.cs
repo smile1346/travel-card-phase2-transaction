@@ -14,11 +14,9 @@ namespace Controllers;
 
 readonly partial struct Payment
 {
+    // OK
     [ProducesResponseType(typeof(GeneralTransactionResponseSuccessModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(WalletPaymentResponseSuccessExample))]
-
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.TooManyRequests)]
-    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(GeneralTransactionResponseTooManyRequestsExample))]
 
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]

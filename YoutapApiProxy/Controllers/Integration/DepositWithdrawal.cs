@@ -19,9 +19,6 @@ readonly partial struct Integration
     // Bad Request
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(GeneralTransactionResponseErrorExample))]
-    // Too Many Requests
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.TooManyRequests)]
-    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(GeneralTransactionResponseTooManyRequestsExample))]
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body

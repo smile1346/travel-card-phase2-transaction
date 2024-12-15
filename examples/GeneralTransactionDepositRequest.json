@@ -14,7 +14,8 @@
         "channel": "BBL",
         "paymentType": "C2MD",
         "terminalId": "API",
-        "externalReference": "100001"
+        "externalReference": "100001",
+        "notes": "Test C2MD"
     },
     "additionalDetails": {
         "debtorName": "Joe Bloggs",

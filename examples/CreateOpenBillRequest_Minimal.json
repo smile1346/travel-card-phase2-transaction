@@ -1,10 +1,8 @@
 {
-    "merchantId": "2212",
-    "terminalId": "API",
-    "transactionAmount": "100",
+    "merchantId": "850",
+    "terminalId": "CASHIER01",
+    "transactionAmount": "10",
     "currency": "THB",
-    "billReference": "98534672",
-    "validityPeriod": "180",
-    "billableEvent": "317",
-    "balanceTypeId": "3000"
+    "billReference": "20241215000000000004",
+    "validityPeriod": "180"
 }

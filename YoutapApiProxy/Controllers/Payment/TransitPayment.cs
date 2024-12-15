@@ -23,9 +23,6 @@ readonly partial struct Payment
     // Bad Request
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(BillPaymentResponseInsufficientFundsExample))]
-    // Too Many Requests
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.TooManyRequests)]
-    [SwaggerResponseExample((int)HttpStatusCode.TooManyRequests, typeof(BillPaymentResponseTooManyRequestsExample))]
     // Internal Server Error
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.InternalServerError)]
     // Request Body

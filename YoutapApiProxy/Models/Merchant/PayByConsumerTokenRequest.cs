@@ -4,6 +4,13 @@ using System.Text.Json.Serialization;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PayByConsumerTokenRequestModel;
+// Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
+public class AdditionalDetails
+{
+    [JsonPropertyName("paymentPurpose")]
+    public string PaymentPurpose { get; set; }
+}
+
 public class OriginalAmount
 {
     [Required]
@@ -18,35 +25,35 @@ public class OriginalAmount
 public class Root
 {
     [Required]
-    [SwaggerSchema("The `Customer Number` of the merchant, as shown in CMS portal.")]
     [JsonPropertyName("payeeAccount")]
     public string PayeeAccount { get; set; }
 
     [Required]
     [JsonPropertyName("payeeDevice")]
-    [SwaggerSchema("ID of the device that initiated the payment, use `API` if unknown.")]
     public string PayeeDevice { get; set; }
 
     [Required]
     [JsonPropertyName("cpmQrCode")]
     public string CpmQrCode { get; set; }
 
+    [JsonPropertyName("terminalId")]
+    public string TerminalId { get; set; }
+
+    [JsonPropertyName("channel")]
+    public string Channel { get; set; }
+
     [Required]
     [JsonPropertyName("requestRef")]
-    [SwaggerSchema("unique reference number for lookup, same as `externalReference`.")]
     public string RequestRef { get; set; }
 
     [Required]
     [JsonPropertyName("originalAmount")]
     public OriginalAmount OriginalAmount { get; set; }
 
-    [JsonPropertyName("billReference")]
-    public string BillReference { get; set; }
+    [JsonPropertyName("notes")]
+    public string Notes { get; set; }
 
-    [JsonPropertyName("salesId")]
-    public string SalesId { get; set; }
-
-    [JsonPropertyName("balanceType")]
-    public string BalanceType { get; set; }
+    [JsonPropertyName("additionalDetails")]
+    public AdditionalDetails AdditionalDetails { get; set; }
 }
 
