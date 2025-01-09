@@ -18,8 +18,8 @@ readonly partial struct Payment
     [ProducesResponseType(typeof(BillPaymentResponseSuccessModel.Root), (int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(BillPaymentResponseSuccessExample))]
     // Accepted
-    [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.Accepted)]
-    [SwaggerResponseExample((int)HttpStatusCode.Accepted, typeof(BillPaymentResponseDelayedExample))]
+    // [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.Accepted)]
+    // [SwaggerResponseExample((int)HttpStatusCode.Accepted, typeof(BillPaymentResponseDelayedExample))]
     // Bad Request
     [ProducesResponseType(typeof(ClientErrorResponseModel.Root), (int)HttpStatusCode.BadRequest)]
     [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(BillPaymentResponseInsufficientFundsExample))]

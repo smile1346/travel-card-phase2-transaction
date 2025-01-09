@@ -30,12 +30,13 @@ struct Router
 
         v1.MapGet("customers/{customerId}/accounts/{accountId}/history", TransactionHistory.GetTransactionHistory).WithTags(["Transaction History"]); // /history/wallet/v4/{custId}/{accountId}/summary
 
-        v1.MapPost("general-transaction", Integration.DepositWithdrawal).WithTags(["Integration"]); // /external-partners/v1/general-transaction
+        v1.MapPost("general-transaction", Integration.GeneralTransaction).WithTags(["Integration"]); // /external-partners/v1/general-transaction
 
         app.MapPost("partners-callback-endpoint", Notifications.Webhook).WithTags(["Notifications"]);
 
         v1.MapPost("qr-payments/merchants/{merchantId}/wallets/{accountId}/dynamic-qr-code", Merchant.CreateOpenBill).WithTags(["QR Payment"]); // /open-bill-api/v1/accounts/{accountId}/open-bills
         v1.MapPost("qr-payments/consumers/{customerId}/wallets/{accountId}/csb-qr-payment", Consumer.PayByMerchantToken).WithTags(["QR Payment"]); // /emoney/v3/consumers/{accountId}/payment
+        v1.MapPost("qr-payments/merchants/{merchantId}/wallets/{accountId}/dynamic-qr-code/deactivate", Merchant.DeactivateOpenBill).WithTags(["QR Payment"]); // /open-bill-api/v1/deactivate/{accountId}
 
         v1.MapPost("qr-payments/consumers/{customerId}/wallets/{accountId}/dynamic-qr-code", Consumer.GetQRString).WithTags(["QR Payment"]); // /v3/wallets/{custId}/token
         v1.MapPost("qr-payments/merchants/{merchantId}/wallets/{accountId}/bsc-qr-payment", Merchant.PayByConsumerToken).WithTags(["QR Payment"]); // /merchants/{merchantId}/pay-by-consumer-token

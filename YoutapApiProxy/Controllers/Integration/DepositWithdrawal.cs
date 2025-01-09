@@ -31,7 +31,7 @@ This is the same operation (i.e. the requests are almost the same) as the withdr
 `C2MD`: Customer to Merchant Deposit. The transaction goes from the merchant to the customer.
 
 `C2MW`: Customer to Merchant Withdrawal. the transaction goes from the customer to the merchant.")]
-    public static async Task DepositWithdrawal(HttpContext context,
+    public static async Task GeneralTransaction(HttpContext context,
     BBLClientBasedAccessTokenClient tokenClient,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.")] string signature,

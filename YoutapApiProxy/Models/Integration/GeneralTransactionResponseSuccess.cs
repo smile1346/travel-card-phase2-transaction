@@ -36,6 +36,9 @@ public class CustomerDetails
 
     [JsonPropertyName("gender")]
     public string Gender { get; set; }
+
+    [JsonPropertyName("balance")]
+    public Balance Balance { get; set; }
 }
 
 public class MerchantDetails

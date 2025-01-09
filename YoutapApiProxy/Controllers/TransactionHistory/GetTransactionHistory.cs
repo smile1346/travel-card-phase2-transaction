@@ -39,7 +39,7 @@ readonly partial struct TransactionHistory
     [SwaggerParameter("Search by an external reference if it was provided in the original transaction.")] string? requestReference,
     [SwaggerParameter("The number of transactions to retrieve per page.")] int? pageSize,
     [SwaggerParameter("The page number.")] int? page,
-    [SwaggerParameter("The property to order by. Example: `txnlid`")] string? orderProperty,
+    // [SwaggerParameter("The property to order by. Example: `txnlid`")] string? orderProperty,
     [FromQuery][SwaggerParameter("The direction of sorting")] SortDirection? sortDirection,
     // [SwaggerParameter("Indicates whether to include interest and tax transactions.")] bool? includeInterestAndTaxTransactions,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,

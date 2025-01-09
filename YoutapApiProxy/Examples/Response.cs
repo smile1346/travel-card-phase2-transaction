@@ -30,7 +30,7 @@ public class BillPaymentResponseSuccessExample : IMultipleExamplesProvider<strin
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
         yield return SwaggerExample.Create("Electric Train", File.ReadAllText("examples/BillPaymentResponse_ElectricTrain.json"));
-        yield return SwaggerExample.Create("Successful Instant BillPayment", File.ReadAllText("examples/BillPaymentResponse_Successful.json"));
+        // yield return SwaggerExample.Create("Successful Instant BillPayment", File.ReadAllText("examples/BillPaymentResponse_Successful.json"));
     }
 }
 
@@ -289,6 +289,17 @@ public class PayByMerchantQRResponseBadRequestExample : IMultipleExamplesProvide
         yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
         yield return SwaggerExample.Create("Bill reference already paid", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyPaid.json"));
         yield return SwaggerExample.Create("Bill reference already expired", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyExpired.json"));
+        yield return SwaggerExample.Create("Bill reference is not active", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotActive.json"));
         yield return SwaggerExample.Create("Amount incorrect", File.ReadAllText("examples/PayByMerchantQRResponse_AmountIncorrect.json"));
+    }
+}
+
+public class DeactivateOpenBillBadRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
+        yield return SwaggerExample.Create("Bill reference already paid", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyPaid.json"));
+        yield return SwaggerExample.Create("Bill reference already deactivated", File.ReadAllText("examples/DeactivateOpenBillResponse_BillAlreadyDeactivated.json"));
     }
 }

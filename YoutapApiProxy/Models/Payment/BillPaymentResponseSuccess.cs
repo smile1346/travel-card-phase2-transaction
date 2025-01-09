@@ -72,10 +72,10 @@ public class CouponAmount
 public class Fee
 {
     [JsonPropertyName("toFee")]
-    public ToFromFee ToFee { get; set; }
+    public Balance ToFee { get; set; }
 
     [JsonPropertyName("fromFee")]
-    public ToFromFee FromFee { get; set; }
+    public Balance FromFee { get; set; }
 }
 
 // public class FromFee
@@ -111,14 +111,16 @@ public class Root
 
     [JsonPropertyName("additional")]
     public object Additional { get; set; }
+
+    [JsonPropertyName("customerBalance")]
+    public Balance CustomerBalance { get; set; }
 }
 
-public class ToFromFee
+public class Balance
 {
     [JsonPropertyName("amount")]
-    public int Amount { get; set; }
+    public decimal Amount { get; set; }
 
     [JsonPropertyName("currency")]
     public string Currency { get; set; }
 }
-

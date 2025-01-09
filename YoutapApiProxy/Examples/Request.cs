@@ -111,3 +111,11 @@ public class PayByMerchantQRRequestExample : IMultipleExamplesProvider<string>
         yield return SwaggerExample.Create("Pay By Scanning MPM QR Code", File.ReadAllText("examples/PayByMerchantQRRequest.json"));
     }
 }
+
+public class DeactivateOpenBillRequestExample : IMultipleExamplesProvider<string>
+{
+    public IEnumerable<SwaggerExample<string>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Deactivate Open Bill", File.ReadAllText("examples/DeactivateOpenBillRequest.json"));
+    }
+}
