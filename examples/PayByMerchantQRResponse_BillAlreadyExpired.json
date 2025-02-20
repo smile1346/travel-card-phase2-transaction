@@ -4,7 +4,7 @@
     "detail": "Bill reference already expired",
     "status": 400,
     "instance": "",
-    "errorKey": "invalid_parameters",
-    "errorCode": "1043",
-    "errorDescription": "Invalid parameters"
+    "errorKey": "bill_reference_already_expired",
+    "errorCode": "1122",
+    "errorDescription": "Bill Reference Already Expired"
 }

@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace GetTransactionHistoryResponse;
 
@@ -14,66 +13,19 @@ public class Content
     [JsonPropertyName("nfcTagId")]
     public object NfcTagId { get; set; }
 
-    [JsonPropertyName("date")]
-    [SwaggerSchema("Transaction date (Epoch)")]
-    public string Date { get; set; }
-
-    [JsonPropertyName("receiptAdditionalDetails")]
-    public object ReceiptAdditionalDetails { get; set; }
-
-    [JsonPropertyName("salesId")]
-    public int SalesId { get; set; }
-
-    [JsonPropertyName("latitude")]
-    public double Latitude { get; set; }
-
-    [JsonPropertyName("longitude")]
-    public double Longitude { get; set; }
-
-    [JsonPropertyName("productId")]
-    public object ProductId { get; set; }
-
-    [JsonPropertyName("billerId")]
-    public object BillerId { get; set; }
-
-    [JsonPropertyName("pylId")]
-    public object PylId { get; set; }
-
-    [JsonPropertyName("paymentModeId")]
-    [SwaggerSchema("Payment method ID")]
-    public int PaymentModeId { get; set; }
-
-    [JsonPropertyName("sourceAcctId")]
-    public int SourceAcctId { get; set; }
-
-    // [JsonPropertyName("alternateAccountId")]
-    // [SwaggerSchema("Customized field for Promptpay wallet Id\n\nFormat: Promptpay Wallet Id Format 160-01-{accountId} (10 digit)")]
-    // public string AlternateAccountId { get; set; }
-
-    [JsonPropertyName("relatedAcctId")]
-    public int RelatedAcctId { get; set; }
-
-    [JsonPropertyName("bplId")]
-    public object BplId { get; set; }
-
-    [JsonPropertyName("transactionCCNumber")]
-    public object TransactionCCNumber { get; set; }
-
     [JsonPropertyName("terminalId")]
-    public object TerminalId { get; set; }
+    public string TerminalId { get; set; }
 
     [JsonPropertyName("contactMsisdn")]
     public object ContactMsisdn { get; set; }
 
     [JsonPropertyName("paymentType")]
-    [SwaggerSchema("Type of payment. Possible Values:  `Top-up / เติมเงิน`\n\n`Payment / ชําระค่าสินค้าหรือบริการ`\n\n`Transportation Fare / ค่าโดยสารรถไฟฟ้า`")]
     public string PaymentType { get; set; }
 
     [JsonPropertyName("status")]
     public object Status { get; set; }
 
     [JsonPropertyName("message")]
-    [SwaggerSchema("Free-form notes related to the transaction")]
     public string Message { get; set; }
 
     [JsonPropertyName("duration")]
@@ -94,8 +46,10 @@ public class Content
     [JsonPropertyName("extSession")]
     public string ExtSession { get; set; }
 
+    [JsonPropertyName("externalReference")]
+    public string ExternalReference { get; set; }
+
     [JsonPropertyName("sourceRef")]
-    [SwaggerSchema("Reference ID of the source, sending from source in bill payment, top up or other transaction\n\nFormat: String (max length support 50 digits)")]
     public string SourceRef { get; set; }
 
     [JsonPropertyName("patternA")]
@@ -111,7 +65,6 @@ public class Content
     public double WorkingAmount { get; set; }
 
     [JsonPropertyName("workingAmountDisplay")]
-    [SwaggerSchema("Transaction amount")]
     public string WorkingAmountDisplay { get; set; }
 
     [JsonPropertyName("sendingAmountExclFee")]
@@ -139,11 +92,9 @@ public class Content
     public string BalanceAfterDisplay { get; set; }
 
     [JsonPropertyName("workingCurrencyUnit")]
-    [SwaggerSchema("Currency unit short name\n\nFormat: ISO 4217 standard three-letter codes for currencies, uppercase\n\nSample Value: THB")]
     public string WorkingCurrencyUnit { get; set; }
 
     [JsonPropertyName("workingCurrencySymbol")]
-    [SwaggerSchema("Currency symbol\n\nSample Value: ฿")]
     public string WorkingCurrencySymbol { get; set; }
 
     [JsonPropertyName("destinationCurrencyUnit")]
@@ -156,7 +107,6 @@ public class Content
     public string TxType { get; set; }
 
     [JsonPropertyName("transactionTypeCode")]
-    [SwaggerSchema("Code for the transaction type (DR/CR)")]
     public string TransactionTypeCode { get; set; }
 
     [JsonPropertyName("billableEvent")]
@@ -169,7 +119,6 @@ public class Content
     public int ReversalOriginalTransactionId { get; set; }
 
     [JsonPropertyName("transactionId")]
-    [SwaggerSchema("Transaction ID\n\nFormat: String (10 digits)")]
     public string TransactionId { get; set; }
 
     [JsonPropertyName("utransactionId")]
@@ -184,49 +133,148 @@ public class Content
     [JsonPropertyName("destinationCode")]
     public string DestinationCode { get; set; }
 
+    [JsonPropertyName("creditName")]
+    public string CreditName { get; set; }
+
     [JsonPropertyName("debitName")]
     public string DebitName { get; set; }
 
-    [JsonPropertyName("creditName")]
-    [SwaggerSchema("Merchant name where the customer has made a payment")]
-    public string CreditName { get; set; }
+    [JsonPropertyName("date")]
+    public object Date { get; set; }
+
+    [JsonPropertyName("receiptAdditionalDetails")]
+    public object ReceiptAdditionalDetails { get; set; }
+
+    [JsonPropertyName("salesId")]
+    public int SalesId { get; set; }
+
+    [JsonPropertyName("latitude")]
+    public double Latitude { get; set; }
+
+    [JsonPropertyName("longitude")]
+    public double Longitude { get; set; }
+
+    [JsonPropertyName("productId")]
+    public string ProductId { get; set; }
+
+    [JsonPropertyName("billerId")]
+    public string BillerId { get; set; }
+
+    [JsonPropertyName("pylId")]
+    public int? PylId { get; set; }
+
+    [JsonPropertyName("paymentModeId")]
+    public object PaymentModeId { get; set; }
+
+    [JsonPropertyName("sourceAcctId")]
+    public int SourceAcctId { get; set; }
+
+    [JsonPropertyName("relatedAcctId")]
+    public int RelatedAcctId { get; set; }
+
+    [JsonPropertyName("billReference")]
+    public string BillReference { get; set; }
+
+    [JsonPropertyName("reverseReferenceId")]
+    public object ReverseReferenceId { get; set; }
+
+    [JsonPropertyName("bplId")]
+    public int? BplId { get; set; }
+
+    [JsonPropertyName("transactionCCNumber")]
+    public object TransactionCCNumber { get; set; }
 
     [JsonPropertyName("externalAccount")]
-    public string ExternalAccount { get; set; }
-
-    [JsonPropertyName("externalReference")]
-    [SwaggerSchema("externalReference that has been provided in the request")]
-    public string ExternalReference { get; set; }
+    public object ExternalAccount { get; set; }
 
     [JsonPropertyName("additionalDetails")]
-    [SwaggerSchema("productTypeInfo/additionalDetails that has been provided the request")]
-    public object AdditionalDetails { get; set; }
+    public dynamic AdditionalDetails { get; set; }
+
+    [JsonPropertyName("openDate")]
+    public object OpenDate { get; set; }
+
+    [JsonPropertyName("approvalCode")]
+    public object ApprovalCode { get; set; }
+
+    [JsonPropertyName("blncid")]
+    public int Blncid { get; set; }
+}
+
+public class Pageable
+{
+    [JsonPropertyName("pageNumber")]
+    public int PageNumber { get; set; }
+
+    [JsonPropertyName("pageSize")]
+    public int PageSize { get; set; }
+
+    [JsonPropertyName("sort")]
+    public List<Sort> Sort { get; set; }
+
+    [JsonPropertyName("offset")]
+    public int Offset { get; set; }
+
+    [JsonPropertyName("paged")]
+    public bool Paged { get; set; }
+
+    [JsonPropertyName("unpaged")]
+    public bool Unpaged { get; set; }
 }
 
 public class Root
 {
-    [JsonPropertyName("number")]
-    public int Number { get; set; }
-
-    [JsonPropertyName("size")]
-    public int Size { get; set; }
-
-    [JsonPropertyName("numberOfElements")]
-    public int NumberOfElements { get; set; }
-
     [JsonPropertyName("content")]
     public List<Content> Content { get; set; }
 
-    [JsonPropertyName("first")]
-    public bool First { get; set; }
+    [JsonPropertyName("pageable")]
+    public Pageable Pageable { get; set; }
 
     [JsonPropertyName("last")]
     public bool Last { get; set; }
 
+    [JsonPropertyName("totalElements")]
+    public int TotalElements { get; set; }
+
     [JsonPropertyName("totalPages")]
     public int TotalPages { get; set; }
 
-    [JsonPropertyName("totalElements")]
-    public int TotalElements { get; set; }
+    [JsonPropertyName("first")]
+    public bool First { get; set; }
+
+    [JsonPropertyName("size")]
+    public int Size { get; set; }
+
+    [JsonPropertyName("number")]
+    public int Number { get; set; }
+
+    [JsonPropertyName("sort")]
+    public List<Sort> Sort { get; set; }
+
+    [JsonPropertyName("numberOfElements")]
+    public int NumberOfElements { get; set; }
+
+    [JsonPropertyName("empty")]
+    public bool Empty { get; set; }
+}
+
+public class Sort
+{
+    [JsonPropertyName("direction")]
+    public string Direction { get; set; }
+
+    [JsonPropertyName("property")]
+    public string Property { get; set; }
+
+    [JsonPropertyName("ignoreCase")]
+    public bool IgnoreCase { get; set; }
+
+    [JsonPropertyName("nullHandling")]
+    public string NullHandling { get; set; }
+
+    [JsonPropertyName("ascending")]
+    public bool Ascending { get; set; }
+
+    [JsonPropertyName("descending")]
+    public bool Descending { get; set; }
 }
 

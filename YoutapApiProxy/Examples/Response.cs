@@ -172,6 +172,7 @@ public class GeneralTransactionResponseErrorExample : IMultipleExamplesProvider<
         yield return SwaggerExample.Create("Could not parse cpmQrCode", File.ReadAllText("examples/GeneralTransactionDepositResponse_BadQR.json"));
         yield return SwaggerExample.Create("Balance limit reached", File.ReadAllText("examples/GeneralTransactionDepositResponse_BalanceLimitReached.json"));
         yield return SwaggerExample.Create("Transaction date is not current", File.ReadAllText("examples/GeneralTransactionDepositResponse_DateNotCurrent.json"));
+        yield return SwaggerExample.Create("Transaction type not allowed for this account", File.ReadAllText("examples/GeneralTransactionResponse_TransactionTypeNotAllowedFromThisAccount.json"));
     }
 }
 
@@ -286,11 +287,11 @@ public class PayByMerchantQRResponseBadRequestExample : IMultipleExamplesProvide
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
         yield return SwaggerExample.Create("Bill reference already paid", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyPaid.json"));
+        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
         yield return SwaggerExample.Create("Bill reference already expired", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyExpired.json"));
-        yield return SwaggerExample.Create("Bill reference is not active", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotActive.json"));
         yield return SwaggerExample.Create("Amount incorrect", File.ReadAllText("examples/PayByMerchantQRResponse_AmountIncorrect.json"));
+        yield return SwaggerExample.Create("Bill reference is not active", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotActive.json"));
     }
 }
 
@@ -298,7 +299,7 @@ public class DeactivateOpenBillBadRequestExample : IMultipleExamplesProvider<str
 {
     public IEnumerable<SwaggerExample<string>> GetExamples()
     {
-        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/PayByMerchantQRResponse_BillNotFound.json"));
+        yield return SwaggerExample.Create("Bill not found", File.ReadAllText("examples/DeactivateOpenBillResponse_BillNotFound.json"));
         yield return SwaggerExample.Create("Bill reference already paid", File.ReadAllText("examples/PayByMerchantQRResponse_BillAlreadyPaid.json"));
         yield return SwaggerExample.Create("Bill reference already deactivated", File.ReadAllText("examples/DeactivateOpenBillResponse_BillAlreadyDeactivated.json"));
     }

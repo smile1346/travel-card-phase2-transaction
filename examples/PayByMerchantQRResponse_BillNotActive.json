@@ -4,7 +4,7 @@
     "detail": "Bill reference is not active",
     "status": 400,
     "instance": "",
-    "errorKey": "invalid_parameters",
-    "errorCode": "1043",
-    "errorDescription": "Invalid parameters"
+    "errorKey": "bill_reference_is_not_active",
+    "errorCode": "1124",
+    "errorDescription": "Bill Reference Is Not Active"
 }

@@ -14,7 +14,7 @@ public class Balance
     public string BalanceUnit { get; set; }
 
     [JsonPropertyName("balanceAmount")]
-    public int BalanceAmount { get; set; }
+    public decimal BalanceAmount { get; set; }
 
     [JsonPropertyName("balanceDisplayAmount")]
     public string BalanceDisplayAmount { get; set; }
@@ -80,18 +80,21 @@ public class TransactionDetails
     public string PaymentType { get; set; }
 
     [JsonPropertyName("amount")]
-    public int Amount { get; set; }
+    public decimal Amount { get; set; }
 
     [JsonPropertyName("unit")]
     public string Unit { get; set; }
 
     [JsonPropertyName("fromFee")]
-    public int FromFee { get; set; }
+    public decimal FromFee { get; set; }
 
     [JsonPropertyName("toFee")]
-    public int ToFee { get; set; }
+    public decimal ToFee { get; set; }
 
     [JsonPropertyName("transactionId")]
     public string TransactionId { get; set; }
+
+    [JsonPropertyName("transactionReference")]
+    public string TransactionReference { get; set; }
 }
 
