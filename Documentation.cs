@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.7.1";
+  public const string currentVersion = "0.7.2";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -55,6 +55,7 @@ Additionally, the token is how the front-end knows what the customer ID is so th
 
 **What's new in v{currentVersion}**
 - **C Scan B - Scan Merchant QR - Response** - Added different error codes for each scenario.
+- **Webhook** - Added `REVERSAL_PAYMENT` event for payment reversal scenario.
 
 **What's new in v0.7.0**
 - **C Scan B - Deactivate Merchant QR Code** - **New API for deactivating merchant open bill**.

@@ -26,14 +26,12 @@ namespace Controllers
 
         [SwaggerOperation(Summary = "[C-scan-B] Purchase By Scanning Merchant QR Code", Description = @"
 Make a payment by scanning a QR code presented by a merchant. That QR code will contain the information required to fill in the request body.")]
-        public static IResult PayByMerchantToken(
+        public static void PayByMerchantToken(
     [SwaggerParameter("The `Customer Number` of the customer, as shown in CMS portal.")] string customerId,
     [SwaggerParameter("The `Account Number` of the customer, as shown in CMS portal.")] string accountId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature,
     [FromHeader(Name = "Idempotency-Key")][SwaggerParameter("Unique key that the server uses to recognize subsequent retries of the same request to avoid the accidental creation of duplicate transactions.")] string idempotencyKey)
         {
-            var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
-            return Results.Text(result, MediaTypeNames.Application.Json);
         }
 
     }

@@ -28,13 +28,11 @@ readonly partial struct Merchant
 
     [SwaggerOperation(Summary = "[C-scan-B] Create Merchant-Presented Mode (MPM) QR Code (Open Bill)", Description = @"
 This request gets a string representation of a QR code that contains payment information that another user can scan to initiate a payment.")]
-    public static IResult CreateOpenBill(
+    public static void CreateOpenBill(
     [SwaggerParameter("The `Customer Number` of the merchant, as shown in CMS portal.")] string merchantId,
     [SwaggerParameter("The `Account Number` of the merchant, as shown in CMS portal.")] string accountId,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature (JWS) used for message integrity verification.")] string signature)
     {
-        var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
-        return Results.Text(result, MediaTypeNames.Application.Json);
     }
 
 }

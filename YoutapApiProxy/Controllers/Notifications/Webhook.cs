@@ -21,10 +21,8 @@ Examples of webhook requests that will be sent to partner's callback url upon sp
 These examples are to show what events look like when they are sent to webhook endpoints.
 
 This request is not supposed to describe functionality of a specific endpoint within our API.")]
-    public static IResult Webhook(/* string accountId */)
+    public static void Webhook(/* string accountId */)
     {
-        var result = File.ReadAllText(@"examples/Webhook_LowBalance.json");
-        return Results.Text(result, MediaTypeNames.Application.Json);
     }
 
 }
