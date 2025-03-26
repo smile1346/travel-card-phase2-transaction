@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 readonly struct Documentation
 {
-  public const string currentVersion = "0.7.2";
+  public const string currentVersion = "0.7.3";
   public static void UseSwagger(WebApplication app)
   {
     app.UseSwagger();
@@ -53,7 +53,10 @@ Subsequent requests to restricted endpoints must contain the supplied token (a J
 
 Additionally, the token is how the front-end knows what the customer ID is so that it can be used in requests such as Get User Info. The app can decode the token and extract the customer ID claim. This allows us to keep personally identifiable information such as the MSISDN out of the request paths, thereby keeping customer information private.
 
-**What's new in v{currentVersion}**
+**What's new in v0.7.3**
+- **Transaction History** - Added `transactionTypes` query parameter for filtering transaction types.
+
+**What's new in v0.7.2**
 - **C Scan B - Scan Merchant QR - Response** - Added different error codes for each scenario.
 - **Webhook** - Added `REVERSAL_PAYMENT` event for payment reversal scenario.
 

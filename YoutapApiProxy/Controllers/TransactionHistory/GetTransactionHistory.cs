@@ -40,7 +40,8 @@ readonly partial struct TransactionHistory
     [SwaggerParameter("The number of transactions to retrieve per page.")] int? pageSize,
     [SwaggerParameter("The page number.")] int? page,
     // [SwaggerParameter("The property to order by. Example: `txnlid`")] string? orderProperty,
-    [FromQuery][SwaggerParameter("The direction of sorting")] SortDirection? sortDirection,
+    [SwaggerParameter("The direction of sorting")] SortDirection? sortDirection,
+    [SwaggerParameter("Comma-separated transaction types\nPossible values: `C2MD`, `C2MW`, `C2MP`, `CIMP`, `BILL`, `SCLR`")] string? transactionTypes,
     // [SwaggerParameter("Indicates whether to include interest and tax transactions.")] bool? includeInterestAndTaxTransactions,
     [DefaultValue("EN")][FromHeader(Name = "Accept-Language")] string? acceptLanguage,
     [FromHeader(Name = "x-jws-signature")][SwaggerParameter("JSON Web Signature with detached payload (JWS-Detached) used for message integrity verification.\n\n**Empty payload must be signed for GET requests**")] string signature)
