@@ -37,7 +37,20 @@ builder.Services.AddHttpClient("LocationService", client =>
     client.BaseAddress = new Uri(builder.Configuration["Services:LocationService:BaseUrl"]);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy =>
+        {
+            policy.AllowAnyOrigin() // 🔒 Allow only this domain
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
 var app = builder.Build();
+app.UseCors("AllowSpecificOrigin");
 
 if (app.Environment.IsDevelopment())
 {
